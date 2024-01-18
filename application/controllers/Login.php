@@ -14,7 +14,7 @@ class Login extends CI_Controller{
             'menu'=> 'login',
             'action' => 'login/auth',
         );  
-        $this->template->load('login/template', 'login/login_form', $data);
+        $this->load->view('login/login', $data);
     }
 
     function auth(){
@@ -48,13 +48,13 @@ class Login extends CI_Controller{
         else {
             $notif = "username/Password Salah";
             $this->session->set_flashdata('gagal', $notif);
-            redirect('login_sakip');
+            redirect('login');
         }
     }
 
     function logout(){
         $this->session->sess_destroy();
-        redirect(base_url('login_sakip'));
+        redirect(base_url('login'));
     }
  
 }
