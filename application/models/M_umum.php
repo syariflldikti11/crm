@@ -2,7 +2,27 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 class M_umum extends CI_Model{
     
+function get_konsultasi()
+	{
 
+		$this->db->select('*');
+		$this->db->from('konsultasi a');
+		$this->db->join('pelanggan b', 'a.id_pelanggan=b.id_pelanggan', 'left');
+		$this->db->order_by('a.tgl_konsultasi desc');
+
+		$query = $this->db->get();
+		return $query->result();
+	}
+	function get_service()
+	{
+
+		$this->db->select('*');
+		$this->db->from('service a');
+		$this->db->join('mobil b', 'a.id_mobil=b.id_mobil', 'left');
+
+		$query = $this->db->get();
+		return $query->result();
+	}
  function get_data($tabel)
 	{
 		$query = $this->db->get($tabel);

@@ -29,7 +29,6 @@
     <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>files\assets\icon\themify-icons\themify-icons.css">
     <!-- ico font -->
     <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>files\assets\icon\icofont\css\icofont.css">
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>files\assets\icon\font-awesome\css\font-awesome.min.css">
     <script type="text/javascript" src="<?php echo base_url(); ?>files\ckeditor\ckeditor.js"></script>
     <script type="text/javascript" src="<?php echo base_url(); ?>files\ckeditor\style.js"></script>
     <!-- feather Awesome -->
@@ -45,7 +44,6 @@
     <!-- Style.css -->
     <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>files\assets\css\style.css">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>files\assets\css\jquery.mCustomScrollbar.css">
-     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -101,7 +99,7 @@
                                 <div class="dropdown-primary dropdown">
                                     <div class="dropdown-toggle" data-toggle="dropdown">
                                         <i class="feather icon-bell"></i>
-                                        <span class="badge bg-c-pink">1</span>
+                                        <span class="badge bg-c-pink"><?php echo $notifikasi_aset; ?></span>
                                     </div>
                                    
                                 </div>
@@ -151,24 +149,12 @@
                                
                               
                             </ul>
-                              <ul class="pcoded-item pcoded-left-item">
-                                <li class="">
-                        <a href="<?php echo base_url ('admin/mobil'); ?>">
-                                        <span class="pcoded-micon"><i class="fa fa-car"></i></span>
-                                        <span class="pcoded-mtext">Mobil</span>
-                                    </a></li></ul>
-                                    <ul class="pcoded-item pcoded-left-item">
-                                <li class="">
-                        <a href="<?php echo base_url ('admin/service'); ?>">
-                                        <span class="pcoded-micon"><i class="fa fa-gears"></i></span>
-                                        <span class="pcoded-mtext">Service</span>
-                                    </a></li></ul>
                            
                             <ul class="pcoded-item pcoded-left-item">
                                  <li class="">
-                                    <a href="<?php echo base_url ('admin/pelanggan'); ?>">
-                                        <span class="pcoded-micon"><i class="feather icon-users"></i></span>
-                                        <span class="pcoded-mtext">Pelanggan</span>
+                                    <a href="<?php echo base_url ('aset/hasil_usulan'); ?>">
+                                        <span class="pcoded-micon"><i class="feather icon-file"></i></span>
+                                        <span class="pcoded-mtext">Data Usulan LHP</span>
                                         
                                     </a>  
                                 </li>
@@ -178,24 +164,18 @@
 
                      <ul class="pcoded-item pcoded-left-item">
                                  <li class="">
-                                    <a href="<?php echo base_url ('admin/event'); ?>">
-                                        <span class="pcoded-micon"><i class="feather icon-calendar"></i></span>
-                                        <span class="pcoded-mtext">Event</span>
+                                    <a href="<?php echo base_url ('aset/rekap_usulan_selesai'); ?>">
+                                        <span class="pcoded-micon"><i class="feather icon-file"></i></span>
+                                        <span class="pcoded-mtext">Rekap Usulan LHP</span>
                                         
                                     </a>  
                                 </li>
                     </ul>
                        <ul class="pcoded-item pcoded-left-item">
                                 <li class="">
-                        <a href="<?php echo base_url ('admin/solusi'); ?>">
-                                        <span class="pcoded-micon"><i class="fa fa-question"></i></span>
-                                        <span class="pcoded-mtext">Solusi</span>
-                                    </a></li></ul>
-                                     <ul class="pcoded-item pcoded-left-item">
-                                <li class="">
-                        <a href="<?php echo base_url ('admin/konsultasi'); ?>">
-                                        <span class="pcoded-micon"><i class="fa fa-headphones"></i></span>
-                                        <span class="pcoded-mtext">Konsultasi</span>
+                        <a href="<?php echo base_url ('aset/tracking'); ?>">
+                                        <span class="pcoded-micon"><i class="feather icon-eye"></i></span>
+                                        <span class="pcoded-mtext">Tracking</span>
                                     </a></li></ul>
                        
                            
@@ -209,80 +189,3 @@
                                 <div class="page-wrapper">
                                     <div class="page-body">
                                      
-
-
-<?= $contents; ?>
-
-
-                                <div id="styleSelector">
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-   
-
-
-
-
-
-<script type="text/javascript" src="<?php echo base_url(); ?>files\bower_components\jquery\js\jquery.min.js"></script>
-  <script type="text/javascript" src="<?php echo base_url(); ?>files\bower_components\jquery\js\jquery.min.js"></script>
-<script type="text/javascript" src="<?php echo base_url(); ?>files\bower_components\jquery-ui\js\jquery-ui.min.js"></script>
-<script type="text/javascript" src="<?php echo base_url(); ?>files\bower_components\popper.js\js\popper.min.js"></script>
-<script type="text/javascript" src="<?php echo base_url(); ?>files\bower_components\bootstrap\js\bootstrap.min.js"></script>
-<!-- jquery slimscroll js -->
-<script type="text/javascript" src="<?php echo base_url(); ?>files\bower_components\jquery-slimscroll\js\jquery.slimscroll.js"></script>
-<!-- modernizr js -->
-<script type="text/javascript" src="<?php echo base_url(); ?>files\bower_components\modernizr\js\modernizr.js"></script>
-<script type="text/javascript" src="<?php echo base_url(); ?>files\bower_components\modernizr\js\css-scrollbars.js"></script>
-
-<!-- data-table js -->
-<script src="<?php echo base_url(); ?>files\bower_components\datatables.net\js\jquery.dataTables.min.js"></script>
-<script src="<?php echo base_url(); ?>files\bower_components\datatables.net-buttons\js\dataTables.buttons.min.js"></script>
-<script src="<?php echo base_url(); ?>files\assets\pages\data-table\js\jszip.min.js"></script>
-<script src="<?php echo base_url(); ?>files\assets\pages\data-table\js\pdfmake.min.js"></script>
-<script src="<?php echo base_url(); ?>files\assets\pages\data-table\js\vfs_fonts.js"></script>
-<script src="<?php echo base_url(); ?>files\bower_components\datatables.net-buttons\js\buttons.print.min.js"></script>
-<script src="<?php echo base_url(); ?>files\bower_components\datatables.net-buttons\js\buttons.html5.min.js"></script>
-<script src="<?php echo base_url(); ?>files\bower_components\datatables.net-bs4\js\dataTables.bootstrap4.min.js"></script>
-<script src="<?php echo base_url(); ?>files\bower_components\datatables.net-responsive\js\dataTables.responsive.min.js"></script>
-
-<script type="text/javascript" src="<?php echo base_url(); ?>files\bower_components\select2\js\select2.full.min.js"></script>
-<!-- Multiselect js -->
-<script type="text/javascript" src="<?php echo base_url(); ?>files\bower_components\bootstrap-multiselect\js\bootstrap-multiselect.js">
-
-
-</script>
-<script type="text/javascript" src="<?php echo base_url(); ?>files\bower_components\multiselect\js\jquery.multi-select.js"></script>
-
-<script src="<?php echo base_url(); ?>files\bower_components\datatables.net-responsive-bs4\js\responsive.bootstrap4.min.js"></script>
-<!-- i18next.min.js -->
-<script type="text/javascript" src="<?php echo base_url(); ?>files\bower_components\i18next\js\i18next.min.js"></script>
-<script type="text/javascript" src="<?php echo base_url(); ?>files\bower_components\i18next-xhr-backend\js\i18nextXHRBackend.min.js"></script>
-<script type="text/javascript" src="<?php echo base_url(); ?>files\bower_components\i18next-browser-languagedetector\js\i18nextBrowserLanguageDetector.min.js"></script>
-<script type="text/javascript" src="<?php echo base_url(); ?>files\bower_components\jquery-i18next\js\jquery-i18next.min.js"></script>
-<!-- Custom js -->
-<script src="<?php echo base_url(); ?>files\assets\pages\data-table\js\data-table-custom.js"></script>
-
-<script src="<?php echo base_url(); ?>files\assets\js\pcoded.min.js"></script>
-<script src="<?php echo base_url(); ?>files\assets\js\vartical-layout.min.js"></script>
-<script src="<?php echo base_url(); ?>files\assets\js\jquery.mCustomScrollbar.concat.min.js"></script>
-<script type="text/javascript" src="<?php echo base_url(); ?>files\assets\js\script.js"></script>
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-23581568-13');
-</script>
-</body>
-
-</html>
