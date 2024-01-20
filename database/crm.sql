@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 16 Jan 2024 pada 16.08
+-- Waktu pembuatan: 20 Jan 2024 pada 15.53
 -- Versi server: 10.1.38-MariaDB
 -- Versi PHP: 7.3.2
 
@@ -31,10 +31,17 @@ SET time_zone = "+00:00";
 CREATE TABLE `event` (
   `id_event` varchar(100) NOT NULL,
   `nama_event` varchar(100) NOT NULL,
-  `keterangan` varchar(100) NOT NULL,
+  `ket` varchar(100) NOT NULL,
   `tgl_event` date NOT NULL,
   `tgl_input` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `event`
+--
+
+INSERT INTO `event` (`id_event`, `nama_event`, `ket`, `tgl_event`, `tgl_input`) VALUES
+('9dea17b5-b793-11ee-bd5d-f7de7099ab91', 'Pameran', 'as', '2024-01-20', '2024-01-20 20:58:29');
 
 -- --------------------------------------------------------
 
@@ -69,6 +76,13 @@ CREATE TABLE `mobil` (
   `penggerak` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data untuk tabel `mobil`
+--
+
+INSERT INTO `mobil` (`id_mobil`, `nama_mobil`, `transmisi`, `warna`, `cc`, `kapasitas`, `ac`, `ac_double_blower`, `lampu_kabut`, `penggerak`) VALUES
+('asd', 'calya', '', '', 0, 0, '', '', '', '');
+
 -- --------------------------------------------------------
 
 --
@@ -84,6 +98,13 @@ CREATE TABLE `pelanggan` (
   `email` varchar(100) NOT NULL,
   `no_wa` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `pelanggan`
+--
+
+INSERT INTO `pelanggan` (`id_pelanggan`, `nama_pelanggan`, `alamat`, `tgl_lahir`, `jk`, `email`, `no_wa`) VALUES
+('ed6b6758-b790-11ee-bd5d-f7de7099ab91', 'Muhlisah', 'banjarmasin', '2024-01-20', 'P', 'akademik.kopwil11@gmail.com', '08');
 
 -- --------------------------------------------------------
 
@@ -115,8 +136,16 @@ CREATE TABLE `service` (
   `id_service` varchar(100) NOT NULL,
   `nama_service` varchar(100) NOT NULL,
   `deskripsi` varchar(100) NOT NULL,
-  `harga_service` int(11) NOT NULL
+  `estimasi_harga` varchar(100) NOT NULL,
+  `id_mobil` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `service`
+--
+
+INSERT INTO `service` (`id_service`, `nama_service`, `deskripsi`, `estimasi_harga`, `id_mobil`) VALUES
+('7102bcbc-b7a3-11ee-bd5d-f7de7099ab91', 'oke', 'a', '200000', 'asd');
 
 -- --------------------------------------------------------
 
