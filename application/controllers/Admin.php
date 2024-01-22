@@ -21,6 +21,20 @@ class Admin extends CI_Controller {
     $this->template->load('admin/template', 'admin/home', $data);
     
 }
+function promo()
+{
+  
+  $data = array(
+      'judul' => 'Promo',
+      'modal_tambah' => 'Tambah Data Promo',
+      'modal_edit' => 'Edit Data Promo',
+      'dt_promo'=> $this->m_umum->get_data('promo'),
+     
+  );  
+  $this->template->load('admin/template', 'admin/promo', $data);
+  
+}
+
 function event()
 {
   
@@ -34,6 +48,77 @@ function event()
   $this->template->load('admin/template', 'admin/event', $data);
   
 }
+function simpan_promo()
+  {
+
+    $this->db->set('id_promo', 'UUID()', FALSE);
+    $nama_promo = $this->input->post('nama_promo');
+    $detail_promo = $this->input->post('detail_promo');
+    $tgl_promo = $this->input->post('tgl_promo');
+    $file_promo = $this->uploadfilepromo();
+
+    $data = array(
+
+      'nama_promo' => $nama_promo,
+      'detail_promo' => $detail_promo,
+      'file_promo' => $file_promo,
+      'tgl_promo' => $tgl_promo,
+    );
+
+    $this->m_umum->input_data($data, 'promo');
+    $notif = "Tambah Data Berhasil";
+    $this->session->set_flashdata('success', $notif);
+    redirect('admin/promo');
+
+  }
+   function update_promo()
+  {
+    $id_promo = $this->input->post('id_promo');
+   $nama_promo = $this->input->post('nama_promo');
+    $detail_promo = $this->input->post('detail_promo');
+    $tgl_promo = $this->input->post('tgl_promo');
+    $old_promo = $this->input->post('old_promo');
+
+    if (!empty($_FILES["file_promo"]["name"])) {
+      $file_promo = $this->uploadfilepromo();
+      unlink("./upload/$old_promo");
+    } else {
+      $file_promo = $old_kak;
+    }
+    $data_update = array(
+      'id_promo' => $id_promo,
+      'nama_promo' => $nama_promo,
+      'detail_promo' => $detail_promo,
+      'file_promo' => $file_promo,
+      'tgl_promo' => $tgl_promo,
+    );
+    $where = array('id_promo' => $id_promo);
+    $res = $this->m_umum->UpdateData('promo', $data_update, $where);
+    $notif = "Update Data Berhasil";
+    $this->session->set_flashdata('success', $notif);
+    redirect('admin/promo');
+
+  }
+  public function uploadfilepromo()
+  {
+    $config['upload_path'] = 'upload';
+    $config['allowed_types'] = 'jpg|png|jpeg';
+    $config['overwrite'] = false;
+    $config['max_size'] = 2000; // 1MB
+    $config['encrypt_name'] = TRUE;
+
+
+    $this->load->library('upload', $config);
+    $this->upload->initialize($config);
+
+    if ($this->upload->do_upload('file_promo')) {
+      return $this->upload->data("file_name");
+    }
+    $error = $this->upload->display_errors();
+    echo $error;
+    exit;
+    // return "default.jpg";
+  }
 
  function simpan_event() { 
     
