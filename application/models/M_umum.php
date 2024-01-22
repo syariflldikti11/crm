@@ -23,6 +23,16 @@ function get_konsultasi()
 		$query = $this->db->get();
 		return $query->result();
 	}
+	function get_kasus()
+	{
+
+		$this->db->select('*');
+		$this->db->from('kasus a');
+		$this->db->join('pelanggan b', 'a.id_pelanggan=b.id_pelanggan', 'left');
+
+		$query = $this->db->get();
+		return $query->result();
+	}
  function get_data($tabel)
 	{
 		$query = $this->db->get($tabel);

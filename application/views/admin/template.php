@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>LHP-Online - Sistem Pengusulan LHP Online </title>
+    <title>CRM - App </title>
     <!-- HTML5 Shim and Respond.js IE10 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 10]>
@@ -70,7 +70,7 @@
                         <a class="mobile-menu" id="mobile-collapse" href="#!">
                             <i class="feather icon-menu"></i>
                         </a>
-                        <a href="<?php echo base_url ('aset/index'); ?>">
+                        <a href="<?php echo base_url ('admin'); ?>">
                             <img class="img-fluid" src="<?php echo base_url(); ?>files\assets\images\logo.png" alt="Theme-Logo">
                         </a>
                         <a class="mobile-options">
@@ -136,10 +136,10 @@
                 <div class="pcoded-wrapper">
                     <nav class="pcoded-navbar">
                         <div class="pcoded-inner-navbar main-menu">
-                           <div class="pcoded-navigatio-lavel">Navigation</div>
+                          
                             <ul class="pcoded-item pcoded-left-item">
                                 <li class="">
-                                    <a href="<?php echo base_url ('aset/index'); ?>">
+                                    <a href="<?php echo base_url ('admin'); ?>">
                                         <span class="pcoded-micon"><i class="feather icon-home"></i></span>
                                         <span class="pcoded-mtext">Dashboard</span>
                                     </a>
@@ -151,6 +151,7 @@
                                
                               
                             </ul>
+                            <div class="pcoded-navigatio-lavel">Manajemen Produk</div>
                               <ul class="pcoded-item pcoded-left-item">
                                 <li class="">
                         <a href="<?php echo base_url ('admin/mobil'); ?>">
@@ -164,23 +165,34 @@
                                         <span class="pcoded-mtext">Service</span>
                                     </a></li></ul>
                            
-                            <ul class="pcoded-item pcoded-left-item">
-                                 <li class="">
-                                    <a href="<?php echo base_url ('admin/pelanggan'); ?>">
-                                        <span class="pcoded-micon"><i class="feather icon-users"></i></span>
-                                        <span class="pcoded-mtext">Pelanggan</span>
-                                        
-                                    </a>  
-                                </li>
-                    </ul>
+                          
                         
                         
-
+<div class="pcoded-navigatio-lavel">Manajemen Pemasaran</div>
                      <ul class="pcoded-item pcoded-left-item">
                                  <li class="">
                                     <a href="<?php echo base_url ('admin/event'); ?>">
                                         <span class="pcoded-micon"><i class="feather icon-calendar"></i></span>
                                         <span class="pcoded-mtext">Event</span>
+                                        
+                                    </a>  
+                                </li>
+                    </ul>
+                      <ul class="pcoded-item pcoded-left-item">
+                                 <li class="">
+                                    <a href="<?php echo base_url ('admin/promo'); ?>">
+                                        <span class="pcoded-micon"><i class="fa fa-bullhorn"></i></span>
+                                        <span class="pcoded-mtext">Promo</span>
+                                        
+                                    </a>  
+                                </li>
+                    </ul>
+                      <div class="pcoded-navigatio-lavel">Manajemen Pelanggan</div>
+                        <ul class="pcoded-item pcoded-left-item">
+                                 <li class="">
+                                    <a href="<?php echo base_url ('admin/pelanggan'); ?>">
+                                        <span class="pcoded-micon"><i class="feather icon-users"></i></span>
+                                        <span class="pcoded-mtext">Pelanggan</span>
                                         
                                     </a>  
                                 </li>
@@ -196,6 +208,12 @@
                         <a href="<?php echo base_url ('admin/konsultasi'); ?>">
                                         <span class="pcoded-micon"><i class="fa fa-headphones"></i></span>
                                         <span class="pcoded-mtext">Konsultasi</span>
+                                    </a></li></ul>
+                                    <ul class="pcoded-item pcoded-left-item">
+                                <li class="">
+                        <a href="<?php echo base_url ('admin/kasus'); ?>">
+                                        <span class="pcoded-micon"><i class="fa fa-briefcase"></i></span>
+                                        <span class="pcoded-mtext">Kasus</span>
                                     </a></li></ul>
                        
                            

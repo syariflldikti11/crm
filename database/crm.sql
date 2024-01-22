@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 20 Jan 2024 pada 15.53
--- Versi server: 10.1.38-MariaDB
--- Versi PHP: 7.3.2
+-- Waktu pembuatan: 22 Jan 2024 pada 09.36
+-- Versi server: 10.4.11-MariaDB
+-- Versi PHP: 7.2.31
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -33,7 +32,7 @@ CREATE TABLE `event` (
   `nama_event` varchar(100) NOT NULL,
   `ket` varchar(100) NOT NULL,
   `tgl_event` date NOT NULL,
-  `tgl_input` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `tgl_input` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -46,6 +45,27 @@ INSERT INTO `event` (`id_event`, `nama_event`, `ket`, `tgl_event`, `tgl_input`) 
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `kasus`
+--
+
+CREATE TABLE `kasus` (
+  `id_kasus` varchar(100) NOT NULL,
+  `subject` varchar(100) NOT NULL,
+  `id_pelanggan` varchar(100) NOT NULL,
+  `deskripsi` varchar(100) NOT NULL,
+  `balasan` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `kasus`
+--
+
+INSERT INTO `kasus` (`id_kasus`, `subject`, `id_pelanggan`, `deskripsi`, `balasan`) VALUES
+('b246fa8f-b8da-11ee-922e-c454445434d3', 'dar', 'ed6b6758-b790-11ee-bd5d-f7de7099ab91', 'MTK', 'ab');
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `konsultasi`
 --
 
@@ -53,7 +73,7 @@ CREATE TABLE `konsultasi` (
   `id_konsultasi` varchar(100) NOT NULL,
   `id_pelanggan` varchar(100) NOT NULL,
   `isi_konsultasi` varchar(100) NOT NULL,
-  `tgl_konsultasi` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `tgl_konsultasi` datetime NOT NULL DEFAULT current_timestamp(),
   `balasan` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -129,6 +149,20 @@ INSERT INTO `pengguna` (`id_pengguna`, `username`, `password`, `level`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `promo`
+--
+
+CREATE TABLE `promo` (
+  `id_promo` varchar(100) NOT NULL,
+  `nama_promo` varchar(100) NOT NULL,
+  `tgl_promo` varchar(100) NOT NULL,
+  `detail_promo` text NOT NULL,
+  `file_promo` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `service`
 --
 
@@ -157,7 +191,7 @@ CREATE TABLE `solusi` (
   `id_solusi` varchar(100) NOT NULL,
   `pertanyaan` varchar(100) NOT NULL,
   `jawaban` varchar(100) NOT NULL,
-  `tgl_solusi` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `tgl_solusi` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -169,6 +203,12 @@ CREATE TABLE `solusi` (
 --
 ALTER TABLE `event`
   ADD PRIMARY KEY (`id_event`);
+
+--
+-- Indeks untuk tabel `kasus`
+--
+ALTER TABLE `kasus`
+  ADD PRIMARY KEY (`id_kasus`);
 
 --
 -- Indeks untuk tabel `konsultasi`
@@ -193,6 +233,12 @@ ALTER TABLE `pelanggan`
 --
 ALTER TABLE `pengguna`
   ADD PRIMARY KEY (`id_pengguna`);
+
+--
+-- Indeks untuk tabel `promo`
+--
+ALTER TABLE `promo`
+  ADD PRIMARY KEY (`id_promo`);
 
 --
 -- Indeks untuk tabel `service`
