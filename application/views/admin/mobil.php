@@ -63,7 +63,7 @@
                     </div></td>
                       <td>
                     <div align="left">
-                      <?= $d->ac_doble_blower; ?>
+                      <?= $d->ac_double_blower; ?>
                     </div></td>
                      <td>
                     <div align="left">
@@ -71,7 +71,7 @@
                     </div></td>
                     <td>
                     <div align="left">
-                      <?= $d->foto; ?>
+                      <a target="_blank" href="<?= base_url(); ?>upload/<?= $d->foto_mobil; ?>">File </a>
                     </div></td>
                     
                    
@@ -79,7 +79,7 @@
        <a  onclick="return confirm('anda yakin ingin menghapus data ini')" class="btn btn-sm btn-danger"  data-tooltip="tooltip"
                       data-bs-placement="top"
                       title="Delete" 
-                   href="<?php echo base_url('admin/delete_event/'.$d->id_event);?>" 
+                   href="<?php echo base_url('admin/delete_mobil/'.$d->id_mobil);?>" 
                     ><span class="icofont icofont-ui-delete"></span> </a></div></td>
                 </tr>
                 <?php endforeach; ?>
@@ -104,24 +104,74 @@
                                                                             </div>
                                                                             <?php  
              echo validation_errors();                       
-    echo form_open('admin/simpan_event'); ?>
+    echo form_open_multipart('admin/simpan_mobil'); ?>
                    
                                                                            <div class="modal-body">
    
                       <div class="mb-3">
-                        <label for="exampleInputEmail1">Nama event</label>
-                        <input type="text" class="form-control"  name="nama_event"  required >
+                        <label for="exampleInputEmail1">Nama Mobil</label>
+                        <input type="text" class="form-control"  name="nama_mobil"  required >
                         
                       </div>
                       
                       <div class="mb-3">
-                        <label for="exampleInputEmail1">Keterangan</label>
-                        <input type="text" class="form-control"  name="ket"  required >
+                        <label for="exampleInputEmail1">Warna</label>
+                        <input type="text" class="form-control"  name="warna"  required >
                         
                       </div>
                        <div class="mb-3">
-                        <label for="exampleInputEmail1">Tanggal Event</label>
-                        <input type="date" class="form-control"  name="tgl_event"  required >
+                        <label for="exampleInputEmail1">CC</label>
+                        <input type="number" class="form-control"  name="cc"  required >
+                        
+                      </div>
+                       <div class="mb-3">
+                        <label for="exampleInputEmail1">Kapasitas Peneumpang</label>
+                        <input type="number" class="form-control"  name="kapasitas"  required >
+                        
+                      </div>
+                       <div class="mb-3">
+                        <label for="exampleInputEmail1">Transmisi</label>
+                  
+                         <select class="form-control" name="transmisi" required>
+                          <option value="Manual">Manual</option>
+                          <option value="Automatic">Automatic</option>
+                        </select>
+                      </div>
+                       <div class="mb-3">
+                        <label for="exampleInputEmail1">Penggerak</label>
+                       <select class="form-control" name="penggerak" required>
+                          <option value="FWD">FWD</option>
+                          <option value="RWD">RWD</option>
+                        </select>
+                        
+                      </div>
+                       <div class="mb-3">
+                        <label for="exampleInputEmail1">AC</label>
+                         <select class="form-control" name="ac" required>
+                          <option value="Ya">Ya</option>
+                          <option value="Tidak">Tidak</option>
+                        </select>
+                        
+                      </div>
+                      <div class="mb-3">
+                        <label for="exampleInputEmail1">AC Double Blower</label>
+                       
+                          <select class="form-control" name="ac_double_blower" required>
+                          <option value="Ya">Ya</option>
+                          <option value="Tidak">Tidak</option>
+                        </select>
+                      </div>
+                       <div class="mb-3">
+                        <label for="exampleInputEmail1">Lampu Kabut</label>
+                       
+                         <select class="form-control" name="lampu_kabut" required>
+                          <option value="Ya">Ya</option>
+                          <option value="Tidak">Tidak</option>
+                        </select>
+                      </div>
+                      <div class="mb-3">
+                        <label for="exampleInputEmail1">Foto Mobil</label>
+                        <input type="file" class="form-control"  name="foto_mobil" required >
                         
                       </div>
                       

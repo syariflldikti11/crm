@@ -99,6 +99,15 @@ function simpan_promo()
     redirect('admin/promo');
 
   }
+  function delete_promo($id=NULL)
+  {
+     
+    $this->m_umum->hapus('promo','id_promo',$id);
+     $notif = " Data berhasil dihapuskan";
+            $this->session->set_flashdata('delete', $notif);
+    redirect('admin/promo');
+     
+  }
   public function uploadfilepromo()
   {
     $config['upload_path'] = 'upload';
@@ -275,7 +284,7 @@ function update_pelanggan()
 {
   
   $data = array(
-      'judul' => 'mobil',
+      'judul' => 'Mobil',
       'modal_tambah' => 'Tambah Data mobil',
       'modal_edit' => 'Edit Data mobil',
       'dt_mobil'=> $this->m_umum->get_data('mobil'),
@@ -285,37 +294,100 @@ function update_pelanggan()
   
 }
 
- function simpan_mobil() { 
-    
-          $tahun=$this->session->userdata('tahun');
-$this->db->set('id_mobil', 'UUID()', FALSE);
-    $this->form_validation->set_rules('nama_mobil','nama_mobil','required');
-    if($this->form_validation->run() === FALSE)
-    redirect('admin/mobil');
-    else
-    {
-        
-        $this->m_umum->set_data("mobil");
-        $notif = "Tambah Data Berhasil";
-        $this->session->set_flashdata('success', $notif);
-        redirect('admin/mobil');
-    }
-
-}
-function update_mobil()
+ function simpan_mobil()
   {
-        
-    $this->form_validation->set_rules('id_mobil','id_mobil','required');
-    if($this->form_validation->run() === FALSE)
-        redirect('admin/mobil');
-    else
-    {
-      $this->m_umum->update_data("mobil");
-       $notif = " Data berhasil diupdate";
-            $this->session->set_flashdata('update', $notif);
-      redirect('admin/mobil');
+
+    $this->db->set('id_mobil', 'UUID()', FALSE);
+    $nama_mobil = $this->input->post('nama_mobil');
+    $transmisi = $this->input->post('transmisi');
+    $warna = $this->input->post('warna');
+    $cc = $this->input->post('cc');
+    $kapasitas = $this->input->post('kapasitas');
+    $ac = $this->input->post('ac');
+    $ac_double_blower = $this->input->post('ac_double_blower');
+    $lampu_kabut = $this->input->post('lampu_kabut');
+    $penggerak = $this->input->post('penggerak');
+    $foto_mobil = $this->uploadfotomobil();
+
+    $data = array(
+
+      'nama_mobil' => $nama_mobil,
+      'transmisi' => $transmisi,
+      'foto_mobil' => $foto_mobil,
+      'warna' => $warna,
+      'cc' => $cc,
+      'kapasitas' => $kapasitas,
+      'ac' => $ac,
+      'ac_double_blower' => $ac_double_blower,
+      'lampu_kabut' => $lampu_kabut,
+      'penggerak' => $penggerak
+    );
+
+    $this->m_umum->input_data($data, 'mobil');
+    $notif = "Tambah Data Berhasil";
+    $this->session->set_flashdata('success', $notif);
+    redirect('admin/mobil');
+
+  }
+   function update_mobil()
+  {
+    $id_mobil = $this->input->post('id_mobil');
+   $nama_mobil = $this->input->post('nama_mobil');
+    $transmisi = $this->input->post('transmisi');
+    $warna = $this->input->post('warna');
+    $cc = $this->input->post('cc');
+    $kapasitas = $this->input->post('kapasitas');
+    $ac = $this->input->post('ac');
+    $ac_double_blower = $this->input->post('ac_double_blower');
+    $lampu_kabut = $this->input->post('lampu_kabut');
+    $penggerak = $this->input->post('penggerak');
+    $old_mobil = $this->input->post('old_mobil');
+
+    if (!empty($_FILES["foto_mobil"]["name"])) {
+      $foto_mobil = $this->uploadfotomobil();
+      unlink("./upload/$old_mobil");
+    } else {
+      $foto_mobil = $old_kak;
     }
-    
+    $data_update = array(
+      'id_mobil' => $id_mobil,
+       'nama_mobil' => $nama_mobil,
+      'transmisi' => $transmisi,
+      'foto_mobil' => $foto_mobil,
+      'warna' => $warna,
+      'cc' => $cc,
+      'kapasitas' => $kapasitas,
+      'ac' => $ac,
+      'ac_double_blower' => $ac_double_blower,
+      'lampu_kabut' => $lampu_kabut,
+      'penggerak' => $penggerak
+    );
+    $where = array('id_mobil' => $id_mobil);
+    $res = $this->m_umum->UpdateData('mobil', $data_update, $where);
+    $notif = "Update Data Berhasil";
+    $this->session->set_flashdata('success', $notif);
+    redirect('admin/mobil');
+
+  }
+  public function uploadfotomobil()
+  {
+    $config['upload_path'] = 'upload';
+    $config['allowed_types'] = 'jpg|png|jpeg';
+    $config['overwrite'] = false;
+    $config['max_size'] = 2000; // 1MB
+    $config['encrypt_name'] = TRUE;
+
+
+    $this->load->library('upload', $config);
+    $this->upload->initialize($config);
+
+    if ($this->upload->do_upload('foto_mobil')) {
+      return $this->upload->data("file_name");
+    }
+    $error = $this->upload->display_errors();
+    echo $error;
+    exit;
+    // return "default.jpg";
   }
  function delete_mobil($id=NULL)
   {
