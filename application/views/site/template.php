@@ -2133,7 +2133,7 @@
                         <div class="pcoded-inner-content">
                             <div class="main-body">
                                 <div class="page-wrapper">
-                                    <div class="page-body">             
+                                     <div class="page-body m-t-50">          
 
 
 <?= $contents; ?>
@@ -2150,7 +2150,7 @@
         </div>
     </div>
     </div>
-    </div>
+  
 
    
 
