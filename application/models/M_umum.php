@@ -18,10 +18,21 @@ function get_konsultasi()
 
 		$this->db->select('*');
 		$this->db->from('service a');
-		$this->db->join('mobil b', 'a.id_mobil=b.id_mobil', 'left');
+		$this->db->join('model_mobil b', 'a.id_model_mobil=b.id_model_mobil', 'left');
 
 		$query = $this->db->get();
 		return $query->result();
+	}
+	function get_detail_mobil($id)
+	{
+
+		$this->db->select('*');
+		$this->db->from('mobil');
+		$this->db->where('id_mobil',$id);
+		
+
+		$query = $this->db->get();
+		return $query->row();
 	}
 	function get_kasus()
 	{

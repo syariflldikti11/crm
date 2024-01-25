@@ -35,19 +35,7 @@ function promo()
   
 }
 
-function event()
-{
-  
-  $data = array(
-      'judul' => 'Event',
-      'modal_tambah' => 'Tambah Data Event',
-      'modal_edit' => 'Edit Data Event',
-      'dt_event'=> $this->m_umum->get_data('event'),
-     
-  );  
-  $this->template->load('admin/template', 'admin/event', $data);
-  
-}
+
 function simpan_promo()
   {
 
@@ -128,7 +116,103 @@ function simpan_promo()
     exit;
     // return "default.jpg";
   }
+  function banner()
+{
+  
+  $data = array(
+      'judul' => 'Banner',
+      'modal_tambah' => 'Tambah Data Banner',
+      'modal_edit' => 'Edit Data Banner',
+      'dt_banner'=> $this->m_umum->get_data('banner'),
+     
+  );  
+  $this->template->load('admin/template', 'admin/banner', $data);
+  
+}
 
+
+function simpan_banner()
+  {
+
+    $this->db->set('id_banner', 'UUID()', FALSE);
+    $file_banner = $this->uploadfilebanner();
+
+    $data = array(
+
+      'file_banner' => $file_banner,
+    );
+
+    $this->m_umum->input_data($data, 'banner');
+    $notif = "Tambah Data Berhasil";
+    $this->session->set_flashdata('success', $notif);
+    redirect('admin/banner');
+
+  }
+   function update_banner()
+  {
+    $id_banner = $this->input->post('id_banner');
+    $old_banner = $this->input->post('old_banner');
+
+    if (!empty($_FILES["file_banner"]["name"])) {
+      $file_banner = $this->uploadfilebanner();
+      unlink("./upload/$old_banner");
+    } else {
+      $file_banner = $old_kak;
+    }
+    $data_update = array(
+      'id_banner' => $id_banner,
+     
+      'file_banner' => $file_banner,
+    );
+    $where = array('id_banner' => $id_banner);
+    $res = $this->m_umum->UpdateData('banner', $data_update, $where);
+    $notif = "Update Data Berhasil";
+    $this->session->set_flashdata('success', $notif);
+    redirect('admin/banner');
+
+  }
+  function delete_banner($id=NULL)
+  {
+     
+    $this->m_umum->hapus('banner','id_banner',$id);
+     $notif = " Data berhasil dihapuskan";
+            $this->session->set_flashdata('delete', $notif);
+    redirect('admin/banner');
+     
+  }
+  public function uploadfilebanner()
+  {
+    $config['upload_path'] = 'upload';
+    $config['allowed_types'] = 'jpg|png|jpeg';
+    $config['overwrite'] = false;
+    $config['max_size'] = 2000; // 1MB
+    $config['encrypt_name'] = TRUE;
+
+
+    $this->load->library('upload', $config);
+    $this->upload->initialize($config);
+
+    if ($this->upload->do_upload('file_banner')) {
+      return $this->upload->data("file_name");
+    }
+    $error = $this->upload->display_errors();
+    echo $error;
+    exit;
+    // return "default.jpg";
+  }
+function event()
+{
+  
+  $data = array(
+      'judul' => 'Event',
+      'modal_tambah' => 'Tambah Data Event',
+      'modal_edit' => 'Edit Data Event',
+      'dt_event'=> $this->m_umum->get_data('event'),
+     
+  );  
+  $this->template->load('admin/template', 'admin/event', $data);
+  
+}
  function simpan_event() { 
     
           $tahun=$this->session->userdata('tahun');
@@ -168,6 +252,60 @@ function update_event()
      $notif = " Data berhasil dihapuskan";
             $this->session->set_flashdata('delete', $notif);
     redirect('admin/event');
+     
+  }
+  function model_mobil()
+{
+  
+  $data = array(
+      'judul' => 'Model Mobil',
+      'modal_tambah' => 'Tambah Data Model Mobil',
+      'modal_edit' => 'Edit Data Model Mobil',
+      'dt_model_mobil'=> $this->m_umum->get_data('model_mobil'),
+     
+  );  
+  $this->template->load('admin/template', 'admin/model_mobil', $data);
+  
+}
+ function simpan_model_mobil() { 
+    
+          $tahun=$this->session->userdata('tahun');
+$this->db->set('id_model_mobil', 'UUID()', FALSE);
+    $this->form_validation->set_rules('nama_model_mobil','nama_model_mobil','required');
+    if($this->form_validation->run() === FALSE)
+    redirect('admin/model_mobil');
+    else
+    {
+        
+        $this->m_umum->set_data("model_mobil");
+        $notif = "Tambah Data Berhasil";
+        $this->session->set_flashdata('success', $notif);
+        redirect('admin/model_mobil');
+    }
+
+}
+function update_model_mobil()
+  {
+        
+    $this->form_validation->set_rules('id_model_mobil','id_model_mobil','required');
+    if($this->form_validation->run() === FALSE)
+        redirect('admin/model_mobil');
+    else
+    {
+      $this->m_umum->update_data("model_mobil");
+       $notif = " Data berhasil diupdate";
+            $this->session->set_flashdata('update', $notif);
+      redirect('admin/model_mobil');
+    }
+    
+  }
+ function delete_model_mobil($id=NULL)
+  {
+     
+    $this->m_umum->hapus('model_mobil','id_model_mobil',$id);
+     $notif = " Data berhasil dihapuskan";
+            $this->session->set_flashdata('delete', $notif);
+    redirect('admin/model_mobil');
      
   }
   function Solusi()
@@ -406,7 +544,7 @@ function update_pelanggan()
       'judul' => 'Service',
       'modal_tambah' => 'Tambah Data service',
       'modal_edit' => 'Edit Data service',
-      'dt_mobil'=> $this->m_umum->get_data('mobil'),
+      'dt_mobil'=> $this->m_umum->get_data('model_mobil'),
       'dt_service'=> $this->m_umum->get_service(),
      
   );  

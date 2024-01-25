@@ -16,6 +16,47 @@ class Login extends CI_Controller{
         );  
         $this->load->view('login/login', $data);
     }
+      function register(){
+        
+        $data = array(
+            'judul' => 'Halaman Register',
+            'menu'=> 'login',
+            'action' => 'login/register',
+        );  
+        $this->load->view('login/register', $data);
+    }
+    function save_register()
+  {
+
+    $this->db->set('id_pelanggan', 'UUID()', FALSE);
+    $nama_pelanggan = $this->input->post('nama_pelanggan');
+    $alamat = $this->input->post('alamat');
+    $tgl_lahir = $this->input->post('tgl_lahir');
+    $jk = $this->input->post('jk');
+    $email = $this->input->post('email');
+    $no_wa = $this->input->post('no_wa');
+    $username = $this->input->post('username');
+    $password = $this->input->post('password');
+   $hash = password_hash($password, PASSWORD_DEFAULT);
+
+    $data = array(
+
+      'nama_pelanggan' => $nama_pelanggan,
+      'alamat' => $alamat,
+      'jk' => $jk,
+      'tgl_lahir' => $tgl_lahir,
+      'email' => $email,
+      'no_wa' => $no_wa,
+      'username' => $username,
+      'password' => $hash
+    );
+
+    $this->m_umum->input_data($data, 'pelanggan');
+    $notif = "Register Berhasil Silahkan Login";
+    $this->session->set_flashdata('success', $notif);
+    redirect('login');
+
+  }
 
     function auth(){
         $username=htmlspecialchars($this->input->post('username',TRUE),ENT_QUOTES);

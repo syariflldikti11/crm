@@ -110,7 +110,7 @@
                             <li class="user-profile header-notification">
                                 <div class="dropdown-primary dropdown">
                                     <div class="dropdown-toggle" data-toggle="dropdown">
-                                        <img src="<?php echo base_url(); ?>files\assets\images\user.jpg" class="img-radius" alt="User-Profile-Image">
+                                        <img src="<?php echo base_url(); ?>files\assets\images\user.png" class="img-radius" alt="User-Profile-Image">
                                         <span><?php echo $this->session->userdata('ses_id');  ?> </span>
                                         <i class="feather icon-chevron-down"></i>
                                     </div>
@@ -152,6 +152,12 @@
                               
                             </ul>
                             <div class="pcoded-navigatio-lavel">Manajemen Produk</div>
+                             <ul class="pcoded-item pcoded-left-item">
+                                <li class="">
+                        <a href="<?php echo base_url ('admin/model_mobil'); ?>">
+                                        <span class="pcoded-micon"><i class="fa fa-car"></i></span>
+                                        <span class="pcoded-mtext">Model Mobil</span>
+                                    </a></li></ul>
                               <ul class="pcoded-item pcoded-left-item">
                                 <li class="">
                         <a href="<?php echo base_url ('admin/mobil'); ?>">
@@ -187,6 +193,25 @@
                                     </a>  
                                 </li>
                     </ul>
+                    <div class="pcoded-navigatio-lavel">Manajemen Penjualan</div>
+                     <ul class="pcoded-item pcoded-left-item">
+                                 <li class="">
+                                    <a href="<?php echo base_url ('admin/event'); ?>">
+                                        <span class="pcoded-micon"><i class="fa fa-heart"></i></span>
+                                        <span class="pcoded-mtext">Peminat Produk</span>
+                                        
+                                    </a>  
+                                </li>
+                    </ul>
+                      <ul class="pcoded-item pcoded-left-item">
+                                 <li class="">
+                                    <a href="<?php echo base_url ('admin/promo'); ?>">
+                                        <span class="pcoded-micon"><i class="fa fa-shopping-cart"></i></span>
+                                        <span class="pcoded-mtext">Sales Order</span>
+                                        
+                                    </a>  
+                                </li>
+                    </ul>
                       <div class="pcoded-navigatio-lavel">Manajemen Pelanggan</div>
                         <ul class="pcoded-item pcoded-left-item">
                                  <li class="">
@@ -215,6 +240,17 @@
                                         <span class="pcoded-micon"><i class="fa fa-briefcase"></i></span>
                                         <span class="pcoded-mtext">Kasus</span>
                                     </a></li></ul>
+
+                                    <div class="pcoded-navigatio-lavel">Tools</div>
+                        <ul class="pcoded-item pcoded-left-item">
+                                 <li class="">
+                                    <a href="<?php echo base_url ('admin/pelanggan'); ?>">
+                                        <span class="pcoded-micon"><i class="fa fa-image"></i></span>
+                                        <span class="pcoded-mtext">Banner</span>
+                                        
+                                    </a>  
+                                </li>
+                  
                        
                            
                      

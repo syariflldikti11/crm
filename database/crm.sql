@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 22 Jan 2024 pada 09.36
+-- Waktu pembuatan: 25 Jan 2024 pada 10.05
 -- Versi server: 10.4.11-MariaDB
 -- Versi PHP: 7.2.31
 
@@ -20,6 +20,25 @@ SET time_zone = "+00:00";
 --
 -- Database: `crm`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `banner`
+--
+
+CREATE TABLE `banner` (
+  `id_banner` varchar(100) NOT NULL,
+  `file_banner` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `banner`
+--
+
+INSERT INTO `banner` (`id_banner`, `file_banner`) VALUES
+('f05a414e-bb16-11ee-afe5-c454445434d3', '746ff0e555849317542cd79512501d3a.png'),
+('f485baf3-bb16-11ee-afe5-c454445434d3', '7eae96d71214440d2c09e10efdac559a.jpg');
 
 -- --------------------------------------------------------
 
@@ -93,15 +112,38 @@ CREATE TABLE `mobil` (
   `ac` varchar(100) NOT NULL,
   `ac_double_blower` varchar(100) NOT NULL,
   `lampu_kabut` varchar(100) NOT NULL,
-  `penggerak` varchar(100) NOT NULL
+  `penggerak` varchar(100) NOT NULL,
+  `foto_mobil` varchar(100) NOT NULL,
+  `harga_otr` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `mobil`
 --
 
-INSERT INTO `mobil` (`id_mobil`, `nama_mobil`, `transmisi`, `warna`, `cc`, `kapasitas`, `ac`, `ac_double_blower`, `lampu_kabut`, `penggerak`) VALUES
-('asd', 'calya', '', '', 0, 0, '', '', '', '');
+INSERT INTO `mobil` (`id_mobil`, `nama_mobil`, `transmisi`, `warna`, `cc`, `kapasitas`, `ac`, `ac_double_blower`, `lampu_kabut`, `penggerak`, `foto_mobil`, `harga_otr`) VALUES
+('2972f0f7-bb1a-11ee-afe5-c454445434d3', 'Sigra', 'Manual', 'Silver', 1200, 7, 'Ya', 'Ya', 'Ya', 'FWD', '54d1d6ad871ade10af146ecff1c3ad0d.png', 0),
+('4261d470-bb1a-11ee-afe5-c454445434d3', 'Rocky', 'Manual', 'Merah', 1200, 5, 'Ya', 'Ya', 'Ya', 'FWD', '36d42f593b2bf4a2364b9588414ea535.jpg', 0),
+('7073bf09-bb1a-11ee-afe5-c454445434d3', 'Ayla', 'Manual', 'Merah', 1200, 5, 'Ya', 'Ya', 'Ya', 'FWD', '93b3e7eac43ecf3d314a4f14ef6adda8.jpg', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `model_mobil`
+--
+
+CREATE TABLE `model_mobil` (
+  `id_model_mobil` varchar(100) NOT NULL,
+  `nama_model_mobil` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `model_mobil`
+--
+
+INSERT INTO `model_mobil` (`id_model_mobil`, `nama_model_mobil`) VALUES
+('9b174c7b-ba60-11ee-867f-c454445434d3', 'All New Ayla 1.0 CVT'),
+('a4533548-ba60-11ee-867f-c454445434d3', 'All New Ayla 1.0 MT');
 
 -- --------------------------------------------------------
 
@@ -116,15 +158,17 @@ CREATE TABLE `pelanggan` (
   `tgl_lahir` date NOT NULL,
   `jk` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
-  `no_wa` varchar(100) NOT NULL
+  `no_wa` varchar(100) NOT NULL,
+  `username` varchar(100) NOT NULL,
+  `password` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `pelanggan`
 --
 
-INSERT INTO `pelanggan` (`id_pelanggan`, `nama_pelanggan`, `alamat`, `tgl_lahir`, `jk`, `email`, `no_wa`) VALUES
-('ed6b6758-b790-11ee-bd5d-f7de7099ab91', 'Muhlisah', 'banjarmasin', '2024-01-20', 'P', 'akademik.kopwil11@gmail.com', '08');
+INSERT INTO `pelanggan` (`id_pelanggan`, `nama_pelanggan`, `alamat`, `tgl_lahir`, `jk`, `email`, `no_wa`, `username`, `password`) VALUES
+('ed6b6758-b790-11ee-bd5d-f7de7099ab91', 'Muhlisah', 'banjarmasin', '2024-01-20', 'P', 'akademik.kopwil11@gmail.com', '08', '', '');
 
 -- --------------------------------------------------------
 
@@ -160,6 +204,13 @@ CREATE TABLE `promo` (
   `file_promo` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data untuk tabel `promo`
+--
+
+INSERT INTO `promo` (`id_promo`, `nama_promo`, `tgl_promo`, `detail_promo`, `file_promo`) VALUES
+('adb2b256-b905-11ee-922e-c454445434d3', 'aa', '2024-01-22', 'bbs', '6bccbc23e395ab44971f4f9ee3a2e245.jpg');
+
 -- --------------------------------------------------------
 
 --
@@ -171,15 +222,15 @@ CREATE TABLE `service` (
   `nama_service` varchar(100) NOT NULL,
   `deskripsi` varchar(100) NOT NULL,
   `estimasi_harga` varchar(100) NOT NULL,
-  `id_mobil` varchar(100) NOT NULL
+  `id_model_mobil` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `service`
 --
 
-INSERT INTO `service` (`id_service`, `nama_service`, `deskripsi`, `estimasi_harga`, `id_mobil`) VALUES
-('7102bcbc-b7a3-11ee-bd5d-f7de7099ab91', 'oke', 'a', '200000', 'asd');
+INSERT INTO `service` (`id_service`, `nama_service`, `deskripsi`, `estimasi_harga`, `id_model_mobil`) VALUES
+('1cc16e3b-ba61-11ee-867f-c454445434d3', 'Service 3', 'MTK', '200000', '9b174c7b-ba60-11ee-867f-c454445434d3');
 
 -- --------------------------------------------------------
 
@@ -197,6 +248,12 @@ CREATE TABLE `solusi` (
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indeks untuk tabel `banner`
+--
+ALTER TABLE `banner`
+  ADD PRIMARY KEY (`id_banner`);
 
 --
 -- Indeks untuk tabel `event`
@@ -223,10 +280,17 @@ ALTER TABLE `mobil`
   ADD PRIMARY KEY (`id_mobil`);
 
 --
+-- Indeks untuk tabel `model_mobil`
+--
+ALTER TABLE `model_mobil`
+  ADD PRIMARY KEY (`id_model_mobil`);
+
+--
 -- Indeks untuk tabel `pelanggan`
 --
 ALTER TABLE `pelanggan`
-  ADD PRIMARY KEY (`id_pelanggan`);
+  ADD PRIMARY KEY (`id_pelanggan`),
+  ADD UNIQUE KEY `username` (`username`);
 
 --
 -- Indeks untuk tabel `pengguna`

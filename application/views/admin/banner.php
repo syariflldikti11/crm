@@ -11,54 +11,41 @@
                                                             <thead class="bg-primary text-white">
                 <tr>
                   <th><div align="center">No</div></th>
-                  <th><div align="left">Nama Mobil</div></th>
-                  <th><div align="left">Nama Service</div></th>
-                  <th><div align="left">Deskripsi</div></th>
-                  <th><div align="left">Estimasi Harga</div></th>
-                 
+                  
+                  <th><div align="left">File banner</div></th>
+                
                   <th ><div align="center">Opsi</div></th>
                 </tr>
               </thead>
               <tbody>
                 <?php
                 $no=1;
-                foreach ($dt_service as $d): ?>
+                foreach ($dt_banner as $d): ?>
                 <tr>
                   <td><div align="center">
                     <?= $no++; ?>
                   </div></td>
-                  <td>
-                    <div align="left">
-                      <?= $d->nama_model_mobil; ?>
-                    </div></td>
+                 
                      <td>
                     <div align="left">
-                      <?= $d->nama_service; ?>
+                     <a target="_blank" href="<?= base_url(); ?>upload/<?= $d->file_banner; ?>">File </a>
                     </div></td>
-                    <td>
-                    <div align="left">
-                      <?= $d->deskripsi; ?>
-                    </div></td>
-                    <td>
-                    <div align="left">
-                      <?= $d->estimasi_harga; ?>
-                    </div></td>
+                    
                    
                   <td align="center"><div align="center">   
-            <a   class="btn btn-sm btn-warning" data-tooltip="tooltip"
+             <a   class="btn btn-sm btn-warning" data-tooltip="tooltip"
                       data-bs-placement="top"
                       title="Edit" href="javascript:;"
                            data-toggle="modal" data-target="#edit"   
-                              data-id="<?= $d->id_service ?>"
-                              data-nama_service="<?= $d->nama_service ?>"
-                              data-deskripsi="<?= $d->deskripsi ?>"
-                              data-estimasi_harga="<?= $d->estimasi_harga ?>"
-                              
+                              data-id="<?= $d->id_banner ?>"
+                             
+                              data-file_banner="<?= $d->file_banner ?>"
+                            
                               > 
                     <span class="icofont icofont-ui-edit"></span> </a> <a  onclick="return confirm('anda yakin ingin menghapus data ini')" class="btn btn-sm btn-danger"  data-tooltip="tooltip"
                       data-bs-placement="top"
                       title="Delete" 
-                   href="<?php echo base_url('admin/delete_service/'.$d->id_service);?>" 
+                   href="<?php echo base_url('admin/delete_banner/'.$d->id_banner);?>" 
                     ><span class="icofont icofont-ui-delete"></span> </a></div></td>
                 </tr>
                 <?php endforeach; ?>
@@ -83,38 +70,19 @@
                                                                             </div>
                                                                             <?php  
              echo validation_errors();                       
-    echo form_open('admin/simpan_service'); ?>
+    echo form_open_multipart('admin/simpan_banner'); ?>
                    
                                                                            <div class="modal-body">
-    <div class="mb-3">
-                        <label for="exampleInputEmail1">Model Mobil</label>
-                        
-                        <select class="form-control" name="id_model_mobil">
-                            <?php
-                foreach ($dt_mobil as $b): ?>
-                          <option value="<?= $b->id_model_mobil; ?>"><?= $b->nama_model_mobil; ?></option>
-                           <?php endforeach; ?>
-                        </select>
+   
                      
-                        
-                      </div>
-                      <div class="mb-3">
-                        <label for="exampleInputEmail1">Nama service</label>
-                        <input type="text" class="form-control"  name="nama_service"  required >
+                       <div class="mb-3">
+                        <label for="exampleInputEmail1">File</label>
+                        <input type="file" class="form-control"  name="file_banner"  required >
+                      
                         
                       </div>
                       
-                      <div class="mb-3">
-                        <label for="exampleInputEmail1">Deskripsi</label>
-                        <input type="text" class="form-control"  name="deskripsi"  required >
-                        
-                      </div>
-                       <div class="mb-3">
-                        <label for="exampleInputEmail1">Estimasi Harga</label>
-                        <input type="text" class="form-control"  name="estimasi_harga"  required >
-                        
-                      </div>
-                     
+                      
       </div>
                                                                             <div class="modal-footer">
                                                                                 <button type="button" class="btn btn-default waves-effect " data-dismiss="modal">Close</button>
@@ -137,28 +105,18 @@
                                                                             </div>
                                                                             <?php  
              echo validation_errors();                       
-    echo form_open('admin/update_service'); ?>
+    echo form_open_multipart('admin/update_banner'); ?>
                    
                                                                            <div class="modal-body">
    
-                      <div class="mb-3">
-                          <input type="hidden" class="form-control"  name="id_service" id="id" required >
-                        <label for="exampleInputEmail1">Nama Service</label>
-                        <input type="text" class="form-control"  name="nama_service" id="nama_service"  required >
+                          <input type="hidden" class="form-control"  name="id_banner" id="id" required >
                         
-                      </div>
                       
-                   
-                      
-                      <div class="mb-3">
-                        <label for="exampleInputEmail1">Deskripsi</label>
-                        <input type="text" class="form-control"  name="deskripsi"  id="deskripsi" required >
-                        
-                      </div>
-                       <div class="mb-3">
-                        <label for="exampleInputEmail1">Estimasi Harga</label>
-                        <input type="text" class="form-control"  name="estimasi_harga"  id="estimasi_harga"  required >
-                        
+                    
+                        <div class="mb-3">
+                        <label for="exampleInputEmail1">File</label>
+                        <input type="file" class="form-control"  name="file_banner"  >
+                          <input type="hidden" class="form-control"  name="old_banner" id="file_banner"  required >
                       </div>
                       
       </div>
@@ -175,15 +133,13 @@
                                                                 <script>
     $(document).ready(function() {
       
-        $('#edit').on('show.bs.modal', function (event) {
-            var div = $(event.relatedTarget)
+        $('#edit').on('show.bs.modal', function (banner) {
+            var div = $(banner.relatedTarget)
             var modal   = $(this)
             modal.find('#id').attr("value",div.data('id'));
-            modal.find('#nama_service').attr("value",div.data('nama_service'));
-            modal.find('#deskripsi').attr("value",div.data('deskripsi'));
-            modal.find('#estimasi_harga').attr("value",div.data('estimasi_harga'));
           
-           
+            modal.find('#file_banner').attr("value",div.data('file_banner'));
+         
         });
     });
 </script>
