@@ -3,7 +3,7 @@
                                         <div class="col-sm-12">
                                             <div class="card">
                                                 <div class="card-header">
-                                                    <h5>Aplikasi Usulan LHP Online</h5>
+                                                    <h5>Aplikasi CRM Tri Mandiri Sejati Daihatsu</h5>
                                                     <span> </span>
                                                     <div class="card-header-right">
                                                         <ul class="list-unstyled card-option">
@@ -15,7 +15,7 @@
                                                 </div>
                                                 <div class="card-block">
                                                     <p>
-                                                        Selamat datang Staf Aset <br /> Untuk Menindaklanjuti usulan LHP, silahkan pilih menu hasil usulan, kemudian klik tombol review 
+                                                        Selamat datang Admin
                                                     </p> 
                                                 </div>
                                             </div>

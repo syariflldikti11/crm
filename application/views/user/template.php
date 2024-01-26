@@ -40,6 +40,9 @@
     <link rel="stylesheet" type="text/css" href="<?= base_url(); ?>\files\assets\css\style.css">
     <link rel="stylesheet" type="text/css" href="<?= base_url(); ?>\files\assets\css\jquery.mCustomScrollbar.css">
     <link rel="stylesheet" type="text/css" href="<?= base_url(); ?>\files\assets\css\pcoded-horizontal.min.css">
+    <link rel="stylesheet" type="text/css"
+    href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+  <!-- Global site tag (gtag.js) - Google Analytics -->
     <style>
 
 
@@ -90,7 +93,7 @@ margin-top: 16px;
                         <a class="mobile-menu" id="mobile-collapse" href="#!">
                             <i class="feather icon-menu"></i>
                         </a>
-                        <a href="<?php echo base_url ('site'); ?>">
+                        <a href="<?php echo base_url ('user'); ?>">
                             <img class="img-fluid" src="<?= base_url(); ?>\files\assets\images\logo.png" alt="Theme-Logo">
                         </a>
                         <a class="mobile-options">
@@ -101,88 +104,24 @@ margin-top: 16px;
                     <div class="navbar-container container-fluid">
                        
                         <ul class="nav-right">
-                            <li class="header-notification">
-                                <div class="dropdown-primary dropdown">
-                                    <div class="dropdown-toggle" data-toggle="dropdown">
-                                      Login
-                                        <span class="badge bg-c-pink">5</span>
-                                    </div>
-                                    <ul class="show-notification notification-view dropdown-menu" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
-                                        <li>
-                                            <h6>Notifications</h6>
-                                            <label class="label label-danger">New</label>
-                                        </li>
-                                        <li>
-                                            <div class="media">
-                                                <img class="d-flex align-self-center img-radius" src="<?= base_url(); ?>\files\assets\images\avatar-4.jpg" alt="Generic placeholder image">
-                                                <div class="media-body">
-                                                    <h5 class="notification-user">John Doe</h5>
-                                                    <p class="notification-msg">Lorem ipsum dolor sit amet, consectetuer elit.</p>
-                                                    <span class="notification-time">30 minutes ago</span>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="media">
-                                                <img class="d-flex align-self-center img-radius" src="<?= base_url(); ?>\files\assets\images\avatar-3.jpg" alt="Generic placeholder image">
-                                                <div class="media-body">
-                                                    <h5 class="notification-user">Joseph William</h5>
-                                                    <p class="notification-msg">Lorem ipsum dolor sit amet, consectetuer elit.</p>
-                                                    <span class="notification-time">30 minutes ago</span>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="media">
-                                                <img class="d-flex align-self-center img-radius" src="<?= base_url(); ?>\files\assets\images\avatar-4.jpg" alt="Generic placeholder image">
-                                                <div class="media-body">
-                                                    <h5 class="notification-user">Sara Soudein</h5>
-                                                    <p class="notification-msg">Lorem ipsum dolor sit amet, consectetuer elit.</p>
-                                                    <span class="notification-time">30 minutes ago</span>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li class="header-notification">
-                                <div class="dropdown-primary dropdown">
-                                    <div class="displayChatbox dropdown-toggle" data-toggle="dropdown">
-                                        <i class="feather icon-message-square"></i>
-                                        <span class="badge bg-c-green">3</span>
-                                    </div>
-                                </div>
-                            </li>
+                            
                             <li class="user-profile header-notification">
                                 <div class="dropdown-primary dropdown">
                                     <div class="dropdown-toggle" data-toggle="dropdown">
                                         <img src="<?= base_url(); ?>\files\assets\images\avatar-4.jpg" class="img-radius" alt="User-Profile-Image">
-                                        <span>John Doe</span>
+                                        <span>  <?= $this->session->userdata('ses_nama'); ?></span>
                                         <i class="feather icon-chevron-down"></i>
                                     </div>
                                     <ul class="show-notification profile-notification dropdown-menu" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
+                                       
                                         <li>
-                                            <a href="#!">
-                                                <i class="feather icon-settings"></i> Settings
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="user-profile.htm">
+                                            <a href="#">
                                                 <i class="feather icon-user"></i> Profile
                                             </a>
                                         </li>
+                                       
                                         <li>
-                                            <a href="email-inbox.htm">
-                                                <i class="feather icon-mail"></i> My Messages
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="auth-lock-screen.htm">
-                                                <i class="feather icon-lock"></i> Lock Screen
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="auth-normal-sign-in.htm">
+                                            <a href="<?php echo base_url ('login/logout'); ?>">
                                                 <i class="feather icon-log-out"></i> Logout
                                             </a>
                                         </li>
@@ -200,7 +139,7 @@ margin-top: 16px;
                     <div class="pcoded-inner-navbar">
                         <ul class="pcoded-item pcoded-left-item">
                             <li class="pcoded-hasmenu">
-                                <a href="<?php echo base_url ('site'); ?>">
+                                <a href="<?php echo base_url ('user'); ?>">
                                     <span class="pcoded-micon"><i class="fa fa-home"></i></span>
                                     <span class="pcoded-mtext">Home</span>
                                    
@@ -210,7 +149,7 @@ margin-top: 16px;
                           
                          
                              <li class="pcoded-hasmenu">
-                                <a href="<?php echo base_url ('site/service'); ?>">
+                                <a href="<?php echo base_url ('user/service'); ?>">
                                     <span class="pcoded-micon"><i class="fa fa-gears"></i></span>
                                     <span class="pcoded-mtext">Service</span>
                                    
@@ -218,7 +157,7 @@ margin-top: 16px;
                               
                             </li>
                              <li class="pcoded-hasmenu">
-                                <a href="<?php echo base_url ('site/promo'); ?>">
+                                <a href="<?php echo base_url ('user/promo'); ?>">
                                     <span class="pcoded-micon"><i class="fa fa-percent"></i></span>
                                     <span class="pcoded-mtext">Promo</span>
                                    
@@ -226,7 +165,7 @@ margin-top: 16px;
                               
                             </li>
                              <li class="pcoded-hasmenu">
-                                <a href="<?php echo base_url ('site/event'); ?>">
+                                <a href="<?php echo base_url ('user/event'); ?>">
                                     <span class="pcoded-micon"><i class="fa fa-calendar"></i></span>
                                     <span class="pcoded-mtext">Event</span>
                                    
@@ -234,9 +173,17 @@ margin-top: 16px;
                               
                             </li>
                              <li class="pcoded-hasmenu">
-                                <a href="<?php echo base_url ('site/solusi'); ?>">
+                                <a href="<?php echo base_url ('user/solusi'); ?>">
                                     <span class="pcoded-micon"><i class="fa fa-question"></i></span>
                                     <span class="pcoded-mtext">Solusi</span>
+                                   
+                                </a>
+                              
+                            </li>
+                             <li class="pcoded-hasmenu">
+                                <a href="<?php echo base_url ('user/penawaran'); ?>">
+                                    <span class="pcoded-micon"><i class="fa fa-shopping-cart"></i></span>
+                                    <span class="pcoded-mtext">Penawaran</span>
                                    
                                 </a>
                               
@@ -253,14 +200,14 @@ margin-top: 16px;
                                 <ul class="pcoded-submenu">
                                   
                                     <li class="">
-                                        <a href="javascript:void(0)" data-i18n="nav.disabled-menu.main" class="disabled">
+                                        <a href="<?php echo base_url ('user/konsultasi'); ?>" data-i18n="nav.disabled-menu.main" class="disabled">
                                             <span class="pcoded-micon"><i class="ti-na"></i></span>
                                             <span class="pcoded-mtext">Konsultasi</span>
                                             <span class="pcoded-mcaret"></span>
                                         </a>
                                     </li>
                                     <li class="">
-                                        <a href="sample-page.htm" data-i18n="nav.sample-page.main">
+                                        <a href="<?php echo base_url ('user/kasus'); ?>" data-i18n="nav.sample-page.main">
                                             <span class="pcoded-micon"><i class="ti-layout-sidebar-left"></i></span>
                                             <span class="pcoded-mtext">Kasus</span>
                                             <span class="pcoded-mcaret"></span>
@@ -414,7 +361,7 @@ margin-top: 16px;
 <div class="ie-warning">
     <h1>Warning!!</h1>
     <p>You are using an outdated version of Internet Explorer, please upgrade <br/>to any of the following web browsers
-        to access this website.</p>
+        to access this webuser.</p>
     <div class="iew-container">
         <ul class="iew-download">
             <li>
@@ -490,14 +437,28 @@ margin-top: 16px;
     <script src="<?= base_url(); ?>files\assets\js\menu\menu-hori-fixed.js"></script>
     <script src="<?= base_url(); ?>files\assets\js\jquery.mCustomScrollbar.concat.min.js"></script>
     <script type="text/javascript" src="<?= base_url(); ?>files\assets\js\script.js"></script>
-<!-- Global site tag (gtag.js) - Google Analytics -->
+<!-- Global user tag (gtag.js) - Google Analytics -->
 <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
   gtag('config', 'UA-23581568-13');
+</script>
+<script type="text/javascript">
+
+
+  <?php if ($this->session->flashdata('success')) { ?>
+    toastr.success("<?php echo $this->session->flashdata('success'); ?>");
+  <?php } else if ($this->session->flashdata('delete')) { ?>
+      toastr.error("<?php echo $this->session->flashdata('delete'); ?>");
+  <?php } else if ($this->session->flashdata('update')) { ?>
+        toastr.info("<?php echo $this->session->flashdata('update'); ?>");
+  <?php } ?>
+
+
 </script>
 </body>
 

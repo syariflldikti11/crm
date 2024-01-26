@@ -9,6 +9,14 @@ class M_login extends CI_Model{
 		$query = $this->db->get();
 		return $query;
 		}
+		function auth_pelanggan($username){
+		$this->db->select('*');
+		$this->db->from('pelanggan');
+		$this->db->where('username',$username);
+		$this->db->limit(1);
+		$query = $this->db->get();
+		return $query;
+		}
 		
 
  

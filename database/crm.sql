@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 25 Jan 2024 pada 10.05
+-- Waktu pembuatan: 26 Jan 2024 pada 08.14
 -- Versi server: 10.4.11-MariaDB
 -- Versi PHP: 7.2.31
 
@@ -72,15 +72,18 @@ CREATE TABLE `kasus` (
   `subject` varchar(100) NOT NULL,
   `id_pelanggan` varchar(100) NOT NULL,
   `deskripsi` varchar(100) NOT NULL,
-  `balasan` varchar(100) NOT NULL
+  `balasan` varchar(100) NOT NULL,
+  `tgl_kasus` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `kasus`
 --
 
-INSERT INTO `kasus` (`id_kasus`, `subject`, `id_pelanggan`, `deskripsi`, `balasan`) VALUES
-('b246fa8f-b8da-11ee-922e-c454445434d3', 'dar', 'ed6b6758-b790-11ee-bd5d-f7de7099ab91', 'MTK', 'ab');
+INSERT INTO `kasus` (`id_kasus`, `subject`, `id_pelanggan`, `deskripsi`, `balasan`, `tgl_kasus`) VALUES
+('8aef5815-bc02-11ee-ab17-c454445434d3', '', 'dc074c80-bbec-11ee-ab17-c454445434d3', 'sasc', '', '2024-01-26 12:22:39'),
+('9abc4d05-bc02-11ee-ab17-c454445434d3', 'dar', 'dc074c80-bbec-11ee-ab17-c454445434d3', 'aas', '', '2024-01-26 12:23:06'),
+('b246fa8f-b8da-11ee-922e-c454445434d3', 'dar', 'ed6b6758-b790-11ee-bd5d-f7de7099ab91', 'MTK', 'ab', '2024-01-26 12:20:09');
 
 -- --------------------------------------------------------
 
@@ -95,6 +98,13 @@ CREATE TABLE `konsultasi` (
   `tgl_konsultasi` datetime NOT NULL DEFAULT current_timestamp(),
   `balasan` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `konsultasi`
+--
+
+INSERT INTO `konsultasi` (`id_konsultasi`, `id_pelanggan`, `isi_konsultasi`, `tgl_konsultasi`, `balasan`) VALUES
+('3c331da1-bc01-11ee-ab17-c454445434d3', 'dc074c80-bbec-11ee-ab17-c454445434d3', 'asdsas', '2024-01-26 12:13:18', '');
 
 -- --------------------------------------------------------
 
@@ -160,15 +170,41 @@ CREATE TABLE `pelanggan` (
   `email` varchar(100) NOT NULL,
   `no_wa` varchar(100) NOT NULL,
   `username` varchar(100) NOT NULL,
-  `password` varchar(100) NOT NULL
+  `password` varchar(100) NOT NULL,
+  `level` int(11) NOT NULL DEFAULT 2
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `pelanggan`
 --
 
-INSERT INTO `pelanggan` (`id_pelanggan`, `nama_pelanggan`, `alamat`, `tgl_lahir`, `jk`, `email`, `no_wa`, `username`, `password`) VALUES
-('ed6b6758-b790-11ee-bd5d-f7de7099ab91', 'Muhlisah', 'banjarmasin', '2024-01-20', 'P', 'akademik.kopwil11@gmail.com', '08', '', '');
+INSERT INTO `pelanggan` (`id_pelanggan`, `nama_pelanggan`, `alamat`, `tgl_lahir`, `jk`, `email`, `no_wa`, `username`, `password`, `level`) VALUES
+('dc074c80-bbec-11ee-ab17-c454445434d3', 'Syarif Firdaus', 'handil bakti', '2024-01-26', 'L', 'asyasarrif@gmail.com', '08', 'syarif', '$2y$10$kEbeWOIwwrqyzoSneCTtjeuqp5v6C8QaqINOknLtCovCU7Gn.WtPO', 2),
+('ed6b6758-b790-11ee-bd5d-f7de7099ab91', 'Muhlisah', 'banjarmasin', '2024-01-20', 'P', 'akademik.kopwil11@gmail.com', '08', '', '', 2);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `penawaran`
+--
+
+CREATE TABLE `penawaran` (
+  `id_penawaran` varchar(100) NOT NULL,
+  `id_mobil` varchar(100) NOT NULL,
+  `id_pelanggan` varchar(100) NOT NULL,
+  `id_sales` varchar(100) NOT NULL,
+  `keterangan` varchar(200) NOT NULL,
+  `tgl_penawaran` datetime NOT NULL DEFAULT current_timestamp(),
+  `harga_deal` int(11) NOT NULL,
+  `status` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `penawaran`
+--
+
+INSERT INTO `penawaran` (`id_penawaran`, `id_mobil`, `id_pelanggan`, `id_sales`, `keterangan`, `tgl_penawaran`, `harga_deal`, `status`) VALUES
+('9deaaf88-bc17-11ee-ab17-c454445434d3', '2972f0f7-bb1a-11ee-afe5-c454445434d3', 'dc074c80-bbec-11ee-ab17-c454445434d3', 'zzasd', 'XZ', '2024-01-26 14:53:31', 0, '');
 
 -- --------------------------------------------------------
 
@@ -291,6 +327,12 @@ ALTER TABLE `model_mobil`
 ALTER TABLE `pelanggan`
   ADD PRIMARY KEY (`id_pelanggan`),
   ADD UNIQUE KEY `username` (`username`);
+
+--
+-- Indeks untuk tabel `penawaran`
+--
+ALTER TABLE `penawaran`
+  ADD PRIMARY KEY (`id_penawaran`);
 
 --
 -- Indeks untuk tabel `pengguna`

@@ -25,7 +25,7 @@ class Login extends CI_Controller{
         );  
         $this->load->view('login/register', $data);
     }
-    function save_register()
+    function save()
   {
 
     $this->db->set('id_pelanggan', 'UUID()', FALSE);
@@ -62,28 +62,36 @@ class Login extends CI_Controller{
         $username=htmlspecialchars($this->input->post('username',TRUE),ENT_QUOTES);
         $password=htmlspecialchars($this->input->post('password',TRUE),ENT_QUOTES);
         $cek_pengguna=$this->m_login->auth_pengguna($username);
+        $cek_pelanggan=$this->m_login->auth_pelanggan($username);
         
         if($cek_pengguna->num_rows() > 0){ 
                         $data=$cek_pengguna->row_array();
-                $this->session->set_userdata('masuk',TRUE);
+                
    if($data['level']=='1' && password_verify($password, $data['password'])){ 
                     $this->session->set_userdata('akses','1');
                        $this->session->set_userdata('ses_id',$data['username']);
                             
                     redirect('admin');
                  }
-                  if($data['level']=='2' && password_verify($password, $data['password'])){ 
+                  if($data['level']=='3' && password_verify($password, $data['password'])){ 
+                    $this->session->set_userdata('akses','3');
+                       $this->session->set_userdata('ses_id',$data['username']);           
+                    redirect('user');
+                 }
+              
+        }
+         else if($cek_pelanggan->num_rows() > 0){ 
+                        $datapl=$cek_pelanggan->row_array();
+               
+   if($datapl['level']=='2' && password_verify($password, $datapl['password'])){ 
                     $this->session->set_userdata('akses','2');
-                       $this->session->set_userdata('ses_id',$data['username']);
+                       $this->session->set_userdata('ses_id',$datapl['id_pelanggan']);
+                       $this->session->set_userdata('ses_nama',$datapl['nama_pelanggan']);
                             
                     redirect('user');
                  }
-                 if($data['level']=='3' && password_verify($password, $data['password'])){ 
-                    $this->session->set_userdata('akses','3');
-                       $this->session->set_userdata('ses_id',$data['username']);
-                            
-                    redirect('pimpinan');
-                 }
+                  
+              
         }
        
         else {

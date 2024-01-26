@@ -1,9 +1,27 @@
-<div class="card">
+
+<div class="page-header">
+                                    <div class="row align-items-end">
+                                        <div class="col-lg-8">
+                                            <div class="page-header-title">
+                                                <div class="d-inline">
+                                                    <h2>Layanan Kasus Pelanggan</h2>
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                       
+                                    </div>
+                                </div>
+                               <div class="page-body">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <!-- Zero config.table start -->
+                 <div class="card">
                                                 <div class="card-header">
                                                     <h5><?php echo $judul; ?></h5>
                                                    
-   
-           
+ 
+             <button type="button" class="btn btn-sm btn-inverse" data-toggle="modal" data-target="#default-Modal">Tambah</button>
                                                 </div>
                                                 <div class="card-block">
                                                     <div class="dt-responsive table-responsive">
@@ -12,17 +30,17 @@
                 <tr>
                   <th><div align="center">No</div></th>
                   <th><div align="left">Nama Pelanggan</div></th>
-                  <th><div align="left">No Wa</div></th>
-                  <th><div align="left">Konsultasi</div></th>
-                  <th><div align="left">Balasan</div></th>
-                
-                  <th ><div align="center">Opsi</div></th>
+                  <th><div align="left">No WA</div></th>
+                  <th><div align="left">Subject</div></th>
+                  <th><div align="left">Deskripsi</div></th>
+                  <th><div align="left">Balasan</div></th>                 
+                  
                 </tr>
               </thead>
               <tbody>
                 <?php
                 $no=1;
-                foreach ($dt_konsultasi as $d): ?>
+                foreach ($dt_kasus as $d): ?>
                 <tr>
                   <td><div align="center">
                     <?= $no++; ?>
@@ -37,29 +55,18 @@
                     </div></td>
                     <td>
                     <div align="left">
-                      <?= $d->isi_konsultasi; ?>
+                      <?= $d->subject; ?>
                     </div></td>
-                     <td>
+                    <td>
+                    <div align="left">
+                      <?= $d->deskripsi; ?>
+                    </div></td>
+                    <td>
                     <div align="left">
                       <?= $d->balasan; ?>
                     </div></td>
-                    
                    
-                  <td align="center"><div align="center">   
-             <a   class="btn btn-sm btn-warning" data-tooltip="tooltip"
-                      data-bs-placement="top"
-                      title="Edit" href="javascript:;"
-                           data-toggle="modal" data-target="#edit"   
-                              data-id="<?= $d->id_konsultasi ?>"
-                              data-balasan="<?= $d->balasan ?>"
-                             
-                            
-                              > 
-                    <span class="icofont icofont-ui-edit"></span> </a> <a  onclick="return confirm('anda yakin ingin menghapus data ini')" class="btn btn-sm btn-danger"  data-tooltip="tooltip"
-                      data-bs-placement="top"
-                      title="Delete" 
-                   href="<?php echo base_url('admin/delete_konsultasi/'.$d->id_konsultasi);?>" 
-                    ><span class="icofont icofont-ui-delete"></span> </a></div></td>
+                 
                 </tr>
                 <?php endforeach; ?>
                                                             </tbody>
@@ -70,35 +77,37 @@
                                                 </div>
                                             </div>
 
+                                            </div>
 
-                                            
-                                              
 
-                            <div class="modal fade" id="edit" tabindex="-1" role="dialog">
+                                              <div class="modal fade" id="default-Modal" tabindex="-1" role="dialog">
                                                                     <div class="modal-dialog" role="document">
                                                                         <div class="modal-content">
                                                                             <div class="modal-header">
-                                                                                <h4 class="modal-title"><?= $modal_edit; ?></h4>
+                                                                                <h4 class="modal-title"><?= $modal_tambah; ?></h4>
                                                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                             <span aria-hidden="true">&times;</span>
                                                         </button>
                                                                             </div>
                                                                             <?php  
              echo validation_errors();                       
-    echo form_open('admin/update_konsultasi'); ?>
+    echo form_open('user/simpan_kasus'); ?>
                    
                                                                            <div class="modal-body">
-   
+    
                       <div class="mb-3">
-                          <input type="hidden" class="form-control"  name="id_konsultasi" id="id" required >
-                        <label for="exampleInputEmail1">Balasan</label>
-                        <input type="text" class="form-control"  name="balasan" id="balasan"  required >
+                        <label for="exampleInputEmail1">Subject</label>
+                        <input type="text" class="form-control"  name="subject"  required >
                         
                       </div>
                       
-                    
-                      
-                      
+                      <div class="mb-3">
+                        <label for="exampleInputEmail1">Deskripsi</label>
+                     <textarea class="form-control" name="deskripsi"></textarea>
+                        
+                      </div>
+                     
+                     
       </div>
                                                                             <div class="modal-footer">
                                                                                 <button type="button" class="btn btn-default waves-effect " data-dismiss="modal">Close</button>
@@ -109,19 +118,3 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
-
-                                                                <script>
-    $(document).ready(function() {
-      
-        $('#edit').on('show.bs.modal', function (event) {
-            var div = $(event.relatedTarget)
-            var modal   = $(this)
-            modal.find('#id').attr("value",div.data('id'));
-            modal.find('#nama_event').attr("value",div.data('nama_event'));
-            modal.find('#balasan').attr("value",div.data('balasan'));
-           
-           
-         
-        });
-    });
-</script>

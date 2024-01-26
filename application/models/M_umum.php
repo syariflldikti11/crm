@@ -2,6 +2,18 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 class M_umum extends CI_Model{
     
+     function get_konsultasi_user()
+	{
+ $id=$this->session->userdata('ses_id');
+		$this->db->select('*');
+		$this->db->from('konsultasi a');
+		$this->db->join('pelanggan b', 'a.id_pelanggan=b.id_pelanggan', 'left');
+			$this->db->where('a.id_pelanggan',$id);
+		$this->db->order_by('a.tgl_konsultasi desc');
+
+		$query = $this->db->get();
+		return $query->result();
+	}
 function get_konsultasi()
 	{
 
@@ -40,7 +52,41 @@ function get_konsultasi()
 		$this->db->select('*');
 		$this->db->from('kasus a');
 		$this->db->join('pelanggan b', 'a.id_pelanggan=b.id_pelanggan', 'left');
-
+$this->db->order_by('a.tgl_kasus desc');
+		$query = $this->db->get();
+		return $query->result();
+	}
+		function get_kasus_user()
+	{
+ $id=$this->session->userdata('ses_id');
+		$this->db->select('*');
+		$this->db->from('kasus a');
+		$this->db->join('pelanggan b', 'a.id_pelanggan=b.id_pelanggan', 'left');
+		$this->db->where('a.id_pelanggan',$id);
+$this->db->order_by('a.tgl_kasus desc');
+		$query = $this->db->get();
+		return $query->result();
+	}
+	function get_penawaran_user()
+	{
+ $id=$this->session->userdata('ses_id');
+		$this->db->select('*');
+		$this->db->from('penawaran a');
+		$this->db->join('pelanggan b', 'a.id_pelanggan=b.id_pelanggan', 'left');
+		$this->db->join('mobil c', 'a.id_mobil=c.id_mobil', 'left');
+		$this->db->where('a.id_pelanggan',$id);
+$this->db->order_by('a.tgl_penawaran desc');
+		$query = $this->db->get();
+		return $query->result();
+	}
+	function get_penawaran()
+	{
+ $id=$this->session->userdata('ses_id');
+		$this->db->select('*');
+		$this->db->from('penawaran a');
+		$this->db->join('pelanggan b', 'a.id_pelanggan=b.id_pelanggan', 'left');
+		$this->db->join('mobil c', 'a.id_mobil=c.id_mobil', 'left');
+$this->db->order_by('a.tgl_penawaran desc');
 		$query = $this->db->get();
 		return $query->result();
 	}

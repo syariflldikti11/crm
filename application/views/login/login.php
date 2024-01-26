@@ -27,6 +27,8 @@
     <link rel="stylesheet" type="text/css" href="<?= base_url(); ?>files\assets\icon\icofont\css\icofont.css">
     <!-- Style.css -->
     <link rel="stylesheet" type="text/css" href="<?= base_url(); ?>files\assets\css\style.css">
+       <link rel="stylesheet" type="text/css"
+    href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
 </head>
 
 <body class="fix-menu">
@@ -166,12 +168,26 @@
     <script type="text/javascript" src="<?= base_url(); ?>files\assets\js\common-pages.js"></script>
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
   gtag('config', 'UA-23581568-13');
+</script>
+<script type="text/javascript">
+
+
+  <?php if ($this->session->flashdata('success')) { ?>
+    toastr.success("<?php echo $this->session->flashdata('success'); ?>");
+  <?php } else if ($this->session->flashdata('delete')) { ?>
+      toastr.error("<?php echo $this->session->flashdata('delete'); ?>");
+  <?php } else if ($this->session->flashdata('update')) { ?>
+        toastr.info("<?php echo $this->session->flashdata('update'); ?>");
+  <?php } ?>
+
+
 </script>
 </body>
 

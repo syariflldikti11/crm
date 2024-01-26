@@ -46,6 +46,8 @@
     <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>files\assets\css\style.css">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>files\assets\css\jquery.mCustomScrollbar.css">
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+       <link rel="stylesheet" type="text/css"
+    href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
 </head>
 
 <body>
@@ -79,33 +81,10 @@
                     </div>
 
                     <div class="navbar-container container-fluid">
-                        <ul class="nav-left">
-                            <li class="header-search">
-                                <div class="main-search morphsearch-search">
-                                    <div class="input-group">
-                                        <span class="input-group-addon search-close"><i class="feather icon-x"></i></span>
-                                        <input type="text" class="form-control">
-                                        <span class="input-group-addon search-btn"><i class="feather icon-search"></i></span>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <a href="#!" onclick="javascript:toggleFullScreen()">
-                                    <i class="feather icon-maximize full-screen"></i>
-                                </a>
-                            </li>
-                        </ul>
+                    
                       
                         <ul class="nav-right">
-                            <li class="header-notification">
-                                <div class="dropdown-primary dropdown">
-                                    <div class="dropdown-toggle" data-toggle="dropdown">
-                                        <i class="feather icon-bell"></i>
-                                        <span class="badge bg-c-pink">1</span>
-                                    </div>
-                                   
-                                </div>
-                            </li>
+                          
                          
                             <li class="user-profile header-notification">
                                 <div class="dropdown-primary dropdown">
@@ -196,16 +175,16 @@
                     <div class="pcoded-navigatio-lavel">Manajemen Penjualan</div>
                      <ul class="pcoded-item pcoded-left-item">
                                  <li class="">
-                                    <a href="<?php echo base_url ('admin/event'); ?>">
+                                    <a href="<?php echo base_url ('admin/penawaran'); ?>">
                                         <span class="pcoded-micon"><i class="fa fa-heart"></i></span>
-                                        <span class="pcoded-mtext">Peminat Produk</span>
+                                        <span class="pcoded-mtext">Penawaran</span>
                                         
                                     </a>  
                                 </li>
                     </ul>
                       <ul class="pcoded-item pcoded-left-item">
                                  <li class="">
-                                    <a href="<?php echo base_url ('admin/promo'); ?>">
+                                    <a href="#">
                                         <span class="pcoded-micon"><i class="fa fa-shopping-cart"></i></span>
                                         <span class="pcoded-mtext">Sales Order</span>
                                         
@@ -330,12 +309,26 @@
 <script type="text/javascript" src="<?php echo base_url(); ?>files\assets\js\script.js"></script>
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
   gtag('config', 'UA-23581568-13');
+</script>
+<script type="text/javascript">
+
+
+  <?php if ($this->session->flashdata('success')) { ?>
+    toastr.success("<?php echo $this->session->flashdata('success'); ?>");
+  <?php } else if ($this->session->flashdata('delete')) { ?>
+      toastr.error("<?php echo $this->session->flashdata('delete'); ?>");
+  <?php } else if ($this->session->flashdata('update')) { ?>
+        toastr.info("<?php echo $this->session->flashdata('update'); ?>");
+  <?php } ?>
+
+
 </script>
 </body>
 

@@ -94,10 +94,12 @@ function rupiah($angka){
                                                                         </div>
                                                                         
                                                                         <div class="col-lg-12 col-sm-12 mob-product-btn">
-                                                                            <a href="<?= base_url('login'); ?>" class="btn btn-primary waves-effect waves-light m-r-20">
-                                                                                <i class="icofont icofont-cart-alt f-16"></i><span class="m-l-10">Minta Penawaran</span></a>
-                                                                            
-                                                                             
+                                                                            <button type="button" data-toggle="modal" data-target="#default-Modal" class="btn btn-primary waves-effect waves-light m-r-20">
+                                                                                <i class="icofont icofont-cart-alt f-16"></i><span class="m-l-10">Minta Penawaran</span>
+                                                                            </button>
+                                                                              <button type="button" class="btn btn-warning waves-effect waves-light m-r-20">
+                                                                                <i class="icofont icofont-heart-alt f-16"></i><span class="m-l-10">Berminat</span>
+                                                                            </button>
                                                                           
                                                                         </div>
                                                                     </div>
@@ -114,3 +116,43 @@ function rupiah($angka){
                                                 <!-- Product detail page end -->
                                             </div>
                                         </div>
+
+                                          <div class="modal fade" id="default-Modal" tabindex="-1" role="dialog">
+                                                                    <div class="modal-dialog" role="document">
+                                                                        <div class="modal-content">
+                                                                            <div class="modal-header">
+                                                                                <h4 class="modal-title">Minta Penawaran</h4>
+                                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                                            </div>
+                                                                            <?php  
+             echo validation_errors();                       
+    echo form_open('user/simpan_penawaran'); ?>
+                   
+                                                                           <div class="modal-body">
+    
+                     <div class="mb-3">
+                        <label for="exampleInputEmail1">ID Sales (Opsional)</label>
+                        <input type="text" class="form-control" name="id_sales"  >
+                        <input type="hidden" class="form-control" name="id_mobil" value="<?= $id; ?>"  >
+                        
+                      </div>
+                      
+                      <div class="mb-3">
+                        <label for="exampleInputEmail1">Keterangan</label>
+                     <textarea class="form-control" name="keterangan"></textarea>
+                        
+                      </div>
+                     
+                     
+      </div>
+                                                                            <div class="modal-footer">
+                                                                                <button type="button" class="btn btn-default waves-effect " data-dismiss="modal">Close</button>
+                                                                                
+                                                                                <input type="submit" name="submit"  class="btn btn-primary waves-effect waves-light" value="Submit">
+                                                                            </div>
+                                                                          </form>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>

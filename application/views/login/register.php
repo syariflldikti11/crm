@@ -27,6 +27,8 @@
     <link rel="stylesheet" type="text/css" href="<?= base_url(); ?>files\assets\icon\icofont\css\icofont.css">
     <!-- Style.css -->
     <link rel="stylesheet" type="text/css" href="<?= base_url(); ?>files\assets\css\style.css">
+       <link rel="stylesheet" type="text/css"
+    href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
 </head>
 
 <body class="fix-menu">
@@ -53,7 +55,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-sm-12">
-                    <form class="md-float-material form-material">
+                    
                         <div class="text-center">
                             <img src="..\files\assets\images\logo.png" alt="logo.png">
                         </div>
@@ -64,9 +66,9 @@
                                         <h3 class="text-center txt-primary">Halaman Register</h3>
                                     </div>
                                 </div>
-                                  <?php  
-             echo validation_errors();                       
-    echo form_open('login/save_register'); ?>
+                                 
+      <?php
+                     echo form_open('login/save','class="md-float-material form-material"'); ?>
                                 <div class="form-group form-primary">
                                     <input type="text" name="nama_pelanggan" class="form-control" required placeholder="Nama Pelanggan">
                                     <span class="form-bar"></span>
@@ -113,13 +115,13 @@
                                 <div class="row m-t-30">
                                     <div class="col-md-12">
                                         
-                                        <input type="submit"   class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20" value="Register">
+                                        <input type="submit" name="submit"  class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20" value="Register">
                                     </div>
                                 </div>
-
+</form>
                                 
                                 <hr>
-                                </form>
+                                
                                 <div class="row">
                                     <div class="col-md-10">
                                         
@@ -199,12 +201,26 @@
     <script type="text/javascript" src="<?= base_url(); ?>files\assets\js\common-pages.js"></script>
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
   gtag('config', 'UA-23581568-13');
+</script>
+<script type="text/javascript">
+
+
+  <?php if ($this->session->flashdata('success')) { ?>
+    toastr.success("<?php echo $this->session->flashdata('success'); ?>");
+  <?php } else if ($this->session->flashdata('delete')) { ?>
+      toastr.error("<?php echo $this->session->flashdata('delete'); ?>");
+  <?php } else if ($this->session->flashdata('update')) { ?>
+        toastr.info("<?php echo $this->session->flashdata('update'); ?>");
+  <?php } ?>
+
+
 </script>
 </body>
 

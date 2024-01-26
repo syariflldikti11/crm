@@ -5,7 +5,7 @@ class Admin extends CI_Controller {
   function __construct(){
     parent::__construct();
     $this->load->database();
-    $this->load->model('m_emonev');
+    $this->load->model('m_umum');
     if($this->session->userdata('akses') <> 1){
         redirect(base_url('login'));
         }
@@ -20,6 +20,17 @@ class Admin extends CI_Controller {
     );  
     $this->template->load('admin/template', 'admin/home', $data);
     
+}
+function penawaran()
+{
+  
+  $data = array(
+      'judul' => 'Penawaran',
+      'dt_penawaran'=> $this->m_umum->get_penawaran(),
+     
+  );  
+  $this->template->load('admin/template', 'admin/penawaran', $data);
+  
 }
 function promo()
 {
