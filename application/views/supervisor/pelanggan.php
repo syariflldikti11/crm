@@ -1,18 +1,9 @@
-<?php 
-
-function rupiah($angka){
-  
-  $hasil_rupiah = "Rp. " . number_format($angka,2,',','.');
-  return $hasil_rupiah;
-
-}
-?>
 <div class="card">
                                                 <div class="card-header">
                                                     <h5><?php echo $judul; ?></h5>
                                                    
  
-             <button type="button" class="btn btn-sm btn-inverse" data-toggle="modal" data-target="#default-Modal">Tambah</button>
+            
                                                 </div>
                                                 <div class="card-block">
                                                     <div class="dt-responsive table-responsive">
@@ -20,82 +11,48 @@ function rupiah($angka){
                                                             <thead class="bg-primary text-white">
                 <tr>
                   <th><div align="center">No</div></th>
-                  <th><div align="left">Nama Mobil</div></th>
-                  <th><div align="left">Harga OTR</div></th>
-                  <th><div align="left">Warna</div></th>
-                  <th><div align="left">CC</div></th>
-                  <th><div align="left">Transmisi</div></th>
-                  <th><div align="left">Penggerak</div></th>
-                  <th><div align="left">Kapasitas</div></th>
-                  <th><div align="left">AC</div></th>
-                  <th><div align="left">AC Double</div></th>
-                  <th><div align="left">Lampu Kabut</div></th>
-                  <th><div align="left">Foto</div></th>
+                  <th><div align="left">Nama</div></th>
+                  <th><div align="left">JK</div></th>
+                  <th><div align="left">Tgl Lahir</div></th>
+                  <th><div align="left">Alamat</div></th>
+                  <th><div align="left">Email</div></th>
+                  <th><div align="left">No WA</div></th>
                 
-                  <th ><div align="center">Opsi</div></th>
                 </tr>
               </thead>
               <tbody>
                 <?php
                 $no=1;
-                foreach ($dt_mobil as $d): ?>
+                foreach ($dt_pelanggan as $d): ?>
                 <tr>
                   <td><div align="center">
                     <?= $no++; ?>
                   </div></td>
                   <td>
                     <div align="left">
-                      <?= $d->nama_mobil; ?>
-                    </div></td>
-                     <td>
-                    
-                    <div align="left">
-                      <?= rupiah($d->harga_otr); ?>
+                      <?= $d->nama_pelanggan; ?>
                     </div></td>
                      <td>
                     <div align="left">
-                      <?= $d->warna; ?>
+                      <?= $d->jk; ?>
                     </div></td>
                     <td>
                     <div align="left">
-                      <?= $d->cc; ?>
-                    </div></td>
-                      <td>
-                    <div align="left">
-                      <?= $d->transmisi; ?>
-                    </div></td>
-                      <td>
-                    <div align="left">
-                      <?= $d->penggerak; ?>
-                    </div></td>
-                      <td>
-                    <div align="left">
-                      <?= $d->kapasitas; ?>
-                    </div></td>
-                      <td>
-                    <div align="left">
-                      <?= $d->ac; ?>
-                    </div></td>
-                      <td>
-                    <div align="left">
-                      <?= $d->ac_double_blower; ?>
-                    </div></td>
-                     <td>
-                    <div align="left">
-                      <?= $d->lampu_kabut; ?>
+                      <?= $d->tgl_lahir; ?>
                     </div></td>
                     <td>
                     <div align="left">
-                      <a target="_blank" href="<?= base_url(); ?>upload/<?= $d->foto_mobil; ?>">File </a>
+                      <?= $d->alamat; ?>
                     </div></td>
-                    
-                   
-                  <td align="center"><div align="center">   
-       <a  onclick="return confirm('anda yakin ingin menghapus data ini')" class="btn btn-sm btn-danger"  data-tooltip="tooltip"
-                      data-bs-placement="top"
-                      title="Delete" 
-                   href="<?php echo base_url('admin/delete_mobil/'.$d->id_mobil);?>" 
-                    ><span class="icofont icofont-ui-delete"></span> </a></div></td>
+                    <td>
+                    <div align="left">
+                      <?= $d->email; ?>
+                    </div></td>
+                    <td>
+                    <div align="left">
+                      <?= $d->no_wa; ?>
+                    </div></td>
+                  
                 </tr>
                 <?php endforeach; ?>
                                                             </tbody>
@@ -119,82 +76,43 @@ function rupiah($angka){
                                                                             </div>
                                                                             <?php  
              echo validation_errors();                       
-    echo form_open_multipart('admin/simpan_mobil'); ?>
+    echo form_open('admin/simpan_pelanggan'); ?>
                    
                                                                            <div class="modal-body">
    
                       <div class="mb-3">
-                        <label for="exampleInputEmail1">Nama Mobil</label>
-                        <input type="text" class="form-control"  name="nama_mobil"  required >
-                        
-                      </div>
-                      <div class="mb-3">
-                        <label for="exampleInputEmail1">Harga</label>
-                        <input type="text" class="form-control"  name="harga_otr"  required >
-                        
-                      </div>
-                      
-                      <div class="mb-3">
-                        <label for="exampleInputEmail1">Warna</label>
-                        <input type="text" class="form-control"  name="warna"  required >
+                        <label for="exampleInputEmail1">Nama Pelanggan</label>
+                        <input type="text" class="form-control"  name="nama_pelanggan"  required >
                         
                       </div>
                        <div class="mb-3">
-                        <label for="exampleInputEmail1">CC</label>
-                        <input type="number" class="form-control"  name="cc"  required >
-                        
-                      </div>
-                       <div class="mb-3">
-                        <label for="exampleInputEmail1">Kapasitas Peneumpang</label>
-                        <input type="number" class="form-control"  name="kapasitas"  required >
-                        
-                      </div>
-                       <div class="mb-3">
-                        <label for="exampleInputEmail1">Transmisi</label>
-                  
-                         <select class="form-control" name="transmisi" required>
-                          <option value="Manual">Manual</option>
-                          <option value="Automatic">Automatic</option>
-                        </select>
-                      </div>
-                       <div class="mb-3">
-                        <label for="exampleInputEmail1">Penggerak</label>
-                       <select class="form-control" name="penggerak" required>
-                          <option value="FWD">FWD</option>
-                          <option value="RWD">RWD</option>
-                        </select>
-                        
-                      </div>
-                       <div class="mb-3">
-                        <label for="exampleInputEmail1">AC</label>
-                         <select class="form-control" name="ac" required>
-                          <option value="Ya">Ya</option>
-                          <option value="Tidak">Tidak</option>
+                        <label for="exampleInputEmail1">JK</label>
+                        <select class="form-control" name="jk">
+                          <option value="L">Laki-Laki</option>
+                          <option value="P">Perempuan</option>
                         </select>
                         
                       </div>
                       <div class="mb-3">
-                        <label for="exampleInputEmail1">AC Double Blower</label>
-                       
-                          <select class="form-control" name="ac_double_blower" required>
-                          <option value="Ya">Ya</option>
-                          <option value="Tidak">Tidak</option>
-                        </select>
-                      </div>
-                       <div class="mb-3">
-                        <label for="exampleInputEmail1">Lampu Kabut</label>
-                       
-                         <select class="form-control" name="lampu_kabut" required>
-                          <option value="Ya">Ya</option>
-                          <option value="Tidak">Tidak</option>
-                        </select>
-                      </div>
-                      <div class="mb-3">
-                        <label for="exampleInputEmail1">Foto Mobil</label>
-                        <input type="file" class="form-control"  name="foto_mobil" required >
+                        <label for="exampleInputEmail1">Alamat</label>
+                        <input type="text" class="form-control"  name="alamat"  required >
                         
                       </div>
-                      
+                       <div class="mb-3">
+                        <label for="exampleInputEmail1">Tanggal Lahir</label>
+                        <input type="date" class="form-control"  name="tgl_lahir"  required >
+                        
+                      </div>
+                       <div class="mb-3">
+                        <label for="exampleInputEmail1">Email</label>
+                        <input type="email" class="form-control"  name="email"  required >
+                        
+                      </div>
+                       <div class="mb-3">
+                        <label for="exampleInputEmail1">No WA</label>
+                        <input type="number" class="form-control"  name="no_wa"  required >
+                        
+                      </div>
                       
       </div>
                                                                             <div class="modal-footer">
@@ -218,28 +136,44 @@ function rupiah($angka){
                                                                             </div>
                                                                             <?php  
              echo validation_errors();                       
-    echo form_open('admin/update_event'); ?>
+    echo form_open('admin/update_pelanggan'); ?>
                    
                                                                            <div class="modal-body">
    
                       <div class="mb-3">
-                          <input type="hidden" class="form-control"  name="id_event" id="id" required >
-                        <label for="exampleInputEmail1">Nama event</label>
-                        <input type="text" class="form-control"  name="nama_event" id="nama_event"  required >
-                        
-                      </div>
-                      
-                      <div class="mb-3">
-                        <label for="exampleInputEmail1">Keterangan</label>
-                        <input type="text" class="form-control"  name="ket" id="ket"  required >
+                          <input type="hidden" class="form-control"  name="id_pelanggan" id="id" required >
+                        <label for="exampleInputEmail1">Nama Pelanggan</label>
+                        <input type="text" class="form-control"  name="nama_pelanggan" id="nama_pelanggan"  required >
                         
                       </div>
                        <div class="mb-3">
-                        <label for="exampleInputEmail1">Tanggal Event</label>
-                        <input type="date" class="form-control"  name="tgl_event" id="tgl_event"  required >
+                        <label for="exampleInputEmail1">JK</label>
+                        <select class="form-control" name="jk">
+                          <option value="L">Laki-Laki</option>
+                          <option value="P">Perempuan</option>
+                        </select>
                         
                       </div>
-                      
+                      <div class="mb-3">
+                        <label for="exampleInputEmail1">Alamat</label>
+                        <input type="text" class="form-control"  name="alamat" id="alamat"  required >
+                        
+                      </div>
+                       <div class="mb-3">
+                        <label for="exampleInputEmail1">Tanggal Lahir</label>
+                        <input type="date" class="form-control"  name="tgl_lahir" id="tgl_lahir"  required >
+                        
+                      </div>
+                       <div class="mb-3">
+                        <label for="exampleInputEmail1">Email</label>
+                        <input type="email" class="form-control"  name="email" id="email"  required >
+                        
+                      </div>
+                       <div class="mb-3">
+                        <label for="exampleInputEmail1">No WA</label>
+                        <input type="number" class="form-control"  name="no_wa" id="no_wa"  required >
+                        
+                      </div>
                       
       </div>
                                                                             <div class="modal-footer">
@@ -259,11 +193,13 @@ function rupiah($angka){
             var div = $(event.relatedTarget)
             var modal   = $(this)
             modal.find('#id').attr("value",div.data('id'));
-            modal.find('#nama_event').attr("value",div.data('nama_event'));
-            modal.find('#ket').attr("value",div.data('ket'));
+            modal.find('#nama_pelanggan').attr("value",div.data('nama_pelanggan'));
+            modal.find('#alamat').attr("value",div.data('alamat'));
+            modal.find('#jk').attr("value",div.data('jk'));
+            modal.find('#tgl_lahir').attr("value",div.data('tgl_lahir'));
+            modal.find('#email').attr("value",div.data('email'));
+            modal.find('#no_wa').attr("value",div.data('no_wa'));
            
-            modal.find('#tgl_event').attr("value",div.data('tgl_event'));
-         
         });
     });
 </script>

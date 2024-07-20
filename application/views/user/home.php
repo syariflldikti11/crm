@@ -1,4 +1,13 @@
-        <div class="row">
+
+<?php 
+
+function rupiah($angka){
+  
+  $hasil_rupiah = "Rp. " . number_format($angka,2,',','.');
+  return $hasil_rupiah;
+
+}
+?>        <div class="row">
                                     <div class="col-lg-12 col-xl-12">
                                                 <!-- Owl corousel style 2 card start -->
                                                 <div class="card">
@@ -50,9 +59,9 @@
                                                             <div class="p-new"><a href="<?= base_url('user/detail_mobil/'.$m->id_mobil);?>"> Detail </a></div>
                                                         </div>
                                                         <div class="prod-info">
-                                                            <a href="#!" class="txt-muted"><h4><?= $m->nama_mobil; ?></h4></a>
+                                                            <a href="<?= base_url('user/detail_mobil/'.$m->id_mobil);?>" class="txt-muted"><h4><?= $m->nama_mobil; ?></h4></a>
                                                            
-                                                            <span class="prod-price"><i class="icofont icofont-cur-dollar"></i>1250
+                                                            <span class="prod-price"><?= rupiah($m->harga_otr); ?>
                                                         </div>
                                                     </div>
                                                 </div>

@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 26 Jan 2024 pada 08.14
--- Versi server: 10.4.11-MariaDB
+-- Waktu pembuatan: 20 Jul 2024 pada 18.26
+-- Versi server: 10.4.13-MariaDB
 -- Versi PHP: 7.2.31
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -73,17 +73,18 @@ CREATE TABLE `kasus` (
   `id_pelanggan` varchar(100) NOT NULL,
   `deskripsi` varchar(100) NOT NULL,
   `balasan` varchar(100) NOT NULL,
-  `tgl_kasus` datetime NOT NULL DEFAULT current_timestamp()
+  `tgl_kasus` datetime NOT NULL DEFAULT current_timestamp(),
+  `id_pegawai` varchar(100) NOT NULL,
+  `status` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `kasus`
 --
 
-INSERT INTO `kasus` (`id_kasus`, `subject`, `id_pelanggan`, `deskripsi`, `balasan`, `tgl_kasus`) VALUES
-('8aef5815-bc02-11ee-ab17-c454445434d3', '', 'dc074c80-bbec-11ee-ab17-c454445434d3', 'sasc', '', '2024-01-26 12:22:39'),
-('9abc4d05-bc02-11ee-ab17-c454445434d3', 'dar', 'dc074c80-bbec-11ee-ab17-c454445434d3', 'aas', '', '2024-01-26 12:23:06'),
-('b246fa8f-b8da-11ee-922e-c454445434d3', 'dar', 'ed6b6758-b790-11ee-bd5d-f7de7099ab91', 'MTK', 'ab', '2024-01-26 12:20:09');
+INSERT INTO `kasus` (`id_kasus`, `subject`, `id_pelanggan`, `deskripsi`, `balasan`, `tgl_kasus`, `id_pegawai`, `status`) VALUES
+('8ed5d9b0-4679-11ef-877d-2cd05a302ee2', 'oke', '5d91cb75-45d8-11ef-90ba-2cd05a302ee2', 'adsd', '', '2024-07-20 17:22:13', 'a90bb5df-4682-11ef-877d-2cd05a302ee2', 0),
+('f049b9ad-4681-11ef-877d-2cd05a302ee2', 'tes', '5d91cb75-45d8-11ef-90ba-2cd05a302ee2', 'xxxxs', 'x', '2024-07-20 18:22:12', 'a90bb5df-4682-11ef-877d-2cd05a302ee2', 0);
 
 -- --------------------------------------------------------
 
@@ -98,13 +99,6 @@ CREATE TABLE `konsultasi` (
   `tgl_konsultasi` datetime NOT NULL DEFAULT current_timestamp(),
   `balasan` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data untuk tabel `konsultasi`
---
-
-INSERT INTO `konsultasi` (`id_konsultasi`, `id_pelanggan`, `isi_konsultasi`, `tgl_konsultasi`, `balasan`) VALUES
-('3c331da1-bc01-11ee-ab17-c454445434d3', 'dc074c80-bbec-11ee-ab17-c454445434d3', 'asdsas', '2024-01-26 12:13:18', '');
 
 -- --------------------------------------------------------
 
@@ -132,9 +126,9 @@ CREATE TABLE `mobil` (
 --
 
 INSERT INTO `mobil` (`id_mobil`, `nama_mobil`, `transmisi`, `warna`, `cc`, `kapasitas`, `ac`, `ac_double_blower`, `lampu_kabut`, `penggerak`, `foto_mobil`, `harga_otr`) VALUES
-('2972f0f7-bb1a-11ee-afe5-c454445434d3', 'Sigra', 'Manual', 'Silver', 1200, 7, 'Ya', 'Ya', 'Ya', 'FWD', '54d1d6ad871ade10af146ecff1c3ad0d.png', 0),
-('4261d470-bb1a-11ee-afe5-c454445434d3', 'Rocky', 'Manual', 'Merah', 1200, 5, 'Ya', 'Ya', 'Ya', 'FWD', '36d42f593b2bf4a2364b9588414ea535.jpg', 0),
-('7073bf09-bb1a-11ee-afe5-c454445434d3', 'Ayla', 'Manual', 'Merah', 1200, 5, 'Ya', 'Ya', 'Ya', 'FWD', '93b3e7eac43ecf3d314a4f14ef6adda8.jpg', 0);
+('2972f0f7-bb1a-11ee-afe5-c454445434d3', 'Sigra', 'Manual', 'Silver', 1200, 7, 'Ya', 'Ya', 'Ya', 'FWD', '54d1d6ad871ade10af146ecff1c3ad0d.png', 170000000),
+('4261d470-bb1a-11ee-afe5-c454445434d3', 'Rocky', 'Manual', 'Merah', 1200, 5, 'Ya', 'Ya', 'Ya', 'FWD', '36d42f593b2bf4a2364b9588414ea535.jpg', 175000000),
+('7073bf09-bb1a-11ee-afe5-c454445434d3', 'Ayla', 'Manual', 'Merah', 1200, 5, 'Ya', 'Ya', 'Ya', 'FWD', '93b3e7eac43ecf3d314a4f14ef6adda8.jpg', 150000000);
 
 -- --------------------------------------------------------
 
@@ -171,7 +165,7 @@ CREATE TABLE `pelanggan` (
   `no_wa` varchar(100) NOT NULL,
   `username` varchar(100) NOT NULL,
   `password` varchar(100) NOT NULL,
-  `level` int(11) NOT NULL DEFAULT 2
+  `level` int(11) NOT NULL DEFAULT 5
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -179,8 +173,7 @@ CREATE TABLE `pelanggan` (
 --
 
 INSERT INTO `pelanggan` (`id_pelanggan`, `nama_pelanggan`, `alamat`, `tgl_lahir`, `jk`, `email`, `no_wa`, `username`, `password`, `level`) VALUES
-('dc074c80-bbec-11ee-ab17-c454445434d3', 'Syarif Firdaus', 'handil bakti', '2024-01-26', 'L', 'asyasarrif@gmail.com', '08', 'syarif', '$2y$10$kEbeWOIwwrqyzoSneCTtjeuqp5v6C8QaqINOknLtCovCU7Gn.WtPO', 2),
-('ed6b6758-b790-11ee-bd5d-f7de7099ab91', 'Muhlisah', 'banjarmasin', '2024-01-20', 'P', 'akademik.kopwil11@gmail.com', '08', '', '', 2);
+('5d91cb75-45d8-11ef-90ba-2cd05a302ee2', 'Syarif Firdaus', 'handil bakti', '2024-07-19', 'L', 'syarif@gmail.com', '081348286276', 'udin', '$2y$10$xdrhH0KdJoctkRXy95wk2.Iag.KZW9KJmp6L7b2UTYAu0Hf.J/7s6', 5);
 
 -- --------------------------------------------------------
 
@@ -196,15 +189,18 @@ CREATE TABLE `penawaran` (
   `keterangan` varchar(200) NOT NULL,
   `tgl_penawaran` datetime NOT NULL DEFAULT current_timestamp(),
   `harga_deal` int(11) NOT NULL,
-  `status` varchar(100) NOT NULL
+  `status` varchar(100) NOT NULL,
+  `file` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `penawaran`
 --
 
-INSERT INTO `penawaran` (`id_penawaran`, `id_mobil`, `id_pelanggan`, `id_sales`, `keterangan`, `tgl_penawaran`, `harga_deal`, `status`) VALUES
-('9deaaf88-bc17-11ee-ab17-c454445434d3', '2972f0f7-bb1a-11ee-afe5-c454445434d3', 'dc074c80-bbec-11ee-ab17-c454445434d3', 'zzasd', 'XZ', '2024-01-26 14:53:31', 0, '');
+INSERT INTO `penawaran` (`id_penawaran`, `id_mobil`, `id_pelanggan`, `id_sales`, `keterangan`, `tgl_penawaran`, `harga_deal`, `status`, `file`) VALUES
+('f53433ff-4679-11ef-877d-2cd05a302ee2', '2972f0f7-bb1a-11ee-afe5-c454445434d3', '5d91cb75-45d8-11ef-90ba-2cd05a302ee2', '89b91284-4682-11ef-877d-2cd05a302ee2', 'oke', '2024-07-20 17:25:04', 0, '', ''),
+('f54f797e-46a9-11ef-877d-2cd05a302ee2', '2972f0f7-bb1a-11ee-afe5-c454445434d3', '5d91cb75-45d8-11ef-90ba-2cd05a302ee2', '', 'ookk', '2024-07-20 23:08:40', 1, '3', '7bc22e3e1d32ce5620a2a2c36d58c8f1.pdf'),
+('fb278b3b-4681-11ef-877d-2cd05a302ee2', '4261d470-bb1a-11ee-afe5-c454445434d3', '5d91cb75-45d8-11ef-90ba-2cd05a302ee2', '81b5a1b4-4682-11ef-877d-2cd05a302ee2', 'llk', '2024-07-20 18:22:30', 0, '', '');
 
 -- --------------------------------------------------------
 
@@ -214,6 +210,7 @@ INSERT INTO `penawaran` (`id_penawaran`, `id_mobil`, `id_pelanggan`, `id_sales`,
 
 CREATE TABLE `pengguna` (
   `id_pengguna` varchar(100) NOT NULL,
+  `nama_lengkap` varchar(100) NOT NULL,
   `username` varchar(100) DEFAULT NULL,
   `password` varchar(100) DEFAULT NULL,
   `level` tinyint(4) DEFAULT NULL
@@ -223,8 +220,39 @@ CREATE TABLE `pengguna` (
 -- Dumping data untuk tabel `pengguna`
 --
 
-INSERT INTO `pengguna` (`id_pengguna`, `username`, `password`, `level`) VALUES
-('sadfewf-ewfcdsc-aefsd', 'admin', '$2y$10$N5vD1.svbkLgmmAQ.9DcnevPM3DrZfaTIhEk.mebyCZvJNQpWi1..', 1);
+INSERT INTO `pengguna` (`id_pengguna`, `nama_lengkap`, `username`, `password`, `level`) VALUES
+('815ad709-4666-11ef-877d-2cd05a302ee2', 'Lisa', 'lisa', '$2y$10$Xc/gEEiNjRkn8un/0C6U6eZLsLMO9PFd6gPEMihPtwILd2nYZshnO', 2),
+('81b5a1b4-4682-11ef-877d-2cd05a302ee2', 'Ahmad', 'sales1', '$2y$10$C6LwwCXsKMlTWq.DV33sPeRxlO5Unq8l.DfUP7/7FS2E.SorA.Bdq', 3),
+('89b91284-4682-11ef-877d-2cd05a302ee2', 'Budi', 'sales2', '$2y$10$PxlKbs/crb/.nwsBmPTwvOGSHqPeTcM6C3a8Fd5klDu/qgWHzZNZu', 3),
+('91201351-45e1-11ef-90ba-2cd05a302ee2', 'Syarif Firdaus', 'admin', '$2y$10$xdrhH0KdJoctkRXy95wk2.Iag.KZW9KJmp6L7b2UTYAu0Hf.J/7s6', 1),
+('a90bb5df-4682-11ef-877d-2cd05a302ee2', 'Mujib', 'mujib', '$2y$10$kDYs.w1PaQv1NiUMPQ9riuGkxIXiqBaltf5eboPmflEKy7XT/T7tW', 4),
+('b8300eab-4682-11ef-877d-2cd05a302ee2', 'Deni', 'deni', '$2y$10$4IrQN8wpuhpRnZLqLDoFo.Nsh4tTj/HXhPt.ZXH2KYsIo.Sbc971S', 4);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `pesanan`
+--
+
+CREATE TABLE `pesanan` (
+  `id_pesanan` varchar(100) NOT NULL,
+  `id_mobil` varchar(100) NOT NULL,
+  `id_pelanggan` varchar(100) NOT NULL,
+  `id_sales` varchar(100) NOT NULL,
+  `keterangan` varchar(200) NOT NULL,
+  `tgl_pesanan` datetime NOT NULL DEFAULT current_timestamp(),
+  `jumlah` int(11) NOT NULL,
+  `status` varchar(100) NOT NULL,
+  `file` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `pesanan`
+--
+
+INSERT INTO `pesanan` (`id_pesanan`, `id_mobil`, `id_pelanggan`, `id_sales`, `keterangan`, `tgl_pesanan`, `jumlah`, `status`, `file`) VALUES
+('0f32592f-467a-11ef-877d-2cd05a302ee2', '7073bf09-bb1a-11ee-afe5-c454445434d3', '5d91cb75-45d8-11ef-90ba-2cd05a302ee2', '89b91284-4682-11ef-877d-2cd05a302ee2', 'ada', '2024-07-20 17:25:48', 1, '', ''),
+('52342efd-46aa-11ef-877d-2cd05a302ee2', '4261d470-bb1a-11ee-afe5-c454445434d3', '5d91cb75-45d8-11ef-90ba-2cd05a302ee2', '', 'jj', '2024-07-20 23:11:16', 2, '2', 'f8bf95c353a9c1e40a86a3fc4575ce13.pdf');
 
 -- --------------------------------------------------------
 
@@ -245,7 +273,7 @@ CREATE TABLE `promo` (
 --
 
 INSERT INTO `promo` (`id_promo`, `nama_promo`, `tgl_promo`, `detail_promo`, `file_promo`) VALUES
-('adb2b256-b905-11ee-922e-c454445434d3', 'aa', '2024-01-22', 'bbs', '6bccbc23e395ab44971f4f9ee3a2e245.jpg');
+('adb2b256-b905-11ee-922e-c454445434d3', 'aas', '2024-01-22', 'bbs', '');
 
 -- --------------------------------------------------------
 
@@ -339,6 +367,12 @@ ALTER TABLE `penawaran`
 --
 ALTER TABLE `pengguna`
   ADD PRIMARY KEY (`id_pengguna`);
+
+--
+-- Indeks untuk tabel `pesanan`
+--
+ALTER TABLE `pesanan`
+  ADD PRIMARY KEY (`id_pesanan`);
 
 --
 -- Indeks untuk tabel `promo`

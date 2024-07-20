@@ -14,6 +14,39 @@ class M_umum extends CI_Model{
 		$query = $this->db->get();
 		return $query->result();
 	}
+	function get_pengguna()
+	{
+
+		$this->db->select('*');
+		$this->db->from('pengguna a');
+			$this->db->where('level !=1');
+
+
+		$query = $this->db->get();
+		return $query->result();
+	}
+	function get_pegawai()
+	{
+
+		$this->db->select('*');
+		$this->db->from('pengguna a');
+			$this->db->where('level =4');
+
+
+		$query = $this->db->get();
+		return $query->result();
+	}
+	function get_sales()
+	{
+
+		$this->db->select('*');
+		$this->db->from('pengguna a');
+			$this->db->where('level =3');
+
+
+		$query = $this->db->get();
+		return $query->result();
+	}
 function get_konsultasi()
 	{
 
@@ -52,6 +85,7 @@ function get_konsultasi()
 		$this->db->select('*');
 		$this->db->from('kasus a');
 		$this->db->join('pelanggan b', 'a.id_pelanggan=b.id_pelanggan', 'left');
+		$this->db->join('pengguna c', 'a.id_pegawai=c.id_pengguna', 'left');
 $this->db->order_by('a.tgl_kasus desc');
 		$query = $this->db->get();
 		return $query->result();
@@ -62,7 +96,20 @@ $this->db->order_by('a.tgl_kasus desc');
 		$this->db->select('*');
 		$this->db->from('kasus a');
 		$this->db->join('pelanggan b', 'a.id_pelanggan=b.id_pelanggan', 'left');
+		$this->db->join('pengguna c', 'a.id_pegawai=c.id_pengguna', 'left');
 		$this->db->where('a.id_pelanggan',$id);
+$this->db->order_by('a.tgl_kasus desc');
+		$query = $this->db->get();
+		return $query->result();
+	}
+	function get_kasus_pegawai()
+	{
+ $id=$this->session->userdata('id');
+		$this->db->select('*');
+		$this->db->from('kasus a');
+		$this->db->join('pelanggan b', 'a.id_pelanggan=b.id_pelanggan', 'left');
+		$this->db->join('pengguna c', 'a.id_pegawai=c.id_pengguna', 'left');
+		$this->db->where('a.id_pegawai',$id);
 $this->db->order_by('a.tgl_kasus desc');
 		$query = $this->db->get();
 		return $query->result();
@@ -73,9 +120,49 @@ $this->db->order_by('a.tgl_kasus desc');
 		$this->db->select('*');
 		$this->db->from('penawaran a');
 		$this->db->join('pelanggan b', 'a.id_pelanggan=b.id_pelanggan', 'left');
+		$this->db->join('pengguna d', 'a.id_sales=d.id_pengguna', 'left');
 		$this->db->join('mobil c', 'a.id_mobil=c.id_mobil', 'left');
 		$this->db->where('a.id_pelanggan',$id);
 $this->db->order_by('a.tgl_penawaran desc');
+		$query = $this->db->get();
+		return $query->result();
+	}
+	function get_penawaran_sales()
+	{
+ $id=$this->session->userdata('id');
+		$this->db->select('*');
+		$this->db->from('penawaran a');
+		$this->db->join('pelanggan b', 'a.id_pelanggan=b.id_pelanggan', 'left');
+		$this->db->join('pengguna d', 'a.id_sales=d.id_pengguna', 'left');
+		$this->db->join('mobil c', 'a.id_mobil=c.id_mobil', 'left');
+		$this->db->where('a.id_sales',$id);
+$this->db->order_by('a.tgl_penawaran desc');
+		$query = $this->db->get();
+		return $query->result();
+	}
+	function get_pesanan_user()
+	{
+ $id=$this->session->userdata('ses_id');
+		$this->db->select('*');
+		$this->db->from('pesanan a');
+		$this->db->join('pelanggan b', 'a.id_pelanggan=b.id_pelanggan', 'left');
+		$this->db->join('pengguna d', 'a.id_sales=d.id_pengguna', 'left');
+		$this->db->join('mobil c', 'a.id_mobil=c.id_mobil', 'left');
+		$this->db->where('a.id_pelanggan',$id);
+$this->db->order_by('a.tgl_pesanan desc');
+		$query = $this->db->get();
+		return $query->result();
+	}
+	function get_pesanan_sales()
+	{
+ $id=$this->session->userdata('id');
+		$this->db->select('*');
+		$this->db->from('pesanan a');
+		$this->db->join('pelanggan b', 'a.id_pelanggan=b.id_pelanggan', 'left');
+		$this->db->join('pengguna d', 'a.id_sales=d.id_pengguna', 'left');
+		$this->db->join('mobil c', 'a.id_mobil=c.id_mobil', 'left');
+		$this->db->where('a.id_sales',$id);
+$this->db->order_by('a.tgl_pesanan desc');
 		$query = $this->db->get();
 		return $query->result();
 	}
@@ -85,8 +172,21 @@ $this->db->order_by('a.tgl_penawaran desc');
 		$this->db->select('*');
 		$this->db->from('penawaran a');
 		$this->db->join('pelanggan b', 'a.id_pelanggan=b.id_pelanggan', 'left');
+		$this->db->join('pengguna d', 'a.id_sales=d.id_pengguna', 'left');
 		$this->db->join('mobil c', 'a.id_mobil=c.id_mobil', 'left');
 $this->db->order_by('a.tgl_penawaran desc');
+		$query = $this->db->get();
+		return $query->result();
+	}
+	function get_pesanan()
+	{
+ $id=$this->session->userdata('ses_id');
+		$this->db->select('*');
+		$this->db->from('pesanan a');
+		$this->db->join('pelanggan b', 'a.id_pelanggan=b.id_pelanggan', 'left');
+		$this->db->join('pengguna d', 'a.id_sales=d.id_pengguna', 'left');
+		$this->db->join('mobil c', 'a.id_mobil=c.id_mobil', 'left');
+$this->db->order_by('a.tgl_pesanan desc');
 		$query = $this->db->get();
 		return $query->result();
 	}

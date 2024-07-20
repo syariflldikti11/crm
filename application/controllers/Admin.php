@@ -27,11 +27,124 @@ function penawaran()
   $data = array(
       'judul' => 'Penawaran',
       'dt_penawaran'=> $this->m_umum->get_penawaran(),
+        'dt_sales'=> $this->m_umum->get_sales(),
      
   );  
   $this->template->load('admin/template', 'admin/penawaran', $data);
   
 }
+function kirim_penawaran_sales()
+  {
+        
+    $this->form_validation->set_rules('id_penawaran','id_penawaran','required');
+    if($this->form_validation->run() === FALSE)
+        redirect('admin/penawaran');
+    else
+    {
+      $this->m_umum->update_data("penawaran");
+       $notif = "Penawaran diteruskan ke Sales";
+            $this->session->set_flashdata('update', $notif);
+      redirect('admin/penawaran');
+    }
+    
+  }
+function pesanan()
+{
+  
+  $data = array(
+      'judul' => 'pesanan',
+      'dt_pesanan'=> $this->m_umum->get_pesanan(),
+           'dt_sales'=> $this->m_umum->get_sales(),
+     
+  );  
+  $this->template->load('admin/template', 'admin/pesanan', $data);
+  
+}
+function kirim_pesanan_sales()
+  {
+        
+    $this->form_validation->set_rules('id_pesanan','id_pesanan','required');
+    if($this->form_validation->run() === FALSE)
+        redirect('admin/pesanan');
+    else
+    {
+      $this->m_umum->update_data("pesanan");
+       $notif = "Pesanan diteruskan ke Sales";
+            $this->session->set_flashdata('update', $notif);
+      redirect('admin/pesanan');
+    }
+    
+  }
+function pengguna()
+{
+  
+  $data = array(
+      'judul' => 'Pengguna',
+      'modal_tambah' => 'Tambah Data pengguna',
+      'modal_edit' => 'Edit Data pengguna',
+      'dt_pengguna'=> $this->m_umum->get_pengguna(),
+     
+  );  
+  $this->template->load('admin/template', 'admin/pengguna', $data);
+  
+}
+
+
+function simpan_pengguna()
+  {
+
+    $this->db->set('id_pengguna', 'UUID()', FALSE);
+    $nama_lengkap = $this->input->post('nama_lengkap');
+    $username = $this->input->post('username');
+    $password = $this->input->post('password');
+    $level = $this->input->post('level');
+    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+   
+
+    $data = array(
+
+      'nama_lengkap' => $nama_lengkap,
+      'username' => $username,
+      'password' => $hashed_password,
+      'level' => $level,
+    );
+
+    $this->m_umum->input_data($data, 'pengguna');
+    $notif = "Tambah Data Berhasil";
+    $this->session->set_flashdata('success', $notif);
+    redirect('admin/pengguna');
+
+  }
+  function update_pengguna()
+  {
+    $id_pengguna = $this->input->post('id_pengguna');
+    $nama_lengkap = $this->input->post('nama_lengkap');
+    $username = $this->input->post('username');
+    $password = $this->input->post('password');
+    $level = $this->input->post('level');
+    
+    $data_update = array(
+      'id_pengguna' => $id_pengguna,
+       'nama_lengkap' => $nama_lengkap,
+      'username' => $username,
+      'level' => $level
+    );
+    $where = array('id_pengguna' => $id_pengguna);
+    $res = $this->m_umum->UpdateData('pengguna', $data_update, $where);
+    $notif = "Update Data Berhasil";
+    $this->session->set_flashdata('success', $notif);
+    redirect('admin/pengguna');
+
+  }
+   function delete_pengguna($id=NULL)
+  {
+     
+    $this->m_umum->hapus('pengguna','id_pengguna',$id);
+     $notif = " Data berhasil dihapuskan";
+            $this->session->set_flashdata('delete', $notif);
+    redirect('admin/pengguna');
+     
+  }
 function promo()
 {
   
@@ -319,7 +432,7 @@ function update_model_mobil()
     redirect('admin/model_mobil');
      
   }
-  function Solusi()
+  function solusi()
 {
   
   $data = array(
@@ -456,6 +569,7 @@ function update_pelanggan()
     $ac_double_blower = $this->input->post('ac_double_blower');
     $lampu_kabut = $this->input->post('lampu_kabut');
     $penggerak = $this->input->post('penggerak');
+    $harga_otr = $this->input->post('harga_otr');
     $foto_mobil = $this->uploadfotomobil();
 
     $data = array(
@@ -469,7 +583,8 @@ function update_pelanggan()
       'ac' => $ac,
       'ac_double_blower' => $ac_double_blower,
       'lampu_kabut' => $lampu_kabut,
-      'penggerak' => $penggerak
+      'penggerak' => $penggerak,
+      'harga_otr' => $harga_otr
     );
 
     $this->m_umum->input_data($data, 'mobil');
@@ -614,6 +729,7 @@ function kasus()
       'modal_edit' => 'Edit Data Kasus',
       'dt_pelanggan'=> $this->m_umum->get_data('pelanggan'),
       'dt_kasus'=> $this->m_umum->get_kasus(),
+        'dt_pegawai'=> $this->m_umum->get_pegawai(),
      
   );  
   $this->template->load('admin/template', 'admin/kasus', $data);
@@ -649,6 +765,21 @@ function update_kasus()
        $notif = " Data berhasil diupdate";
             $this->session->set_flashdata('update', $notif);
       redirect('admin/kasus');
+    }
+    
+  }
+  function kirim_pegawai()
+  {
+        
+    $this->form_validation->set_rules('id_kasus','id_kasus','required');
+    if($this->form_validation->run() === FALSE)
+        redirect('admin/kasus');
+    else
+    {
+      $this->m_umum->update_data("kasus");
+       $notif = "Kasus diteruskan ke pegawai";
+            $this->session->set_flashdata('update', $notif);
+      redirect('supervisor/kasus');
     }
     
   }

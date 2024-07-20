@@ -7,9 +7,29 @@ class User extends CI_Controller
     parent::__construct();
     $this->load->database();
     $this->load->model('m_umum');
-    if($this->session->userdata('akses') <> 2){
+    if($this->session->userdata('akses') <> 5){
         redirect(base_url('login'));
         }
+  }
+   public function uploadfile()
+  {
+    $config['upload_path'] = 'upload';
+    $config['allowed_types'] = 'jpg|png|jpeg|pdf';
+    $config['overwrite'] = false;
+    $config['max_size'] = 2000; // 1MB
+    $config['encrypt_name'] = TRUE;
+
+
+    $this->load->library('upload', $config);
+    $this->upload->initialize($config);
+
+    if ($this->upload->do_upload('file')) {
+      return $this->upload->data("file_name");
+    }
+    $error = $this->upload->display_errors();
+    echo $error;
+    exit;
+    // return "default.jpg";
   }
   function index()
 {
@@ -57,28 +77,72 @@ function penawaran()
 {
   
   $data = array(
-      'judul' => 'penawaran',
+      'judul' => 'Penawaran',
       'dt_penawaran'=> $this->m_umum->get_penawaran_user(),
      
   );  
   $this->template->load('user/template', 'user/penawaran', $data);
   
 }
-function simpan_penawaran() { 
-     $id=$this->session->userdata('ses_id');
+
+function simpan_penawaran()
+  {
+ $id=$this->session->userdata('ses_id');
     $this->db->set('id_penawaran', 'UUID()', FALSE);
     $this->db->set('id_pelanggan',$id);
-    $this->form_validation->set_rules('keterangan','keterangan','required');
-    if($this->form_validation->run() === FALSE)
+    $keterangan = $this->input->post('keterangan');
+    $id_mobil = $this->input->post('id_mobil');
+    $file = $this->uploadfile();
+
+    $data = array(
+
+      'keterangan' => $keterangan,
+      'id_mobil' => $id_mobil,
+      'file' => $file
+    );
+
+    $this->m_umum->input_data($data, 'penawaran');
+     $notif = "Terimakasih, Anda akan dihubungi tim kami";
+    $this->session->set_flashdata('success', $notif);
     redirect('user/penawaran');
-    else
-    {
-        
-        $this->m_umum->set_data("penawaran");
-        $notif = "Terimakasih, Anda akan dihubungi tim kami";
-        $this->session->set_flashdata('success', $notif);
-      redirect('user/penawaran');
-    }
+
+  }
+
+    function simpan_pesanan()
+  {
+ $id=$this->session->userdata('ses_id');
+    $this->db->set('id_pesanan', 'UUID()', FALSE);
+    $this->db->set('id_pelanggan',$id);
+    $keterangan = $this->input->post('keterangan');
+    $id_mobil = $this->input->post('id_mobil');
+    $jumlah = $this->input->post('jumlah');
+    $file = $this->uploadfile();
+
+    $data = array(
+
+      'keterangan' => $keterangan,
+      'id_mobil' => $id_mobil,
+      'jumlah' => $jumlah,
+      'file' => $file
+    );
+
+    $this->m_umum->input_data($data, 'pesanan');
+     $notif = "Terimakasih, Anda akan dihubungi tim kami";
+    $this->session->set_flashdata('success', $notif);
+    redirect('user/pesanan');
+
+  }
+  
+
+function pesanan()
+{
+  
+  $data = array(
+      'judul' => 'pesanan',
+      'dt_pesanan'=> $this->m_umum->get_pesanan_user(),
+     
+  );  
+  $this->template->load('user/template', 'user/pesanan', $data);
   
 }
 function kasus()

@@ -180,15 +180,33 @@ margin-top: 16px;
                                 </a>
                               
                             </li>
-                             <li class="pcoded-hasmenu">
-                                <a href="<?php echo base_url ('user/penawaran'); ?>">
+                           
+                           
+ <li class="pcoded-hasmenu">
+                                <a href="javascript:void(0)">
                                     <span class="pcoded-micon"><i class="fa fa-shopping-cart"></i></span>
-                                    <span class="pcoded-mtext">Penawaran</span>
-                                   
+                                    <span class="pcoded-mtext">Transaksi</span>
+                                    <span class="pcoded-mcaret"></span>
                                 </a>
-                              
+                                <ul class="pcoded-submenu">
+                                  
+                                    <li class="">
+                                        <a href="<?php echo base_url ('user/penawaran'); ?>" data-i18n="nav.disabled-menu.main" class="disabled">
+                                            <span class="pcoded-micon"><i class="ti-na"></i></span>
+                                            <span class="pcoded-mtext">Penawaran</span>
+                                            <span class="pcoded-mcaret"></span>
+                                        </a>
+                                    </li>
+                                    <li class="">
+                                        <a href="<?php echo base_url ('user/pesanan'); ?>" data-i18n="nav.sample-page.main">
+                                            <span class="pcoded-micon"><i class="ti-layout-sidebar-left"></i></span>
+                                            <span class="pcoded-mtext">Pesanan</span>
+                                            <span class="pcoded-mcaret"></span>
+                                        </a>
+                                    </li>
+                                   
+                                </ul>
                             </li>
-
                             
                           
                             <li class="pcoded-hasmenu">

@@ -60,9 +60,8 @@
                     </div></td>
                     <td>
                     <div align="left">
-                      <?php if($d->status==0): ?><label class="label label-primary">Dibuka</label><?php endif;?>
+                    <?php if($d->status==0): ?><label class="label label-primary">Dibuka</label><?php endif;?>
                      <?php if($d->status==1): ?><label class="label label-success">Selesai</label><?php endif;?>
-                     
                     </div></td>
                    
                   <td align="center"><div align="center">  
@@ -88,7 +87,7 @@
                     <span class="icofont icofont-ui-edit"></span> </a> <a  onclick="return confirm('anda yakin ingin menghapus data ini')" class="btn btn-sm btn-danger"  data-tooltip="tooltip"
                       data-bs-placement="top"
                       title="Delete" 
-                   href="<?php echo base_url('admin/delete_kasus/'.$d->id_kasus);?>" 
+                   href="<?php echo base_url('supervisor/delete_kasus/'.$d->id_kasus);?>" 
                     ><span class="icofont icofont-ui-delete"></span> </a></div></td>
                 </tr>
                 <?php endforeach; ?>
@@ -113,7 +112,7 @@
                                                                             </div>
                                                                             <?php  
              echo validation_errors();                       
-    echo form_open('admin/simpan_kasus'); ?>
+    echo form_open('supervisor/simpan_kasus'); ?>
                    
                                                                            <div class="modal-body">
     <div class="mb-3">
@@ -167,7 +166,7 @@
                                                                             </div>
                                                                             <?php  
              echo validation_errors();                       
-    echo form_open('admin/update_kasus'); ?>
+    echo form_open('supervisor/update_kasus'); ?>
                    
                                                                            <div class="modal-body">
    
@@ -211,7 +210,7 @@
                                                                             </div>
                                                                             <?php  
              echo validation_errors();                       
-    echo form_open('admin/kirim_pegawai'); ?>
+    echo form_open('supervisor/kirim_pegawai'); ?>
                    
                                                                            <div class="modal-body">
    
@@ -243,19 +242,7 @@
                                                                     </div>
                                                                 </div>
 
-<script>
-    $(document).ready(function() {
-      
-        $('#kirim').on('show.bs.modal', function (event) {
-            var div = $(event.relatedTarget)
-            var modal   = $(this)
-            modal.find('#id').attr("value",div.data('id'));
-           
-          
-           
-        });
-    });
-</script>
+
                                                                 <script>
     $(document).ready(function() {
       
@@ -272,4 +259,16 @@
     });
 </script>
 
-   
+   <script>
+    $(document).ready(function() {
+      
+        $('#kirim').on('show.bs.modal', function (event) {
+            var div = $(event.relatedTarget)
+            var modal   = $(this)
+            modal.find('#id').attr("value",div.data('id'));
+           
+          
+           
+        });
+    });
+</script>

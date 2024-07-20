@@ -3,7 +3,7 @@
                                                     <h5><?php echo $judul; ?></h5>
                                                    
  
-        <!--      <button type="button" class="btn btn-sm btn-inverse" data-toggle="modal" data-target="#default-Modal">Tambah</button> -->
+ 
                                                 </div>
                                                 <div class="card-block">
                                                     <div class="dt-responsive table-responsive">
@@ -62,19 +62,9 @@
                     <div align="left">
                       <?php if($d->status==0): ?><label class="label label-primary">Dibuka</label><?php endif;?>
                      <?php if($d->status==1): ?><label class="label label-success">Selesai</label><?php endif;?>
-                     
                     </div></td>
                    
-                  <td align="center"><div align="center">  
-                    <a   class="btn btn-sm btn-primary" data-tooltip="tooltip"
-                      data-bs-placement="top"
-                      title="Teruskan" href="javascript:;"
-                           data-toggle="modal" data-target="#kirim"   
-                              data-id="<?= $d->id_kasus ?>"
-                            
-                              
-                              > 
-                    <span class="fa fa-user"></span> </a> 
+                  <td align="center"><div align="center">   
             <a   class="btn btn-sm btn-warning" data-tooltip="tooltip"
                       data-bs-placement="top"
                       title="Edit" href="javascript:;"
@@ -167,13 +157,12 @@
                                                                             </div>
                                                                             <?php  
              echo validation_errors();                       
-    echo form_open('admin/update_kasus'); ?>
+    echo form_open('pegawai/update_kasus'); ?>
                    
                                                                            <div class="modal-body">
    
                         <div class="mb-3">
                         <label for="exampleInputEmail1">Subject</label>
-                        <input type="text" class="form-control"  name="id_kasus" id="id"  required >
                         <input type="text" class="form-control"  name="subject" id="subject"  required >
                         
                       </div>
@@ -200,62 +189,6 @@
                                                                     </div>
                                                                 </div>
 
-                                                                  <div class="modal fade" id="kirim" tabindex="-1" role="dialog">
-                                                                    <div class="modal-dialog" role="document">
-                                                                        <div class="modal-content">
-                                                                            <div class="modal-header">
-                                                                                <h4 class="modal-title"><?= $modal_edit; ?></h4>
-                                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                                            </div>
-                                                                            <?php  
-             echo validation_errors();                       
-    echo form_open('admin/kirim_pegawai'); ?>
-                   
-                                                                           <div class="modal-body">
-   
-                        
-                        <input type="hidden" class="form-control"  name="id_kasus" id="id"  required >
-                   
-                        <div class="mb-3">
-                        <label for="exampleInputEmail1">Pegawai</label>
-                        
-                        <select class="form-control" name="id_pegawai">
-                            <?php
-                foreach ($dt_pegawai as $b): ?>
-                          <option value="<?= $b->id_pengguna; ?>"><?= $b->nama_lengkap; ?></option>
-                           <?php endforeach; ?>
-                        </select>
-                     
-                        
-                      </div>
-                      
-                      
-      </div>
-                                                                            <div class="modal-footer">
-                                                                                <button type="button" class="btn btn-default waves-effect " data-dismiss="modal">Close</button>
-                                                                                
-                                                                                <input type="submit" name="submit"  class="btn btn-primary waves-effect waves-light" value="Submit">
-                                                                            </div>
-                                                                          </form>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-
-<script>
-    $(document).ready(function() {
-      
-        $('#kirim').on('show.bs.modal', function (event) {
-            var div = $(event.relatedTarget)
-            var modal   = $(this)
-            modal.find('#id').attr("value",div.data('id'));
-           
-          
-           
-        });
-    });
-</script>
                                                                 <script>
     $(document).ready(function() {
       
@@ -271,5 +204,3 @@
         });
     });
 </script>
-
-   

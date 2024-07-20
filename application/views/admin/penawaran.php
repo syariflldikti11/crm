@@ -11,11 +11,16 @@
                                                             <thead class="bg-primary text-white">
                 <tr>
                   <th><div align="center">No</div></th>
+                  <th><div align="left">Nama Pelanggan</div></th>
+                  <th><div align="left">Email</div></th>
+                  <th><div align="left">No HP</div></th>
                   <th><div align="left">Nama Mobil</div></th>
-                  <th><div align="left">ID Sales</div></th>
+                  <th><div align="left">Nama Sales</div></th>
                   <th><div align="left">Keterangan</div></th>
                   <th><div align="left">Harga Deal</div></th>
+                  <th><div align="left">File</div></th>
                   <th><div align="left">Status</div></th>                
+                  <th><div align="left">Opsi</div></th>                
                   
                 </tr>
               </thead>
@@ -29,11 +34,23 @@
                   </div></td>
                   <td>
                     <div align="left">
+                      <?= $d->nama_pelanggan; ?>
+                    </div></td>
+                    <td>
+                    <div align="left">
+                      <?= $d->email; ?>
+                    </div></td>
+                    <td>
+                    <div align="left">
+                      <?= $d->no_wa; ?>
+                    </div></td>
+                  <td>
+                    <div align="left">
                       <?= $d->nama_mobil; ?>
                     </div></td>
                      <td>
                     <div align="left">
-                     
+                      <?= $d->nama_lengkap; ?>
                     </div></td>
                     <td>
                     <div align="left">
@@ -43,11 +60,25 @@
                     <div align="left">
                       <?= $d->harga_deal; ?>
                     </div></td>
+                     <td>
+                     <div align="left">
+                      <a target="_blank" href="<?= base_url(); ?>upload/<?= $d->file; ?>">File </a>
+                    </div></td>
                     <td>
                     <div align="left">
                       <?= $d->status; ?>
                     </div></td>
-                   
+                   <td>
+                     <a   class="btn btn-sm btn-warning" data-tooltip="tooltip"
+                      data-bs-placement="top"
+                      title="Teruskan" href="javascript:;"
+                           data-toggle="modal" data-target="#kirim"   
+                              data-id="<?= $d->id_penawaran ?>"
+                            
+                              
+                              > 
+                    <span class="fa fa-user"></span> </a> 
+                   </td>
                  
                 </tr>
                 <?php endforeach; ?>
@@ -160,6 +191,64 @@
            
             modal.find('#tgl_event').attr("value",div.data('tgl_event'));
          
+        });
+    });
+</script>
+
+
+                                                                  <div class="modal fade" id="kirim" tabindex="-1" role="dialog">
+                                                                    <div class="modal-dialog" role="document">
+                                                                        <div class="modal-content">
+                                                                            <div class="modal-header">
+                                                                                <h4 class="modal-title">Kirim ke Sales</h4>
+                                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                                            </div>
+                                                                            <?php  
+             echo validation_errors();                       
+    echo form_open('admin/kirim_penawaran_sales'); ?>
+                   
+                                                                           <div class="modal-body">
+   
+                        
+                        <input type="hidden" class="form-control"  name="id_penawaran" id="id"  required >
+                   
+                        <div class="mb-3">
+                        <label for="exampleInputEmail1">Pegawai</label>
+                        
+                        <select class="form-control" name="id_sales">
+                            <?php
+                foreach ($dt_sales as $b): ?>
+                          <option value="<?= $b->id_pengguna; ?>"><?= $b->nama_lengkap; ?></option>
+                           <?php endforeach; ?>
+                        </select>
+                     
+                        
+                      </div>
+                      
+                      
+      </div>
+                                                                            <div class="modal-footer">
+                                                                                <button type="button" class="btn btn-default waves-effect " data-dismiss="modal">Close</button>
+                                                                                
+                                                                                <input type="submit" name="submit"  class="btn btn-primary waves-effect waves-light" value="Submit">
+                                                                            </div>
+                                                                          </form>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+<script>
+    $(document).ready(function() {
+      
+        $('#kirim').on('show.bs.modal', function (event) {
+            var div = $(event.relatedTarget)
+            var modal   = $(this)
+            modal.find('#id').attr("value",div.data('id'));
+           
+          
+           
         });
     });
 </script>

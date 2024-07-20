@@ -95,10 +95,10 @@ function rupiah($angka){
                                                                         
                                                                         <div class="col-lg-12 col-sm-12 mob-product-btn">
                                                                             <button type="button" data-toggle="modal" data-target="#default-Modal" class="btn btn-primary waves-effect waves-light m-r-20">
-                                                                                <i class="icofont icofont-cart-alt f-16"></i><span class="m-l-10">Minta Penawaran</span>
+                                                                                <i class="icofont icofont-cart-alt f-16"></i><span class="m-l-10">Ajukan Penawaran</span>
                                                                             </button>
-                                                                              <button type="button" class="btn btn-warning waves-effect waves-light m-r-20">
-                                                                                <i class="icofont icofont-heart-alt f-16"></i><span class="m-l-10">Berminat</span>
+                                                                              <button type="button" data-toggle="modal" data-target="#pesanan" class="btn btn-warning waves-effect waves-light m-r-20">
+                                                                                <i class="fa fa-money f-16"></i><span class="m-l-10">Beli</span>
                                                                             </button>
                                                                           
                                                                         </div>
@@ -121,14 +121,14 @@ function rupiah($angka){
                                                                     <div class="modal-dialog" role="document">
                                                                         <div class="modal-content">
                                                                             <div class="modal-header">
-                                                                                <h4 class="modal-title">Minta Penawaran</h4>
+                                                                                <h4 class="modal-title">Ajukan Penawaran</h4>
                                                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                             <span aria-hidden="true">&times;</span>
                                                         </button>
                                                                             </div>
                                                                             <?php  
              echo validation_errors();                       
-    echo form_open('user/simpan_penawaran'); ?>
+    echo form_open_multipart('user/simpan_penawaran'); ?>
                    
                                                                            <div class="modal-body">
     
@@ -136,6 +136,62 @@ function rupiah($angka){
                         <label for="exampleInputEmail1">ID Sales (Opsional)</label>
                         <input type="text" class="form-control" name="id_sales"  >
                         <input type="hidden" class="form-control" name="id_mobil" value="<?= $id; ?>"  >
+                        
+                      </div>
+                       <div class="mb-3">
+                        <label for="exampleInputEmail1">File Penawaran</label>
+                        <input type="file" class="form-control" name="file"  >
+                        
+                        
+                      </div>
+                      <div class="mb-3">
+                        <label for="exampleInputEmail1">Keterangan</label>
+                     <textarea class="form-control" name="keterangan"></textarea>
+                        
+                      </div>
+                     
+                     
+      </div>
+                                                                            <div class="modal-footer">
+                                                                                <button type="button" class="btn btn-default waves-effect " data-dismiss="modal">Close</button>
+                                                                                
+                                                                                <input type="submit" name="submit"  class="btn btn-primary waves-effect waves-light" value="Submit">
+                                                                            </div>
+                                                                          </form>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                 <div class="modal fade" id="pesanan" tabindex="-1" role="dialog">
+                                                                    <div class="modal-dialog" role="document">
+                                                                        <div class="modal-content">
+                                                                            <div class="modal-header">
+                                                                                <h4 class="modal-title">Pesan Mobil</h4>
+                                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                                            </div>
+                                                                            <?php  
+             echo validation_errors();                       
+    echo form_open_multipart('user/simpan_pesanan'); ?>
+                   
+                                                                           <div class="modal-body">
+    
+                     <div class="mb-3">
+                        <label for="exampleInputEmail1">ID Sales (Opsional)</label>
+                        <input type="text" class="form-control" name="id_sales"  >
+                        <input type="hidden" class="form-control" name="id_mobil" value="<?= $id; ?>"  >
+                        
+                      </div>
+                       <div class="mb-3">
+                        <label for="exampleInputEmail1">KTP</label>
+                        <input type="file" class="form-control" name="file"  >
+                        
+                        
+                      </div>
+                       <div class="mb-3">
+                        <label for="exampleInputEmail1">Jumlah</label>
+                        <input type="number" class="form-control" name="jumlah">
                         
                       </div>
                       

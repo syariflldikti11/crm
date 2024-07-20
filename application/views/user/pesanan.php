@@ -4,7 +4,7 @@
                                         <div class="col-lg-8">
                                             <div class="page-header-title">
                                                 <div class="d-inline">
-                                                    <h2>Penawaran Anda</h2>
+                                                    <h2>Pesanan Anda</h2>
                                                     
                                                 </div>
                                             </div>
@@ -32,7 +32,8 @@
                   <th><div align="left">Nama Mobil</div></th>
                   <th><div align="left">Sales</div></th>
                   <th><div align="left">Keterangan</div></th>
-                  <th><div align="left">Harga Deal</div></th>
+                  <th><div align="left">Harga Mobil</div></th>
+                  <th><div align="left">Jumlah Pesanan</div></th>
                   <th><div align="left">File</div></th>
                   <th><div align="left">Status</div></th>                
                   
@@ -41,7 +42,7 @@
               <tbody>
                 <?php
                 $no=1;
-                foreach ($dt_penawaran as $d): ?>
+                foreach ($dt_pesanan as $d): ?>
                 <tr>
                   <td><div align="center">
                     <?= $no++; ?>
@@ -60,20 +61,24 @@
                     </div></td>
                    <td>
                     <div align="left">
-                      <?= $d->harga_deal; ?>
+                      <?= $d->harga_otr; ?>
+                    </div></td>
+                     <td>
+                    <div align="left">
+                      <?= $d->jumlah; ?>
                     </div></td>
                     <td>
+                       <td>
                      <div align="left">
                       <a target="_blank" href="<?= base_url(); ?>upload/<?= $d->file; ?>">File </a>
                     </div></td>
-                    <td>
                     <div align="left">
                        <?php if($d->status==1): ?><label class="label label-primary">Proses</label><?php endif;?>
                      <?php if($d->status==3): ?><label class="label label-success">Selesai</label><?php endif;?>
                       <?php if($d->status==2): ?><label class="label label-danger">Batal</label><?php endif;?>
                        <?php if($d->status==0): ?><label class="label label-inverse">Menunggu</label><?php endif;?>
                     </div></td>
-                    
+                   
                  
                 </tr>
                 <?php endforeach; ?>

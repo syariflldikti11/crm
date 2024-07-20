@@ -73,18 +73,30 @@ class Login extends CI_Controller{
                             
                     redirect('admin');
                  }
-                  if($data['level']=='3' && password_verify($password, $data['password'])){ 
-                    $this->session->set_userdata('akses','3');
+                  if($data['level']=='2' && password_verify($password, $data['password'])){ 
+                    $this->session->set_userdata('akses','2');
                        $this->session->set_userdata('ses_id',$data['username']);           
-                    redirect('user');
+                    redirect('supervisor');
+                 }
+                 if($data['level']=='3' && password_verify($password, $data['password'])){ 
+                    $this->session->set_userdata('akses','3');
+                       $this->session->set_userdata('ses_id',$data['username']); 
+                       $this->session->set_userdata('id',$data['id_pengguna']);          
+                    redirect('sales');
+                 }
+                  if($data['level']=='4' && password_verify($password, $data['password'])){ 
+                    $this->session->set_userdata('akses','4');
+                     $this->session->set_userdata('id',$data['id_pengguna']);
+                       $this->session->set_userdata('ses_id',$data['username']);           
+                    redirect('pegawai');
                  }
               
         }
          else if($cek_pelanggan->num_rows() > 0){ 
                         $datapl=$cek_pelanggan->row_array();
                
-   if($datapl['level']=='2' && password_verify($password, $datapl['password'])){ 
-                    $this->session->set_userdata('akses','2');
+   if($datapl['level']=='5' && password_verify($password, $datapl['password'])){ 
+                    $this->session->set_userdata('akses','5');
                        $this->session->set_userdata('ses_id',$datapl['id_pelanggan']);
                        $this->session->set_userdata('ses_nama',$datapl['nama_pelanggan']);
                             

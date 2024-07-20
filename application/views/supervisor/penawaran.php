@@ -1,9 +1,9 @@
-<div class="card">
+ <div class="card">
                                                 <div class="card-header">
                                                     <h5><?php echo $judul; ?></h5>
                                                    
  
-        <!--      <button type="button" class="btn btn-sm btn-inverse" data-toggle="modal" data-target="#default-Modal">Tambah</button> -->
+            
                                                 </div>
                                                 <div class="card-block">
                                                     <div class="dt-responsive table-responsive">
@@ -11,85 +11,78 @@
                                                             <thead class="bg-primary text-white">
                 <tr>
                   <th><div align="center">No</div></th>
-                   <th><div align="left">Tanggal Kasus</div></th>
                   <th><div align="left">Nama Pelanggan</div></th>
-                   <th><div align="left">Nama Pegawai</div></th>
-                  <th><div align="left">No WA Pelanggan</div></th>
-                  <th><div align="left">Subject</div></th>
-                  <th><div align="left">Deskripsi</div></th>
-                  <th><div align="left">Balasan</div></th>   
-                  <th><div align="left">Status</div></th>               
-                  <th ><div align="center">Opsi</div></th>
+                  <th><div align="left">Email</div></th>
+                  <th><div align="left">No HP</div></th>
+                  <th><div align="left">Nama Mobil</div></th>
+                  <th><div align="left">Nama Sales</div></th>
+                  <th><div align="left">Keterangan</div></th>
+                  <th><div align="left">Harga Deal</div></th>
+                  <th><div align="left">File</div></th>
+                  <th><div align="left">Status</div></th>                
+                  <th><div align="left">Opsi</div></th>                
+                  
                 </tr>
               </thead>
               <tbody>
                 <?php
                 $no=1;
-                foreach ($dt_kasus as $d): ?>
+                foreach ($dt_penawaran as $d): ?>
                 <tr>
                   <td><div align="center">
                     <?= $no++; ?>
                   </div></td>
-                    <td>
-                    <div align="left">
-                      <?= $d->tgl_kasus; ?>
-                    </div></td>
                   <td>
                     <div align="left">
                       <?= $d->nama_pelanggan; ?>
                     </div></td>
                     <td>
                     <div align="left">
-                      <?= $d->nama_lengkap; ?>
+                      <?= $d->email; ?>
                     </div></td>
-                     <td>
+                    <td>
                     <div align="left">
                       <?= $d->no_wa; ?>
                     </div></td>
-                    <td>
+                  <td>
                     <div align="left">
-                      <?= $d->subject; ?>
+                      <?= $d->nama_mobil; ?>
+                    </div></td>
+                     <td>
+                    <div align="left">
+                      <?= $d->nama_lengkap; ?>
                     </div></td>
                     <td>
                     <div align="left">
-                      <?= $d->deskripsi; ?>
+                      <?= $d->keterangan; ?>
+                    </div></td>
+                   <td>
+                    <div align="left">
+                      <?= $d->harga_deal; ?>
+                    </div></td>
+                     <td>
+                     <div align="left">
+                      <a target="_blank" href="<?= base_url(); ?>upload/<?= $d->file; ?>">File </a>
                     </div></td>
                     <td>
                     <div align="left">
-                      <?= $d->balasan; ?>
+                       <?php if($d->status==1): ?><label class="label label-primary">Proses</label><?php endif;?>
+                     <?php if($d->status==3): ?><label class="label label-success">Selesai</label><?php endif;?>
+                      <?php if($d->status==2): ?><label class="label label-danger">Batal</label><?php endif;?>
+                       <?php if($d->status==0): ?><label class="label label-inverse">Menunggu</label><?php endif;?>
                     </div></td>
-                    <td>
-                    <div align="left">
-                      <?php if($d->status==0): ?><label class="label label-primary">Dibuka</label><?php endif;?>
-                     <?php if($d->status==1): ?><label class="label label-success">Selesai</label><?php endif;?>
-                     
-                    </div></td>
-                   
-                  <td align="center"><div align="center">  
-                    <a   class="btn btn-sm btn-primary" data-tooltip="tooltip"
+                   <td>
+                     <a   class="btn btn-sm btn-warning" data-tooltip="tooltip"
                       data-bs-placement="top"
                       title="Teruskan" href="javascript:;"
                            data-toggle="modal" data-target="#kirim"   
-                              data-id="<?= $d->id_kasus ?>"
+                              data-id="<?= $d->id_penawaran ?>"
                             
                               
                               > 
                     <span class="fa fa-user"></span> </a> 
-            <a   class="btn btn-sm btn-warning" data-tooltip="tooltip"
-                      data-bs-placement="top"
-                      title="Edit" href="javascript:;"
-                           data-toggle="modal" data-target="#edit"   
-                              data-id="<?= $d->id_kasus ?>"
-                              data-subject="<?= $d->subject ?>"
-                              data-deskripsi="<?= $d->deskripsi ?>"
-                              data-balasan="<?= $d->balasan ?>"
-                              
-                              > 
-                    <span class="icofont icofont-ui-edit"></span> </a> <a  onclick="return confirm('anda yakin ingin menghapus data ini')" class="btn btn-sm btn-danger"  data-tooltip="tooltip"
-                      data-bs-placement="top"
-                      title="Delete" 
-                   href="<?php echo base_url('admin/delete_kasus/'.$d->id_kasus);?>" 
-                    ><span class="icofont icofont-ui-delete"></span> </a></div></td>
+                   </td>
+                 
                 </tr>
                 <?php endforeach; ?>
                                                             </tbody>
@@ -99,8 +92,6 @@
                                                     </div>
                                                 </div>
                                             </div>
-
-
                                             
                                                <div class="modal fade" id="default-Modal" tabindex="-1" role="dialog">
                                                                     <div class="modal-dialog" role="document">
@@ -113,38 +104,28 @@
                                                                             </div>
                                                                             <?php  
              echo validation_errors();                       
-    echo form_open('admin/simpan_kasus'); ?>
+    echo form_open('supervisor/simpan_event'); ?>
                    
                                                                            <div class="modal-body">
-    <div class="mb-3">
-                        <label for="exampleInputEmail1">Nama Pelanggan</label>
-                        
-                        <select class="form-control" name="id_pelanggan">
-                            <?php
-                foreach ($dt_pelanggan as $b): ?>
-                          <option value="<?= $b->id_pelanggan; ?>"><?= $b->nama_pelanggan; ?></option>
-                           <?php endforeach; ?>
-                        </select>
-                     
-                        
-                      </div>
+   
                       <div class="mb-3">
-                        <label for="exampleInputEmail1">Subject</label>
-                        <input type="text" class="form-control"  name="subject"  required >
+                        <label for="exampleInputEmail1">Nama event</label>
+                        <input type="text" class="form-control"  name="nama_event"  required >
                         
                       </div>
                       
                       <div class="mb-3">
-                        <label for="exampleInputEmail1">Deskripsi</label>
-                        <input type="text" class="form-control"  name="deskripsi"  required >
+                        <label for="exampleInputEmail1">Keterangan</label>
+                        <input type="text" class="form-control"  name="ket"  required >
                         
                       </div>
                        <div class="mb-3">
-                        <label for="exampleInputEmail1">Balasan</label>
-                        <input type="text" class="form-control"  name="balasan"  required >
+                        <label for="exampleInputEmail1">Tanggal Event</label>
+                        <input type="date" class="form-control"  name="tgl_event"  required >
                         
                       </div>
-                     
+                      
+                      
       </div>
                                                                             <div class="modal-footer">
                                                                                 <button type="button" class="btn btn-default waves-effect " data-dismiss="modal">Close</button>
@@ -167,27 +148,28 @@
                                                                             </div>
                                                                             <?php  
              echo validation_errors();                       
-    echo form_open('admin/update_kasus'); ?>
+    echo form_open('supervisor/update_event'); ?>
                    
                                                                            <div class="modal-body">
    
-                        <div class="mb-3">
-                        <label for="exampleInputEmail1">Subject</label>
-                        <input type="text" class="form-control"  name="id_kasus" id="id"  required >
-                        <input type="text" class="form-control"  name="subject" id="subject"  required >
+                      <div class="mb-3">
+                          <input type="hidden" class="form-control"  name="id_event" id="id" required >
+                        <label for="exampleInputEmail1">Nama event</label>
+                        <input type="text" class="form-control"  name="nama_event" id="nama_event"  required >
                         
                       </div>
                       
                       <div class="mb-3">
-                        <label for="exampleInputEmail1">Deskripsi</label>
-                        <input type="text" class="form-control"  name="deskripsi" id="deskripsi"  required >
+                        <label for="exampleInputEmail1">Keterangan</label>
+                        <input type="text" class="form-control"  name="ket" id="ket"  required >
                         
                       </div>
                        <div class="mb-3">
-                        <label for="exampleInputEmail1">Balasan</label>
-                        <input type="text" class="form-control"  name="balasan" id="balasan" required >
+                        <label for="exampleInputEmail1">Tanggal Event</label>
+                        <input type="date" class="form-control"  name="tgl_event" id="tgl_event"  required >
                         
                       </div>
+                      
                       
       </div>
                                                                             <div class="modal-footer">
@@ -200,30 +182,47 @@
                                                                     </div>
                                                                 </div>
 
+                                                                <script>
+    $(document).ready(function() {
+      
+        $('#edit').on('show.bs.modal', function (event) {
+            var div = $(event.relatedTarget)
+            var modal   = $(this)
+            modal.find('#id').attr("value",div.data('id'));
+            modal.find('#nama_event').attr("value",div.data('nama_event'));
+            modal.find('#ket').attr("value",div.data('ket'));
+           
+            modal.find('#tgl_event').attr("value",div.data('tgl_event'));
+         
+        });
+    });
+</script>
+
+
                                                                   <div class="modal fade" id="kirim" tabindex="-1" role="dialog">
                                                                     <div class="modal-dialog" role="document">
                                                                         <div class="modal-content">
                                                                             <div class="modal-header">
-                                                                                <h4 class="modal-title"><?= $modal_edit; ?></h4>
+                                                                                <h4 class="modal-title">Kirim ke Sales</h4>
                                                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                             <span aria-hidden="true">&times;</span>
                                                         </button>
                                                                             </div>
                                                                             <?php  
              echo validation_errors();                       
-    echo form_open('admin/kirim_pegawai'); ?>
+    echo form_open('supervisor/kirim_penawaran_sales'); ?>
                    
                                                                            <div class="modal-body">
    
                         
-                        <input type="hidden" class="form-control"  name="id_kasus" id="id"  required >
+                        <input type="hidden" class="form-control"  name="id_penawaran" id="id"  required >
                    
                         <div class="mb-3">
                         <label for="exampleInputEmail1">Pegawai</label>
                         
-                        <select class="form-control" name="id_pegawai">
+                        <select class="form-control" name="id_sales">
                             <?php
-                foreach ($dt_pegawai as $b): ?>
+                foreach ($dt_sales as $b): ?>
                           <option value="<?= $b->id_pengguna; ?>"><?= $b->nama_lengkap; ?></option>
                            <?php endforeach; ?>
                         </select>
@@ -256,20 +255,3 @@
         });
     });
 </script>
-                                                                <script>
-    $(document).ready(function() {
-      
-        $('#edit').on('show.bs.modal', function (event) {
-            var div = $(event.relatedTarget)
-            var modal   = $(this)
-            modal.find('#id').attr("value",div.data('id'));
-            modal.find('#subject').attr("value",div.data('subject'));
-            modal.find('#deskripsi').attr("value",div.data('deskripsi'));
-            modal.find('#balasan').attr("value",div.data('balasan'));
-          
-           
-        });
-    });
-</script>
-
-   
