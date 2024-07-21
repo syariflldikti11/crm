@@ -16,7 +16,7 @@
                   <th><div align="left">Konsultasi</div></th>
                   <th><div align="left">Balasan</div></th>
                 
-                  
+                  <th ><div align="center">Opsi</div></th>
                 </tr>
               </thead>
               <tbody>
@@ -45,7 +45,17 @@
                     </div></td>
                     
                    
-              
+                  <td align="center"><div align="center">   
+             <a   class="btn btn-sm btn-warning" data-tooltip="tooltip"
+                      data-bs-placement="top"
+                      title="Edit" href="javascript:;"
+                           data-toggle="modal" data-target="#edit"   
+                              data-id="<?= $d->id_konsultasi ?>"
+                              data-balasan="<?= $d->balasan ?>"
+                             
+                            
+                              > 
+                    <span class="icofont icofont-ui-edit"></span> </a></div></td>
                 </tr>
                 <?php endforeach; ?>
                                                             </tbody>
@@ -71,7 +81,7 @@
                                                                             </div>
                                                                             <?php  
              echo validation_errors();                       
-    echo form_open('admin/update_konsultasi'); ?>
+    echo form_open('pegawai/update_konsultasi'); ?>
                    
                                                                            <div class="modal-body">
    

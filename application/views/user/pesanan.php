@@ -67,11 +67,12 @@
                     <div align="left">
                       <?= $d->jumlah; ?>
                     </div></td>
-                    <td>
+                    
                        <td>
                      <div align="left">
                       <a target="_blank" href="<?= base_url(); ?>upload/<?= $d->file; ?>">File </a>
                     </div></td>
+                    <td>
                     <div align="left">
                        <?php if($d->status==1): ?><label class="label label-primary">Proses</label><?php endif;?>
                      <?php if($d->status==3): ?><label class="label label-success">Selesai</label><?php endif;?>

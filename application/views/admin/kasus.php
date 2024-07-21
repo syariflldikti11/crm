@@ -58,11 +58,12 @@
                     <div align="left">
                       <?= $d->balasan; ?>
                     </div></td>
-                    <td>
+                   <td>
                     <div align="left">
-                      <?php if($d->status==0): ?><label class="label label-primary">Dibuka</label><?php endif;?>
-                     <?php if($d->status==1): ?><label class="label label-success">Selesai</label><?php endif;?>
                      
+                       <?php if($d->status==0): ?><label class="label label-primary">Dibuka</label><?php endif;?>
+                     <?php if($d->status==1): ?><label class="label label-success">Selesai</label><?php endif;?>
+                      <?php if($d->status==2): ?><label class="label label-danger">Ditutup</label><?php endif;?>
                     </div></td>
                    
                   <td align="center"><div align="center">  
@@ -173,7 +174,7 @@
    
                         <div class="mb-3">
                         <label for="exampleInputEmail1">Subject</label>
-                        <input type="text" class="form-control"  name="id_kasus" id="id"  required >
+                        <input type="hidden" class="form-control"  name="id_kasus" id="id"  required >
                         <input type="text" class="form-control"  name="subject" id="subject"  required >
                         
                       </div>
@@ -186,6 +187,15 @@
                        <div class="mb-3">
                         <label for="exampleInputEmail1">Balasan</label>
                         <input type="text" class="form-control"  name="balasan" id="balasan" required >
+                        
+                      </div>
+                         <div class="mb-3">
+                        <label for="exampleInputEmail1">Status</label>
+                       <select class="form-control" name="status">
+                         <option value="0">Dibuka</option>
+                         <option value="1">Selesai</option>
+                         <option value="2">Ditutup</option>
+                       </select>
                         
                       </div>
                       

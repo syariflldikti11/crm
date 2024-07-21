@@ -78,15 +78,10 @@
                     </div></td>
                     <td>
                     <div align="left">
-                      <?php if($d->status==0) {
-                        echo 'Dibuka';
-                      }
                      
-
-                      else{
-                         echo 'Ditutup';
-                      }
-                      ?>
+                       <?php if($d->status==0): ?><label class="label label-primary">Dibuka</label><?php endif;?>
+                     <?php if($d->status==1): ?><label class="label label-success">Selesai</label><?php endif;?>
+                      <?php if($d->status==2): ?><label class="label label-danger">Ditutup</label><?php endif;?>
                     </div></td>
                    
                  

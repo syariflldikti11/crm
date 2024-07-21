@@ -59,7 +59,7 @@ function kasus()
       'modal_tambah' => 'Tambah Data Kasus',
       'modal_edit' => 'Edit Data Kasus',
       'dt_pelanggan'=> $this->m_umum->get_data('pelanggan'),
-      'dt_kasus'=> $this->m_umum->get_kasus(),
+      'dt_kasus'=> $this->m_umum->get_kasus_pegawai(),
      
   );  
   $this->template->load('pegawai/template', 'pegawai/kasus', $data);
@@ -119,6 +119,21 @@ function update_kasus()
   $this->template->load('pegawai/template', 'pegawai/konsultasi', $data);
   
 }
+function update_konsultasi()
+  {
+        
+    $this->form_validation->set_rules('id_konsultasi','id_konsultasi','required');
+    if($this->form_validation->run() === FALSE)
+        redirect('pegawai/konsultasi');
+    else
+    {
+      $this->m_umum->update_data("konsultasi");
+       $notif = " Data berhasil diupdate";
+            $this->session->set_flashdata('update', $notif);
+      redirect('pegawai/konsultasi');
+    }
+    
+  }
 
 
 

@@ -58,10 +58,12 @@
                     <div align="left">
                       <?= $d->balasan; ?>
                     </div></td>
-                    <td>
+                     <td>
                     <div align="left">
-                    <?php if($d->status==0): ?><label class="label label-primary">Dibuka</label><?php endif;?>
+                     
+                       <?php if($d->status==0): ?><label class="label label-primary">Dibuka</label><?php endif;?>
                      <?php if($d->status==1): ?><label class="label label-success">Selesai</label><?php endif;?>
+                      <?php if($d->status==2): ?><label class="label label-danger">Ditutup</label><?php endif;?>
                     </div></td>
                    
                   <td align="center"><div align="center">  
@@ -74,21 +76,7 @@
                               
                               > 
                     <span class="fa fa-user"></span> </a> 
-            <a   class="btn btn-sm btn-warning" data-tooltip="tooltip"
-                      data-bs-placement="top"
-                      title="Edit" href="javascript:;"
-                           data-toggle="modal" data-target="#edit"   
-                              data-id="<?= $d->id_kasus ?>"
-                              data-subject="<?= $d->subject ?>"
-                              data-deskripsi="<?= $d->deskripsi ?>"
-                              data-balasan="<?= $d->balasan ?>"
-                              
-                              > 
-                    <span class="icofont icofont-ui-edit"></span> </a> <a  onclick="return confirm('anda yakin ingin menghapus data ini')" class="btn btn-sm btn-danger"  data-tooltip="tooltip"
-                      data-bs-placement="top"
-                      title="Delete" 
-                   href="<?php echo base_url('supervisor/delete_kasus/'.$d->id_kasus);?>" 
-                    ><span class="icofont icofont-ui-delete"></span> </a></div></td>
+          </div></td>
                 </tr>
                 <?php endforeach; ?>
                                                             </tbody>
