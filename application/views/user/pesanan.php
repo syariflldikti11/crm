@@ -1,4 +1,12 @@
+<?php 
 
+function rupiah($angka){
+  
+  $hasil_rupiah = "Rp. " . number_format($angka,2,',','.');
+  return $hasil_rupiah;
+
+}
+?>
 <div class="page-header">
                                     <div class="row align-items-end">
                                         <div class="col-lg-8">
@@ -33,7 +41,7 @@
                   <th><div align="left">Sales</div></th>
                   <th><div align="left">Keterangan</div></th>
                   <th><div align="left">Harga Mobil</div></th>
-                  <th><div align="left">Jumlah Pesanan</div></th>
+                
                   <th><div align="left">File</div></th>
                   <th><div align="left">Status</div></th>                
                   
@@ -61,12 +69,9 @@
                     </div></td>
                    <td>
                     <div align="left">
-                      <?= $d->harga_otr; ?>
+                      <?= rupiah($d->harga_otr); ?>
                     </div></td>
-                     <td>
-                    <div align="left">
-                      <?= $d->jumlah; ?>
-                    </div></td>
+                    
                     
                        <td>
                      <div align="left">

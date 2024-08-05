@@ -1,4 +1,12 @@
+<?php 
 
+function rupiah($angka){
+  
+  $hasil_rupiah = "" . number_format($angka,0,',','.');
+  return $hasil_rupiah;
+
+}
+?>
                                         
                                     <div class="row">
 
@@ -7,11 +15,11 @@
 <div class="card-block">
 <div class="row align-items-center">
 <div class="col">
-<p class="m-b-5">New Customer</p>
-<h4 class="m-b-0">852</h4>
+<p class="m-b-5">Pelanggan</p>
+<h4 class="m-b-0"><?= $pelanggan; ?></h4>
 </div>
 <div class="col col-auto text-right">
-<i class="feather icon-user f-50 text-c-yellow"></i>
+<i class="fa fa-users f-50 text-c-yellow"></i>
 </div>
 </div>
 </div>
@@ -22,11 +30,11 @@
 <div class="card-block">
 <div class="row align-items-center">
 <div class="col">
-<p class="m-b-5">Income</p>
-<h4 class="m-b-0">$5,852</h4>
+<p class="m-b-5">Sales</p>
+<h4 class="m-b-0"><?= $sales; ?></h4>
 </div>
 <div class="col col-auto text-right">
-<i class="feather icon-credit-card f-50 text-c-green"></i>
+<i class="fa fa-user f-50 text-c-green"></i>
 </div>
 </div>
 </div>
@@ -37,11 +45,11 @@
 <div class="card-block">
 <div class="row align-items-center">
 <div class="col">
-<p class="m-b-5">Ticket</p>
-<h4 class="m-b-0">42</h4>
+<p class="m-b-5">Model Mobil</p>
+<h4 class="m-b-0"><?= $model_mobil; ?></h4>
 </div>
 <div class="col col-auto text-right">
-<i class="feather icon-book f-50 text-c-pink"></i>
+<i class="fa fa-car f-50 text-c-pink"></i>
 </div>
 </div>
 </div>
@@ -52,11 +60,17 @@
 <div class="card-block">
 <div class="row align-items-center">
 <div class="col">
-<p class="m-b-5">Orders</p>
-<h4 class="m-b-0">$5,242</h4>
+<p class="m-b-5">Pendapatan</p>
+<h4 class="m-b-0"><?php $total=0;
+$penawaran=$penawaran->harga_deal; 
+     $pesanan=$pesanan->harga_otr;
+$total=$total+$penawaran+$pesanan;
+echo rupiah($total);
+     ?>
+</h4>
 </div>
 <div class="col col-auto text-right">
-<i class="feather icon-shopping-cart f-50 text-c-blue"></i>
+<i class="fa fa-money f-50 text-c-blue"></i>
 </div>
 </div>
 </div>
@@ -90,54 +104,46 @@
 <div class="col-md-12">
 <div class="card feed-card">
 <div class="card-header">
-<h5>Feeds</h5>
+<h5>Notifikasi</h5>
 </div>
 <div class="card-block">
 <div class="row m-b-30">
 <div class="col-auto p-r-0">
-<i class="feather icon-bell bg-simple-c-blue feed-icon"></i>
+<i class="fa fa-heart bg-simple-c-blue feed-icon"></i>
 </div>
 <div class="col">
-<h6 class="m-b-5">You have 3 pending tasks. <span class="text-muted f-right f-13">Just Now</span>
+<h6 class="m-b-5"><?= $notif_penawaran; ?> Penawaran belum selesai 
 </h6>
 </div>
 </div>
 <div class="row m-b-30">
 <div class="col-auto p-r-0">
-<i class="feather icon-shopping-cart bg-simple-c-pink feed-icon"></i>
+<i class="fa fa-shopping-cart bg-simple-c-pink feed-icon"></i>
 </div>
 <div class="col">
-<h6 class="m-b-5">New order received <span class="text-muted f-right f-13">Just Now</span>
+<h6 class="m-b-5"><?= $notif_pesanan; ?> Pesanan belum selesai 
 </h6>
 </div>
 </div>
 <div class="row m-b-30">
 <div class="col-auto p-r-0">
-<i class="feather icon-file-text bg-simple-c-green feed-icon"></i>
+<i class="fa fa-headphones bg-simple-c-green feed-icon"></i>
 </div>
 <div class="col">
-<h6 class="m-b-5">You have 3 pending tasks. <span class="text-muted f-right f-13">Just Now</span>
+<h6 class="m-b-5"><?= $notif_konsultasi; ?> Konsultasi belum dibalas
 </h6>
 </div>
 </div>
 <div class="row m-b-30">
 <div class="col-auto p-r-0">
-<i class="feather icon-shopping-cart bg-simple-c-pink feed-icon"></i>
+<i class="fa fa-briefcase bg-simple-c-pink feed-icon"></i>
 </div>
 <div class="col">
-<h6 class="m-b-5">New order received <span class="text-muted f-right f-13">Just Now</span>
+<h6 class="m-b-5"><?= $notif_kasus; ?> Kasus belum selesai  
 </h6>
 </div>
 </div>
-<div class="row m-b-30">
-<div class="col-auto p-r-0">
-<i class="feather icon-file-text bg-simple-c-green feed-icon"></i>
-</div>
-<div class="col">
-<h6 class="m-b-5">You have 3 pending tasks. <span class="text-muted f-right f-13">Just Now</span>
-</h6>
-</div>
-</div>
+
 </div>
 </div>
 </div>

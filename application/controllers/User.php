@@ -115,14 +115,14 @@ function simpan_penawaran()
     $this->db->set('id_pelanggan',$id);
     $keterangan = $this->input->post('keterangan');
     $id_mobil = $this->input->post('id_mobil');
-    $jumlah = $this->input->post('jumlah');
+   
     $file = $this->uploadfile();
 
     $data = array(
 
       'keterangan' => $keterangan,
       'id_mobil' => $id_mobil,
-      'jumlah' => $jumlah,
+     
       'file' => $file
     );
 

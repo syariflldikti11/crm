@@ -1,7 +1,49 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 class M_umum extends CI_Model{
-    
+
+
+public function notif($tabel, $kolom = FALSE, $id = FALSE)
+{   
+$query = $this->db->get_where($tabel, array($kolom => $id));
+    if($query->num_rows()>0)
+    {
+      return $query->num_rows();
+    }
+    else
+    {
+      return 0;
+    }
+}
+public function hitung($tabel)
+{   
+   $query = $this->db->get($tabel);
+    if($query->num_rows()>0)
+    {
+      return $query->num_rows();
+    }
+    else
+    {
+      return 0;
+    }
+}
+ function get_sum_penawaran()
+	{
+		$this->db->select_sum('a.harga_deal');
+		$this->db->from('penawaran a');
+		$this->db->where('a.status',3);
+		$query = $this->db->get();
+		return $query->row();
+	}
+	function get_sum_pesanan()
+	{
+		$this->db->select_sum('a.harga_otr');
+		$this->db->from('pesanan b');
+		$this->db->join('mobil a', 'a.id_mobil=b.id_mobil', '');
+		$this->db->where('b.status',3);
+		$query = $this->db->get();
+		return $query->row();
+	}
      function get_konsultasi_user()
 	{
  $id=$this->session->userdata('ses_id');

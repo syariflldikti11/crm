@@ -189,11 +189,7 @@ function rupiah($angka){
                         
                         
                       </div>
-                       <div class="mb-3">
-                        <label for="exampleInputEmail1">Jumlah</label>
-                        <input type="number" class="form-control" name="jumlah">
-                        
-                      </div>
+                     
                       
                       <div class="mb-3">
                         <label for="exampleInputEmail1">Keterangan</label>

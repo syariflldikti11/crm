@@ -1,3 +1,12 @@
+<?php 
+
+function rupiah($angka){
+  
+  $hasil_rupiah = "Rp. " . number_format($angka,2,',','.');
+  return $hasil_rupiah;
+
+}
+?>
  <div class="card">
                                                 <div class="card-header">
                                                     <h5><?php echo $judul; ?></h5>
@@ -58,7 +67,7 @@
                     </div></td>
                    <td>
                     <div align="left">
-                      <?= $d->harga_deal; ?>
+                      <?= rupiah($d->harga_deal); ?>
                     </div></td>
                      <td>
                      <div align="left">
@@ -66,7 +75,10 @@
                     </div></td>
                     <td>
                     <div align="left">
-                      <?= $d->status; ?>
+                     <?php if($d->status==1): ?><label class="label label-primary">Proses</label><?php endif;?>
+                     <?php if($d->status==3): ?><label class="label label-success">Selesai</label><?php endif;?>
+                      <?php if($d->status==2): ?><label class="label label-danger">Batal</label><?php endif;?>
+                       <?php if($d->status==0): ?><label class="label label-inverse">Menunggu</label><?php endif;?>
                     </div></td>
                    <td>
                      <a   class="btn btn-sm btn-warning" data-tooltip="tooltip"

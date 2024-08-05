@@ -1,4 +1,12 @@
- <div class="card">
+<?php 
+
+function rupiah($angka){
+  
+  $hasil_rupiah = "Rp. " . number_format($angka,2,',','.');
+  return $hasil_rupiah;
+
+}
+?> <div class="card">
                                                 <div class="card-header">
                                                     <h5><?php echo $judul; ?></h5>
                                                    
@@ -18,7 +26,7 @@
                   <th><div align="left">Nama Sales</div></th>
                   <th><div align="left">Keterangan</div></th>
                   <th><div align="left">Harga</div></th>
-                  <th><div align="left">Jumlah</div></th>
+                 
                   <th><div align="left">File</div></th>
                   <th><div align="left">Status</div></th>                
                   <th><div align="left">Opsi</div></th>                
@@ -59,12 +67,9 @@
                     </div></td>
                    <td>
                     <div align="left">
-                      <?= $d->harga_otr; ?>
+                      <?= rupiah($d->harga_otr); ?>
                     </div></td>
-                    <td>
-                    <div align="left">
-                      <?= $d->jumlah; ?>
-                    </div></td>
+                   
                      <td>
                      <div align="left">
                       <a target="_blank" href="<?= base_url(); ?>upload/<?= $d->file; ?>">File </a>

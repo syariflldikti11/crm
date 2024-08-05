@@ -15,6 +15,16 @@ class Admin extends CI_Controller {
 
     $data = array(
         'judul' => 'Dashboard',
+         'notif_penawaran' => $this->m_umum->notif('penawaran', 'status',0),
+         'notif_pesanan' => $this->m_umum->notif('pesanan', 'status',0),
+         'notif_kasus' => $this->m_umum->notif('kasus', 'status',0),
+         'notif_konsultasi' => $this->m_umum->notif('konsultasi', 'balasan',NULL),
+         'sales' => $this->m_umum->notif('pengguna', 'level',3),
+         'pelanggan' => $this->m_umum->hitung('pelanggan'),
+         'mobil' => $this->m_umum->hitung('mobil'),
+         'model_mobil' => $this->m_umum->hitung('model_mobil'),
+         'penawaran' => $this->m_umum->get_sum_penawaran(),
+         'pesanan' => $this->m_umum->get_sum_pesanan(),
 
         
     );  

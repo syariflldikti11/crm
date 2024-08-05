@@ -161,6 +161,7 @@
    
                         <div class="mb-3">
                         <label for="exampleInputEmail1">Subject</label>
+                         <input type="hidden" class="form-control"  name="id_kasus" id="id"  required >
                         <input type="text" class="form-control"  name="subject" id="subject"  required >
                         
                       </div>

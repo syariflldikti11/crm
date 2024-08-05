@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 20 Jul 2024 pada 18.26
--- Versi server: 10.4.13-MariaDB
--- Versi PHP: 7.2.31
+-- Waktu pembuatan: 05 Agu 2024 pada 11.06
+-- Versi server: 10.4.20-MariaDB
+-- Versi PHP: 7.3.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -84,7 +84,7 @@ CREATE TABLE `kasus` (
 
 INSERT INTO `kasus` (`id_kasus`, `subject`, `id_pelanggan`, `deskripsi`, `balasan`, `tgl_kasus`, `id_pegawai`, `status`) VALUES
 ('8ed5d9b0-4679-11ef-877d-2cd05a302ee2', 'oke', '5d91cb75-45d8-11ef-90ba-2cd05a302ee2', 'adsd', '', '2024-07-20 17:22:13', 'a90bb5df-4682-11ef-877d-2cd05a302ee2', 0),
-('f049b9ad-4681-11ef-877d-2cd05a302ee2', 'tes', '5d91cb75-45d8-11ef-90ba-2cd05a302ee2', 'xxxxs', 'x', '2024-07-20 18:22:12', 'a90bb5df-4682-11ef-877d-2cd05a302ee2', 0);
+('f049b9ad-4681-11ef-877d-2cd05a302ee2', 'tes', '5d91cb75-45d8-11ef-90ba-2cd05a302ee2', 'xxxxs', 'xsds', '2024-07-20 18:22:12', 'a90bb5df-4682-11ef-877d-2cd05a302ee2', 0);
 
 -- --------------------------------------------------------
 
@@ -97,7 +97,7 @@ CREATE TABLE `konsultasi` (
   `id_pelanggan` varchar(100) NOT NULL,
   `isi_konsultasi` varchar(100) NOT NULL,
   `tgl_konsultasi` datetime NOT NULL DEFAULT current_timestamp(),
-  `balasan` text NOT NULL
+  `balasan` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -199,7 +199,7 @@ CREATE TABLE `penawaran` (
 
 INSERT INTO `penawaran` (`id_penawaran`, `id_mobil`, `id_pelanggan`, `id_sales`, `keterangan`, `tgl_penawaran`, `harga_deal`, `status`, `file`) VALUES
 ('f53433ff-4679-11ef-877d-2cd05a302ee2', '2972f0f7-bb1a-11ee-afe5-c454445434d3', '5d91cb75-45d8-11ef-90ba-2cd05a302ee2', '89b91284-4682-11ef-877d-2cd05a302ee2', 'oke', '2024-07-20 17:25:04', 0, '', ''),
-('f54f797e-46a9-11ef-877d-2cd05a302ee2', '2972f0f7-bb1a-11ee-afe5-c454445434d3', '5d91cb75-45d8-11ef-90ba-2cd05a302ee2', '', 'ookk', '2024-07-20 23:08:40', 1, '3', '7bc22e3e1d32ce5620a2a2c36d58c8f1.pdf'),
+('f54f797e-46a9-11ef-877d-2cd05a302ee2', '2972f0f7-bb1a-11ee-afe5-c454445434d3', '5d91cb75-45d8-11ef-90ba-2cd05a302ee2', '', 'ookk', '2024-07-20 23:08:40', 100000000, '3', '7bc22e3e1d32ce5620a2a2c36d58c8f1.pdf'),
 ('fb278b3b-4681-11ef-877d-2cd05a302ee2', '4261d470-bb1a-11ee-afe5-c454445434d3', '5d91cb75-45d8-11ef-90ba-2cd05a302ee2', '81b5a1b4-4682-11ef-877d-2cd05a302ee2', 'llk', '2024-07-20 18:22:30', 0, '', '');
 
 -- --------------------------------------------------------
@@ -241,7 +241,6 @@ CREATE TABLE `pesanan` (
   `id_sales` varchar(100) NOT NULL,
   `keterangan` varchar(200) NOT NULL,
   `tgl_pesanan` datetime NOT NULL DEFAULT current_timestamp(),
-  `jumlah` int(11) NOT NULL,
   `status` varchar(100) NOT NULL,
   `file` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -250,9 +249,9 @@ CREATE TABLE `pesanan` (
 -- Dumping data untuk tabel `pesanan`
 --
 
-INSERT INTO `pesanan` (`id_pesanan`, `id_mobil`, `id_pelanggan`, `id_sales`, `keterangan`, `tgl_pesanan`, `jumlah`, `status`, `file`) VALUES
-('0f32592f-467a-11ef-877d-2cd05a302ee2', '7073bf09-bb1a-11ee-afe5-c454445434d3', '5d91cb75-45d8-11ef-90ba-2cd05a302ee2', '89b91284-4682-11ef-877d-2cd05a302ee2', 'ada', '2024-07-20 17:25:48', 1, '', ''),
-('52342efd-46aa-11ef-877d-2cd05a302ee2', '4261d470-bb1a-11ee-afe5-c454445434d3', '5d91cb75-45d8-11ef-90ba-2cd05a302ee2', '', 'jj', '2024-07-20 23:11:16', 2, '2', 'f8bf95c353a9c1e40a86a3fc4575ce13.pdf');
+INSERT INTO `pesanan` (`id_pesanan`, `id_mobil`, `id_pelanggan`, `id_sales`, `keterangan`, `tgl_pesanan`, `status`, `file`) VALUES
+('0f32592f-467a-11ef-877d-2cd05a302ee2', '7073bf09-bb1a-11ee-afe5-c454445434d3', '5d91cb75-45d8-11ef-90ba-2cd05a302ee2', '89b91284-4682-11ef-877d-2cd05a302ee2', 'ada', '2024-07-20 17:25:48', '3', ''),
+('52342efd-46aa-11ef-877d-2cd05a302ee2', '4261d470-bb1a-11ee-afe5-c454445434d3', '5d91cb75-45d8-11ef-90ba-2cd05a302ee2', '', 'jj', '2024-07-20 23:11:16', '3', 'f8bf95c353a9c1e40a86a3fc4575ce13.pdf');
 
 -- --------------------------------------------------------
 

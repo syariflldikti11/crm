@@ -1,4 +1,12 @@
- <div class="card">
+<?php 
+
+function rupiah($angka){
+  
+  $hasil_rupiah = "Rp. " . number_format($angka,2,',','.');
+  return $hasil_rupiah;
+
+}
+?> <div class="card">
                                                 <div class="card-header">
                                                     <h5><?php echo $judul; ?></h5>
                                                    
@@ -58,7 +66,7 @@
                     </div></td>
                    <td>
                     <div align="left">
-                      <?= $d->harga_deal; ?>
+                     <?= rupiah($d->harga_deal); ?>
                     </div></td>
                      <td>
                      <div align="left">
