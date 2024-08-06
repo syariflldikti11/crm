@@ -10,6 +10,117 @@ class Supervisor extends CI_Controller {
         redirect(base_url('login'));
         }
   }
+  function laporan_event()
+    {
+        $dari = $this->input->post('dari');
+        $sampai = $this->input->post('sampai');
+
+        $data = array(
+            'judul' => 'LAPORAN DATA EVENT',
+            'dari' => $dari,
+            'sampai' => $sampai,
+            'dt_event' => $this->m_umum->laporan_event($dari,$sampai),
+        );
+        $this->load->view('laporan/event',$data);
+        }
+        function laporan_promo()
+    {
+        $dari = $this->input->post('dari');
+        $sampai = $this->input->post('sampai');
+
+        $data = array(
+            'judul' => 'LAPORAN DATA PROMO',
+            'dari' => $dari,
+            'sampai' => $sampai,
+            'dt_promo' => $this->m_umum->laporan_promo($dari,$sampai),
+        );
+        $this->load->view('laporan/promo',$data);
+        }
+        function laporan_pesanan()
+    {
+        $dari = $this->input->post('dari');
+        $sampai = $this->input->post('sampai');
+
+        $data = array(
+            'judul' => 'LAPORAN DATA PESANAN',
+            'dari' => $dari,
+            'sampai' => $sampai,
+            'dt_pesanan' => $this->m_umum->laporan_pesanan($dari,$sampai),
+        );
+        $this->load->view('laporan/pesanan',$data);
+        }
+        function laporan_penawaran()
+    {
+        $dari = $this->input->post('dari');
+        $sampai = $this->input->post('sampai');
+
+        $data = array(
+            'judul' => 'LAPORAN DATA PENAWARAN',
+            'dari' => $dari,
+            'sampai' => $sampai,
+            'dt_penawaran' => $this->m_umum->laporan_penawaran($dari,$sampai),
+        );
+        $this->load->view('laporan/penawaran',$data);
+        }
+        function laporan_kasus()
+    {
+        $dari = $this->input->post('dari');
+        $sampai = $this->input->post('sampai');
+
+        $data = array(
+            'judul' => 'LAPORAN DATA KASUS',
+            'dari' => $dari,
+            'sampai' => $sampai,
+            'dt_kasus' => $this->m_umum->laporan_kasus($dari,$sampai),
+        );
+        $this->load->view('laporan/kasus',$data);
+        }
+        function laporan_konsultasi()
+    {
+        $dari = $this->input->post('dari');
+        $sampai = $this->input->post('sampai');
+
+        $data = array(
+            'judul' => 'LAPORAN DATA KONSULTASI',
+            'dari' => $dari,
+            'sampai' => $sampai,
+            'dt_konsultasi' => $this->m_umum->laporan_konsultasi($dari,$sampai),
+        );
+        $this->load->view('laporan/konsultasi',$data);
+        }
+    function laporan_mobil()
+{
+  
+  $data = array(
+     'judul' => 'LAPORAN DATA MOBIL',
+      'dt_mobil'=> $this->m_umum->get_data('mobil'),
+     
+  );  
+  $this->load->view('laporan/mobil', $data);
+  
+}
+function laporan_pelanggan()
+{
+  
+  $data = array(
+     'judul' => 'LAPORAN DATA PELANGGAN',
+      'dt_pelanggan'=> $this->m_umum->get_data('pelanggan'),
+     
+  );  
+  $this->load->view('laporan/pelanggan', $data);
+  
+}
+  function laporan_service()
+{
+  
+  $data = array(
+      'judul' => 'LAPORAN DATA SERVICE',
+       'dt_service'=> $this->m_umum->get_service(),
+     
+  );  
+  $this->load->view('laporan/service', $data);
+  
+}
   function index()
   {
 

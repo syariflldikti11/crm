@@ -167,8 +167,236 @@
                            
                      
                          
+                          <div class="pcoded-navigatio-lavel">Manajemen Laporan</div>
+                                <ul class="pcoded-item pcoded-left-item">
+                                     <li class="">
+                        <a href="<?php echo base_url ('pegawai/laporan_pelanggan'); ?>">
+                                        <span class="pcoded-micon"><i class="fa fa-book"></i></span>
+                                        <span class="pcoded-mtext">Laporan Pelanggan</span>
+                                    </a></li>
+                          
+                                  
+                                     <li class="">
+                        <a href="#" data-toggle="modal" data-target="#konsultasi">
+                                        <span class="pcoded-micon"><i class="fa fa-book"></i></span>
+                                        <span class="pcoded-mtext">Laporan Konsultasi</span>
+                                    </a></li>
+                                    <li class="">
+                        <a href="#" data-toggle="modal" data-target="#kasus">
+                                        <span class="pcoded-micon"><i class="fa fa-book"></i></span>
+                                        <span class="pcoded-mtext">Laporan Kasus</span>
+                                    </a></li>
+              </ul>
                         </div>
+
                     </nav>
+                     <div class="modal fade" id="konsultasi" tabindex="-1" role="dialog" aria-labelledby="exampleModalFormTitle" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalFormTitle">Laporan Konsultasi</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                     <?php  
+             echo validation_errors();                       
+    echo form_open('pegawai/laporan_konsultasi'); ?>
+                      <div class="form-group">
+                        <label for="exampleInputEmail1">Dari</label>
+                        <input type="date" name="dari" class="form-control">
+                        
+                      </div>
+                       <div class="form-group">
+                        <label for="exampleInputEmail1">Sampai</label>
+                        <input type="date" name="sampai" class="form-control">
+                        
+                      </div>
+                        
+                     
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-danger btn-pill" data-dismiss="modal">Close</button>
+                    <input type="submit" name="submit"  class="btn btn-primary btn-pill" value="Submit">
+                  </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+                     <div class="modal fade" id="kasus" tabindex="-1" role="dialog" aria-labelledby="exampleModalFormTitle" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalFormTitle">Laporan Kasus</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                     <?php  
+             echo validation_errors();                       
+    echo form_open('pegawai/laporan_kasus'); ?>
+                      <div class="form-group">
+                        <label for="exampleInputEmail1">Dari</label>
+                        <input type="date" name="dari" class="form-control">
+                        
+                      </div>
+                       <div class="form-group">
+                        <label for="exampleInputEmail1">Sampai</label>
+                        <input type="date" name="sampai" class="form-control">
+                        
+                      </div>
+                        
+                     
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-danger btn-pill" data-dismiss="modal">Close</button>
+                    <input type="submit" name="submit"  class="btn btn-primary btn-pill" value="Submit">
+                  </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+                <div class="modal fade" id="event" tabindex="-1" role="dialog" aria-labelledby="exampleModalFormTitle" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalFormTitle">Laporan Event</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                     <?php  
+             echo validation_errors();                       
+    echo form_open('pegawai/laporan_event'); ?>
+                      <div class="form-group">
+                        <label for="exampleInputEmail1">Dari</label>
+                        <input type="date" name="dari" class="form-control">
+                        
+                      </div>
+                       <div class="form-group">
+                        <label for="exampleInputEmail1">Sampai</label>
+                        <input type="date" name="sampai" class="form-control">
+                        
+                      </div>
+                        
+                     
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-danger btn-pill" data-dismiss="modal">Close</button>
+                    <input type="submit" name="submit"  class="btn btn-primary btn-pill" value="Submit">
+                  </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+
+             <div class="modal fade" id="pesanan" tabindex="-1" role="dialog" aria-labelledby="exampleModalFormTitle" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalFormTitle">Laporan Pesanan</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                     <?php  
+             echo validation_errors();                       
+    echo form_open('pegawai/laporan_pesanan'); ?>
+                      <div class="form-group">
+                        <label for="exampleInputEmail1">Dari</label>
+                        <input type="date" name="dari" class="form-control">
+                        
+                      </div>
+                       <div class="form-group">
+                        <label for="exampleInputEmail1">Sampai</label>
+                        <input type="date" name="sampai" class="form-control">
+                        
+                      </div>
+                        
+                     
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-danger btn-pill" data-dismiss="modal">Close</button>
+                    <input type="submit" name="submit"  class="btn btn-primary btn-pill" value="Submit">
+                  </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+
+             <div class="modal fade" id="penawaran" tabindex="-1" role="dialog" aria-labelledby="exampleModalFormTitle" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalFormTitle">Laporan Penawaran</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                     <?php  
+             echo validation_errors();                       
+    echo form_open('pegawai/laporan_penawaran'); ?>
+                      <div class="form-group">
+                        <label for="exampleInputEmail1">Dari</label>
+                        <input type="date" name="dari" class="form-control">
+                        
+                      </div>
+                       <div class="form-group">
+                        <label for="exampleInputEmail1">Sampai</label>
+                        <input type="date" name="sampai" class="form-control">
+                        
+                      </div>
+                        
+                     
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-danger btn-pill" data-dismiss="modal">Close</button>
+                    <input type="submit" name="submit"  class="btn btn-primary btn-pill" value="Submit">
+                  </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+
+ <div class="modal fade" id="promo" tabindex="-1" role="dialog" aria-labelledby="exampleModalFormTitle" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalFormTitle">Laporan Promo</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                     <?php  
+             echo validation_errors();                       
+    echo form_open('pegawai/laporan_promo'); ?>
+                      <div class="form-group">
+                        <label for="exampleInputEmail1">Dari</label>
+                        <input type="date" name="dari" class="form-control">
+                        
+                      </div>
+                       <div class="form-group">
+                        <label for="exampleInputEmail1">Sampai</label>
+                        <input type="date" name="sampai" class="form-control">
+                        
+                      </div>
+                        
+                     
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-danger btn-pill" data-dismiss="modal">Close</button>
+                    <input type="submit" name="submit"  class="btn btn-primary btn-pill" value="Submit">
+                  </div>
+                  </form>
+                </div>
+              </div>
+            </div>
                     <div class="pcoded-content">
                         <div class="pcoded-inner-content">
                             <div class="main-body">

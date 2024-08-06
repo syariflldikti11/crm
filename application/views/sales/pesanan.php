@@ -19,6 +19,7 @@ function rupiah($angka){
                                                             <thead class="bg-primary text-white">
                 <tr>
                   <th><div align="center">No</div></th>
+                  <th><div align="left">Tanggal</div></th>
                   <th><div align="left">Nama Pelanggan</div></th>
                   <th><div align="left">Email</div></th>
                   <th><div align="left">No HP</div></th>
@@ -41,6 +42,10 @@ function rupiah($angka){
                   <td><div align="center">
                     <?= $no++; ?>
                   </div></td>
+                   <td>
+                    <div align="left">
+                      <?= $d->tgl_pesanan; ?>
+                    </div></td>
                   <td>
                     <div align="left">
                       <?= $d->nama_pelanggan; ?>

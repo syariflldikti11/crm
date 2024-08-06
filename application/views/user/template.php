@@ -234,9 +234,102 @@ margin-top: 16px;
                                    
                                 </ul>
                             </li>
+                             <li class="pcoded-hasmenu">
+                                <a href="javascript:void(0)">
+                                    <span class="pcoded-micon"><i class="fa fa-book"></i></span>
+                                    <span class="pcoded-mtext">Laporan</span>
+                                    <span class="pcoded-mcaret"></span>
+                                </a>
+                                <ul class="pcoded-submenu">
+                                  
+                                    <li class="">
+                                        <a href="#" data-toggle="modal" data-target="#penawaran" data-i18n="nav.disabled-menu.main" class="disabled">
+                                            <span class="pcoded-micon"><i class="ti-na"></i></span>
+                                            <span class="pcoded-mtext">Penawaran</span>
+                                            <span class="pcoded-mcaret"></span>
+                                        </a>
+                                    </li>
+                                    <li class="">
+                                         <a href="#" data-toggle="modal" data-target="#pesanan" data-i18n="nav.disabled-menu.main" class="disabled">
+                                            <span class="pcoded-micon"><i class="ti-na"></i></span>
+                                            <span class="pcoded-mtext">Pesanan</span>
+                                            <span class="pcoded-mcaret"></span>
+                                        </a>
+                                    </li>
+                                   
+                                </ul>
+                            </li>
                         </ul>
                     </div>
                 </nav>
+                 <div class="modal fade" id="pesanan" tabindex="-1" role="dialog" aria-labelledby="exampleModalFormTitle" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalFormTitle">Laporan Pesanan</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                     <?php  
+             echo validation_errors();                       
+    echo form_open('user/laporan_pesanan'); ?>
+                      <div class="form-group">
+                        <label for="exampleInputEmail1">Dari</label>
+                        <input type="date" name="dari" class="form-control">
+                        
+                      </div>
+                       <div class="form-group">
+                        <label for="exampleInputEmail1">Sampai</label>
+                        <input type="date" name="sampai" class="form-control">
+                        
+                      </div>
+                        
+                     
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-danger btn-pill" data-dismiss="modal">Close</button>
+                    <input type="submit" name="submit"  class="btn btn-primary btn-pill" value="Submit">
+                  </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+                 <div class="modal fade" id="penawaran" tabindex="-1" role="dialog" aria-labelledby="exampleModalFormTitle" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalFormTitle">Laporan Penawaran</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                     <?php  
+             echo validation_errors();                       
+    echo form_open('user/laporan_penawaran'); ?>
+                      <div class="form-group">
+                        <label for="exampleInputEmail1">Dari</label>
+                        <input type="date" name="dari" class="form-control">
+                        
+                      </div>
+                       <div class="form-group">
+                        <label for="exampleInputEmail1">Sampai</label>
+                        <input type="date" name="sampai" class="form-control">
+                        
+                      </div>
+                        
+                     
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-danger btn-pill" data-dismiss="modal">Close</button>
+                    <input type="submit" name="submit"  class="btn btn-primary btn-pill" value="Submit">
+                  </div>
+                  </form>
+                </div>
+              </div>
+            </div>
                 <!-- Sidebar chat start -->
                 <div id="sidebar" class="users p-chat-user showChat">
                     <div class="had-container">

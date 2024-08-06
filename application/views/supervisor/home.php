@@ -15,7 +15,7 @@
                                                 </div>
                                                 <div class="card-block">
                                                     <p>
-                                                        Selamat datang Sales
+                                                        Selamat datang Supervisor
                                                     </p> 
                                                 </div>
                                             </div>

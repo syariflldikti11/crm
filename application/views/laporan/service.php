@@ -37,68 +37,36 @@ function rupiah($angka){
                                           
                                         <th><div align="center">No</div></th>
                   <th><div align="left">Nama Mobil</div></th>
-                  <th><div align="left">Harga OTR</div></th>
-                  <th><div align="left">Warna</div></th>
-                  <th><div align="left">CC</div></th>
-                  <th><div align="left">Transmisi</div></th>
-                  <th><div align="left">Penggerak</div></th>
-                  <th><div align="left">Kapasitas</div></th>
-                  <th><div align="left">AC</div></th>
-                  <th><div align="left">AC Double</div></th>
-                  <th><div align="left">Lampu Kabut</div></th>
-                
-                
+                  <th><div align="left">Nama Service</div></th>
+                  <th><div align="left">Deskripsi</div></th>
+                  <th><div align="left">Estimasi Harga</div></th>
                  
+                
                 </tr>
               </thead>
               <tbody>
                 <?php
                 $no=1;
-                foreach ($dt_mobil as $d): ?>
+                foreach ($dt_service as $d): ?>
                 <tr>
                   <td><div align="center">
                     <?= $no++; ?>
                   </div></td>
                   <td>
                     <div align="left">
-                      <?= $d->nama_mobil; ?>
-                    </div></td>
-                     <td>
-                    
-                    <div align="left">
-                      <?= rupiah($d->harga_otr); ?>
+                      <?= $d->nama_model_mobil; ?>
                     </div></td>
                      <td>
                     <div align="left">
-                      <?= $d->warna; ?>
+                      <?= $d->nama_service; ?>
                     </div></td>
                     <td>
                     <div align="left">
-                      <?= $d->cc; ?>
+                      <?= $d->deskripsi; ?>
                     </div></td>
-                      <td>
+                    <td>
                     <div align="left">
-                      <?= $d->transmisi; ?>
-                    </div></td>
-                      <td>
-                    <div align="left">
-                      <?= $d->penggerak; ?>
-                    </div></td>
-                      <td>
-                    <div align="left">
-                      <?= $d->kapasitas; ?>
-                    </div></td>
-                      <td>
-                    <div align="left">
-                      <?= $d->ac; ?>
-                    </div></td>
-                      <td>
-                    <div align="left">
-                      <?= $d->ac_double_blower; ?>
-                    </div></td>
-                     <td>
-                    <div align="left">
-                      <?= $d->lampu_kabut; ?>
+                      <?= $d->estimasi_harga; ?>
                     </div></td>
                    
                      

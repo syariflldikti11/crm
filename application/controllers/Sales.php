@@ -10,6 +10,32 @@ class Sales extends CI_Controller {
         redirect(base_url('login'));
         }
   }
+   function laporan_pesanan()
+    {
+        $dari = $this->input->post('dari');
+        $sampai = $this->input->post('sampai');
+
+        $data = array(
+            'judul' => 'LAPORAN DATA PESANAN',
+            'dari' => $dari,
+            'sampai' => $sampai,
+            'dt_pesanan' => $this->m_umum->laporan_pesanan_sales($dari,$sampai),
+        );
+        $this->load->view('laporan/pesanan',$data);
+        }
+        function laporan_penawaran()
+    {
+        $dari = $this->input->post('dari');
+        $sampai = $this->input->post('sampai');
+
+        $data = array(
+            'judul' => 'LAPORAN DATA PENAWARAN',
+            'dari' => $dari,
+            'sampai' => $sampai,
+            'dt_penawaran' => $this->m_umum->laporan_penawaran_sales($dari,$sampai),
+        );
+        $this->load->view('laporan/penawaran',$data);
+        }
   function index()
   {
 

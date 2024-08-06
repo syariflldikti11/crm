@@ -37,6 +37,7 @@ function rupiah($angka){
                                                             <thead class="bg-primary text-white">
                 <tr>
                   <th><div align="center">No</div></th>
+                  <th><div align="left">Tanggal</div></th>
                   <th><div align="left">Nama Mobil</div></th>
                   <th><div align="left">Sales</div></th>
                   <th><div align="left">Keterangan</div></th>
@@ -54,6 +55,10 @@ function rupiah($angka){
                   <td><div align="center">
                     <?= $no++; ?>
                   </div></td>
+                   <td>
+                    <div align="left">
+                      <?= $d->tgl_penawaran; ?>
+                    </div></td>
                   <td>
                     <div align="left">
                       <?= $d->nama_mobil; ?>

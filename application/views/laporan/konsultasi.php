@@ -31,22 +31,16 @@ function rupiah($angka){
 }
 ?>
 <center><font size="+1"><?= $judul; ?></font></center> <br />
+<center><font size="-1"> PERIODE <?= date('d-m-Y', strtotime($dari)); ?> s/d <?= date('d-m-Y', strtotime($sampai)); ?></font></center> <br />
  <table class="w3-table-all">
                                    <thead>
                                         <tr class="w3-black" >
                                           
                                         <th><div align="center">No</div></th>
-                  <th><div align="left">Nama Mobil</div></th>
-                  <th><div align="left">Harga OTR</div></th>
-                  <th><div align="left">Warna</div></th>
-                  <th><div align="left">CC</div></th>
-                  <th><div align="left">Transmisi</div></th>
-                  <th><div align="left">Penggerak</div></th>
-                  <th><div align="left">Kapasitas</div></th>
-                  <th><div align="left">AC</div></th>
-                  <th><div align="left">AC Double</div></th>
-                  <th><div align="left">Lampu Kabut</div></th>
-                
+                  <th><div align="left">Nama Pelanggan</div></th>
+                  <th><div align="left">No Wa</div></th>
+                  <th><div align="left">Konsultasi</div></th>
+                  <th><div align="left">Balasan</div></th>
                 
                  
                 </tr>
@@ -54,54 +48,28 @@ function rupiah($angka){
               <tbody>
                 <?php
                 $no=1;
-                foreach ($dt_mobil as $d): ?>
+                foreach ($dt_konsultasi as $d): ?>
                 <tr>
                   <td><div align="center">
                     <?= $no++; ?>
                   </div></td>
                   <td>
                     <div align="left">
-                      <?= $d->nama_mobil; ?>
-                    </div></td>
-                     <td>
-                    
-                    <div align="left">
-                      <?= rupiah($d->harga_otr); ?>
+                      <?= $d->nama_pelanggan; ?>
                     </div></td>
                      <td>
                     <div align="left">
-                      <?= $d->warna; ?>
+                      <?= $d->no_wa; ?>
                     </div></td>
                     <td>
                     <div align="left">
-                      <?= $d->cc; ?>
-                    </div></td>
-                      <td>
-                    <div align="left">
-                      <?= $d->transmisi; ?>
-                    </div></td>
-                      <td>
-                    <div align="left">
-                      <?= $d->penggerak; ?>
-                    </div></td>
-                      <td>
-                    <div align="left">
-                      <?= $d->kapasitas; ?>
-                    </div></td>
-                      <td>
-                    <div align="left">
-                      <?= $d->ac; ?>
-                    </div></td>
-                      <td>
-                    <div align="left">
-                      <?= $d->ac_double_blower; ?>
+                      <?= $d->isi_konsultasi; ?>
                     </div></td>
                      <td>
                     <div align="left">
-                      <?= $d->lampu_kabut; ?>
+                      <?= $d->balasan; ?>
                     </div></td>
-                   
-                     
+                    
                        
                     </tr>
                                              <?php endforeach; ?>

@@ -2,7 +2,141 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 class M_umum extends CI_Model{
 
+	function laporan_event($dari,$sampai)
+	{		
+	   
+		$this->db->select('*');
+	   $this->db->from('event a');
+		$this->db->where('a.tgl_event between "'.$dari.'" and "'.$sampai.'"');
 
+	   $query = $this->db->get();
+	   return $query->result();
+	}
+function laporan_konsultasi($dari,$sampai)
+	{
+
+		$this->db->select('*');
+		$this->db->from('konsultasi a');
+		$this->db->join('pelanggan b', 'a.id_pelanggan=b.id_pelanggan', 'left');
+		$this->db->where('a.tgl_konsultasi between "'.$dari.'" and "'.$sampai.'"');
+		$this->db->order_by('a.tgl_konsultasi desc');
+
+		$query = $this->db->get();
+		return $query->result();
+	}
+function laporan_kasus($dari,$sampai)
+	{
+
+		$this->db->select('*');
+		$this->db->from('kasus a');
+		$this->db->join('pelanggan b', 'a.id_pelanggan=b.id_pelanggan', 'left');
+		$this->db->join('pengguna c', 'a.id_pegawai=c.id_pengguna', 'left');
+		$this->db->where('a.tgl_kasus between "'.$dari.'" and "'.$sampai.'"');
+$this->db->order_by('a.tgl_kasus desc');
+		$query = $this->db->get();
+		return $query->result();
+	}
+	function laporan_kasus_pegawai($dari,$sampai)
+	{
+ $id=$this->session->userdata('id');
+		$this->db->select('*');
+		$this->db->from('kasus a');
+		$this->db->join('pelanggan b', 'a.id_pelanggan=b.id_pelanggan', 'left');
+		$this->db->join('pengguna c', 'a.id_pegawai=c.id_pengguna', 'left');
+		$this->db->where('a.tgl_kasus between "'.$dari.'" and "'.$sampai.'"');
+		$this->db->where('a.id_pegawai',$id);
+$this->db->order_by('a.tgl_kasus desc');
+		$query = $this->db->get();
+		return $query->result();
+	}
+	function laporan_pesanan($dari,$sampai)
+	{		
+	   
+		$this->db->select('*');
+	   $this->db->from('pesanan a');
+	   $this->db->join('pelanggan b', 'a.id_pelanggan=b.id_pelanggan', 'left');
+		$this->db->join('pengguna d', 'a.id_sales=d.id_pengguna', 'left');
+		$this->db->join('mobil c', 'a.id_mobil=c.id_mobil', 'left');
+		$this->db->where('a.tgl_pesanan between "'.$dari.'" and "'.$sampai.'"');
+
+	   $query = $this->db->get();
+	   return $query->result();
+	}
+	function laporan_penawaran($dari,$sampai)
+	{		
+	   
+		$this->db->select('*');
+	   $this->db->from('penawaran a');
+	   	$this->db->join('pelanggan b', 'a.id_pelanggan=b.id_pelanggan', 'left');
+		$this->db->join('pengguna d', 'a.id_sales=d.id_pengguna', 'left');
+		$this->db->join('mobil c', 'a.id_mobil=c.id_mobil', 'left');
+		$this->db->where('a.tgl_penawaran between "'.$dari.'" and "'.$sampai.'"');
+
+	   $query = $this->db->get();
+	   return $query->result();
+	}
+	function laporan_pesanan_user($dari,$sampai)
+	{		
+	   $id=$this->session->userdata('ses_id');
+		$this->db->select('*');
+	   $this->db->from('pesanan a');
+	   $this->db->join('pelanggan b', 'a.id_pelanggan=b.id_pelanggan', 'left');
+		$this->db->join('pengguna d', 'a.id_sales=d.id_pengguna', 'left');
+		$this->db->join('mobil c', 'a.id_mobil=c.id_mobil', 'left');
+		$this->db->where('a.tgl_pesanan between "'.$dari.'" and "'.$sampai.'"');
+$this->db->where('a.id_pelanggan',$id);
+	   $query = $this->db->get();
+	   return $query->result();
+	}
+	function laporan_penawaran_user($dari,$sampai)
+	{		
+	     $id=$this->session->userdata('ses_id');
+		$this->db->select('*');
+	   $this->db->from('penawaran a');
+	   	$this->db->join('pelanggan b', 'a.id_pelanggan=b.id_pelanggan', 'left');
+		$this->db->join('pengguna d', 'a.id_sales=d.id_pengguna', 'left');
+		$this->db->join('mobil c', 'a.id_mobil=c.id_mobil', 'left');
+		$this->db->where('a.tgl_penawaran between "'.$dari.'" and "'.$sampai.'"');
+$this->db->where('a.id_pelanggan',$id);
+	   $query = $this->db->get();
+	   return $query->result();
+	}
+	function laporan_pesanan_sales($dari,$sampai)
+	{		
+	    $id=$this->session->userdata('id');
+		$this->db->select('*');
+	   $this->db->from('pesanan a');
+	   $this->db->join('pelanggan b', 'a.id_pelanggan=b.id_pelanggan', 'left');
+		$this->db->join('pengguna d', 'a.id_sales=d.id_pengguna', 'left');
+		$this->db->join('mobil c', 'a.id_mobil=c.id_mobil', 'left');
+		$this->db->where('a.tgl_pesanan between "'.$dari.'" and "'.$sampai.'"');
+$this->db->where('a.id_sales',$id);
+	   $query = $this->db->get();
+	   return $query->result();
+	}
+	function laporan_penawaran_sales($dari,$sampai)
+	{		
+	    $id=$this->session->userdata('id');
+		$this->db->select('*');
+	   $this->db->from('penawaran a');
+	   	$this->db->join('pelanggan b', 'a.id_pelanggan=b.id_pelanggan', 'left');
+		$this->db->join('pengguna d', 'a.id_sales=d.id_pengguna', 'left');
+		$this->db->join('mobil c', 'a.id_mobil=c.id_mobil', 'left');
+		$this->db->where('a.tgl_penawaran between "'.$dari.'" and "'.$sampai.'"');
+$this->db->where('a.id_sales',$id);
+	   $query = $this->db->get();
+	   return $query->result();
+	}
+	function laporan_promo($dari,$sampai)
+	{		
+	   
+		$this->db->select('*');
+	   $this->db->from('promo a');
+		$this->db->where('a.tgl_promo between "'.$dari.'" and "'.$sampai.'"');
+
+	   $query = $this->db->get();
+	   return $query->result();
+	}
 public function notif($tabel, $kolom = FALSE, $id = FALSE)
 {   
 $query = $this->db->get_where($tabel, array($kolom => $id));

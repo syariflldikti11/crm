@@ -10,6 +10,54 @@ class Pegawai extends CI_Controller {
         redirect(base_url('login'));
         }
   }
+    function laporan_kasus()
+    {
+        $dari = $this->input->post('dari');
+        $sampai = $this->input->post('sampai');
+
+        $data = array(
+            'judul' => 'LAPORAN DATA KASUS',
+            'dari' => $dari,
+            'sampai' => $sampai,
+            'dt_kasus' => $this->m_umum->laporan_kasus_pegawai($dari,$sampai),
+        );
+        $this->load->view('laporan/kasus',$data);
+        }
+        function laporan_konsultasi()
+    {
+        $dari = $this->input->post('dari');
+        $sampai = $this->input->post('sampai');
+
+        $data = array(
+            'judul' => 'LAPORAN DATA KONSULTASI',
+            'dari' => $dari,
+            'sampai' => $sampai,
+            'dt_konsultasi' => $this->m_umum->laporan_konsultasi($dari,$sampai),
+        );
+        $this->load->view('laporan/konsultasi',$data);
+        }
+    function laporan_mobil()
+{
+  
+  $data = array(
+     'judul' => 'LAPORAN DATA MOBIL',
+      'dt_mobil'=> $this->m_umum->get_data('mobil'),
+     
+  );  
+  $this->load->view('laporan/mobil', $data);
+  
+}
+function laporan_pelanggan()
+{
+  
+  $data = array(
+     'judul' => 'LAPORAN DATA PELANGGAN',
+      'dt_pelanggan'=> $this->m_umum->get_data('pelanggan'),
+     
+  );  
+  $this->load->view('laporan/pelanggan', $data);
+  
+}
   function index()
   {
 

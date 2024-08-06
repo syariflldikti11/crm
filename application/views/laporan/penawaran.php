@@ -31,76 +31,74 @@ function rupiah($angka){
 }
 ?>
 <center><font size="+1"><?= $judul; ?></font></center> <br />
+<center><font size="-1"> PERIODE <?= date('d-m-Y', strtotime($dari)); ?> s/d <?= date('d-m-Y', strtotime($sampai)); ?></font></center> <br />
  <table class="w3-table-all">
                                    <thead>
                                         <tr class="w3-black" >
                                           
                                         <th><div align="center">No</div></th>
+                  <th><div align="left">Tanggal</div></th>
+                  <th><div align="left">Nama Pelanggan</div></th>
+                  <th><div align="left">Email</div></th>
+                  <th><div align="left">No HP</div></th>
                   <th><div align="left">Nama Mobil</div></th>
-                  <th><div align="left">Harga OTR</div></th>
-                  <th><div align="left">Warna</div></th>
-                  <th><div align="left">CC</div></th>
-                  <th><div align="left">Transmisi</div></th>
-                  <th><div align="left">Penggerak</div></th>
-                  <th><div align="left">Kapasitas</div></th>
-                  <th><div align="left">AC</div></th>
-                  <th><div align="left">AC Double</div></th>
-                  <th><div align="left">Lampu Kabut</div></th>
+                  <th><div align="left">Nama Sales</div></th>
+                  <th><div align="left">Keterangan</div></th>
+                  <th><div align="left">Harga Deal</div></th>
                 
-                
-                 
+                  <th><div align="left">Status</div></th>                
+                               
+                  
                 </tr>
               </thead>
               <tbody>
                 <?php
                 $no=1;
-                foreach ($dt_mobil as $d): ?>
+                foreach ($dt_penawaran as $d): ?>
                 <tr>
                   <td><div align="center">
                     <?= $no++; ?>
                   </div></td>
+                   <td>
+                    <div align="left">
+                      <?= $d->tgl_penawaran; ?>
+                    </div></td>
+                  <td>
+                    <div align="left">
+                      <?= $d->nama_pelanggan; ?>
+                    </div></td>
+                    <td>
+                    <div align="left">
+                      <?= $d->email; ?>
+                    </div></td>
+                    <td>
+                    <div align="left">
+                      <?= $d->no_wa; ?>
+                    </div></td>
                   <td>
                     <div align="left">
                       <?= $d->nama_mobil; ?>
                     </div></td>
                      <td>
-                    
                     <div align="left">
-                      <?= rupiah($d->harga_otr); ?>
-                    </div></td>
-                     <td>
-                    <div align="left">
-                      <?= $d->warna; ?>
+                      <?= $d->nama_lengkap; ?>
                     </div></td>
                     <td>
                     <div align="left">
-                      <?= $d->cc; ?>
+                      <?= $d->keterangan; ?>
                     </div></td>
-                      <td>
+                   <td>
                     <div align="left">
-                      <?= $d->transmisi; ?>
+                      <?= rupiah($d->harga_deal); ?>
                     </div></td>
-                      <td>
+                    
+                    <td>
                     <div align="left">
-                      <?= $d->penggerak; ?>
+                     <?php if($d->status==1): ?><label class="label label-primary">Proses</label><?php endif;?>
+                     <?php if($d->status==3): ?><label class="label label-success">Selesai</label><?php endif;?>
+                      <?php if($d->status==2): ?><label class="label label-danger">Batal</label><?php endif;?>
+                       <?php if($d->status==0): ?><label class="label label-inverse">Menunggu</label><?php endif;?>
                     </div></td>
-                      <td>
-                    <div align="left">
-                      <?= $d->kapasitas; ?>
-                    </div></td>
-                      <td>
-                    <div align="left">
-                      <?= $d->ac; ?>
-                    </div></td>
-                      <td>
-                    <div align="left">
-                      <?= $d->ac_double_blower; ?>
-                    </div></td>
-                     <td>
-                    <div align="left">
-                      <?= $d->lampu_kabut; ?>
-                    </div></td>
-                   
                      
                        
                     </tr>

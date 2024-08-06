@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 05 Agu 2024 pada 11.06
+-- Waktu pembuatan: 06 Agu 2024 pada 09.42
 -- Versi server: 10.4.20-MariaDB
 -- Versi PHP: 7.3.29
 
@@ -200,7 +200,7 @@ CREATE TABLE `penawaran` (
 INSERT INTO `penawaran` (`id_penawaran`, `id_mobil`, `id_pelanggan`, `id_sales`, `keterangan`, `tgl_penawaran`, `harga_deal`, `status`, `file`) VALUES
 ('f53433ff-4679-11ef-877d-2cd05a302ee2', '2972f0f7-bb1a-11ee-afe5-c454445434d3', '5d91cb75-45d8-11ef-90ba-2cd05a302ee2', '89b91284-4682-11ef-877d-2cd05a302ee2', 'oke', '2024-07-20 17:25:04', 0, '', ''),
 ('f54f797e-46a9-11ef-877d-2cd05a302ee2', '2972f0f7-bb1a-11ee-afe5-c454445434d3', '5d91cb75-45d8-11ef-90ba-2cd05a302ee2', '', 'ookk', '2024-07-20 23:08:40', 100000000, '3', '7bc22e3e1d32ce5620a2a2c36d58c8f1.pdf'),
-('fb278b3b-4681-11ef-877d-2cd05a302ee2', '4261d470-bb1a-11ee-afe5-c454445434d3', '5d91cb75-45d8-11ef-90ba-2cd05a302ee2', '81b5a1b4-4682-11ef-877d-2cd05a302ee2', 'llk', '2024-07-20 18:22:30', 0, '', '');
+('fb278b3b-4681-11ef-877d-2cd05a302ee2', '4261d470-bb1a-11ee-afe5-c454445434d3', '5d91cb75-45d8-11ef-90ba-2cd05a302ee2', '81b5a1b4-4682-11ef-877d-2cd05a302ee2', 'llk', '2024-07-20 18:22:30', 100000000, '3', '');
 
 -- --------------------------------------------------------
 
