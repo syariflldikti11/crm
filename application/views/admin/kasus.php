@@ -19,6 +19,7 @@
                   <th><div align="left">Deskripsi</div></th>
                   <th><div align="left">Balasan</div></th>   
                   <th><div align="left">Status</div></th>               
+                  <th><div align="left">Penilaian</div></th>               
                   <th ><div align="center">Opsi</div></th>
                 </tr>
               </thead>
@@ -65,7 +66,14 @@
                      <?php if($d->status==1): ?><label class="label label-success">Selesai</label><?php endif;?>
                       <?php if($d->status==2): ?><label class="label label-danger">Ditutup</label><?php endif;?>
                     </div></td>
-                   
+                   <td> <div align="left">
+                      <?php if($d->penilaian==4): ?><label class="label label-success">Sangat Puas</label><?php endif;?>
+                      <?php if($d->penilaian==3): ?><label class="label label-primary">Puas</label><?php endif;?>
+                      <?php if($d->penilaian==2): ?><label class="label label-warning">Kurang Puas</label><?php endif;?>
+                      <?php if($d->penilaian==1): ?><label class="label label-danger">Tidak Puas</label><?php endif;?>
+                      
+                    </div></td>
+                 
                   <td align="center"><div align="center">  
                     <a   class="btn btn-sm btn-primary" data-tooltip="tooltip"
                       data-bs-placement="top"

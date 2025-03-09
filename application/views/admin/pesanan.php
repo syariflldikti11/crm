@@ -31,6 +31,7 @@ function rupiah($angka){
                  
                   <th><div align="left">File</div></th>
                   <th><div align="left">Status</div></th>                
+                  <th><div align="left">Penilaian</div></th>                
                   <th><div align="left">Opsi</div></th>                
                   
                 </tr>
@@ -87,7 +88,14 @@ function rupiah($angka){
                       <?php if($d->status==2): ?><label class="label label-danger">Batal</label><?php endif;?>
                        <?php if($d->status==0): ?><label class="label label-inverse">Menunggu</label><?php endif;?>
                     </div></td>
-                   
+                   <td> <div align="left">
+                      <?php if($d->penilaian==4): ?><label class="label label-success">Sangat Puas</label><?php endif;?>
+                      <?php if($d->penilaian==3): ?><label class="label label-primary">Puas</label><?php endif;?>
+                      <?php if($d->penilaian==2): ?><label class="label label-warning">Kurang Puas</label><?php endif;?>
+                      <?php if($d->penilaian==1): ?><label class="label label-danger">Tidak Puas</label><?php endif;?>
+                       
+                    </div></td>
+                 
                   <td>
                      <a   class="btn btn-sm btn-warning" data-tooltip="tooltip"
                       data-bs-placement="top"
@@ -98,6 +106,11 @@ function rupiah($angka){
                               
                               > 
                     <span class="fa fa-user"></span> </a> 
+                    <a  class="btn btn-sm btn-danger"  data-tooltip="tooltip"
+                      data-bs-placement="top"
+                      title="Cetak" 
+                   href="<?php echo base_url('admin/cetak_pesanan/'.$d->id_pesanan);?>" 
+                    ><span class="fa fa-print"></span> </a>
                    </td>
                 </tr>
                 <?php endforeach; ?>

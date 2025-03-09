@@ -10,6 +10,26 @@ class Admin extends CI_Controller {
         redirect(base_url('login'));
         }
   }
+  function cetak_pesanan($id)
+    {
+      
+      $data = array(
+                'judul' => 'Update pelanggan',
+            'd' => $this->m_umum->cetak_pesanan($id)
+
+        );
+        $this->load->view('laporan/cetak_pesanan',$data);
+        }
+         function cetak_penawaran($id)
+    {
+      
+      $data = array(
+                'judul' => 'Update pelanggan',
+            'd' => $this->m_umum->cetak_penawaran($id)
+
+        );
+        $this->load->view('laporan/cetak_penawaran',$data);
+        }
    function laporan_event()
     {
         $dari = $this->input->post('dari');
@@ -138,7 +158,100 @@ function laporan_pelanggan()
          'pesanan' => $this->m_umum->get_sum_pesanan(),
 
         
-    );  
+    ); 
+    foreach($this->m_umum->grafik_konsultasi()->result_array() as $row)
+        {
+         $data['grafik_konsultasi'][]=(float)$row['Januari'];
+         $data['grafik_konsultasi'][]=(float)$row['Februari'];
+         $data['grafik_konsultasi'][]=(float)$row['Maret'];
+         $data['grafik_konsultasi'][]=(float)$row['April'];
+         $data['grafik_konsultasi'][]=(float)$row['Mei'];
+         $data['grafik_konsultasi'][]=(float)$row['Juni'];
+         $data['grafik_konsultasi'][]=(float)$row['Juli'];
+         $data['grafik_konsultasi'][]=(float)$row['Agustus'];
+         $data['grafik_konsultasi'][]=(float)$row['September'];
+         $data['grafik_konsultasi'][]=(float)$row['Oktober'];
+         $data['grafik_konsultasi'][]=(float)$row['November'];
+         $data['grafik_konsultasi'][]=(float)$row['Desember'];
+        }
+          foreach($this->m_umum->grafik_kasus()->result_array() as $row)
+        {
+         $data['grafik_kasus'][]=(float)$row['Januari'];
+         $data['grafik_kasus'][]=(float)$row['Februari'];
+         $data['grafik_kasus'][]=(float)$row['Maret'];
+         $data['grafik_kasus'][]=(float)$row['April'];
+         $data['grafik_kasus'][]=(float)$row['Mei'];
+         $data['grafik_kasus'][]=(float)$row['Juni'];
+         $data['grafik_kasus'][]=(float)$row['Juli'];
+         $data['grafik_kasus'][]=(float)$row['Agustus'];
+         $data['grafik_kasus'][]=(float)$row['September'];
+         $data['grafik_kasus'][]=(float)$row['Oktober'];
+         $data['grafik_kasus'][]=(float)$row['November'];
+         $data['grafik_kasus'][]=(float)$row['Desember'];
+        } 
+
+
+         foreach($this->m_umum->grafik_pesanan_progress()->result_array() as $row)
+        {
+         $data['grafik_pesanan_progress'][]=(float)$row['Januari'];
+         $data['grafik_pesanan_progress'][]=(float)$row['Februari'];
+         $data['grafik_pesanan_progress'][]=(float)$row['Maret'];
+         $data['grafik_pesanan_progress'][]=(float)$row['April'];
+         $data['grafik_pesanan_progress'][]=(float)$row['Mei'];
+         $data['grafik_pesanan_progress'][]=(float)$row['Juni'];
+         $data['grafik_pesanan_progress'][]=(float)$row['Juli'];
+         $data['grafik_pesanan_progress'][]=(float)$row['Agustus'];
+         $data['grafik_pesanan_progress'][]=(float)$row['September'];
+         $data['grafik_pesanan_progress'][]=(float)$row['Oktober'];
+         $data['grafik_pesanan_progress'][]=(float)$row['November'];
+         $data['grafik_pesanan_progress'][]=(float)$row['Desember'];
+        }
+          foreach($this->m_umum->grafik_pesanan_selesai()->result_array() as $row)
+        {
+         $data['grafik_pesanan_selesai'][]=(float)$row['Januari'];
+         $data['grafik_pesanan_selesai'][]=(float)$row['Februari'];
+         $data['grafik_pesanan_selesai'][]=(float)$row['Maret'];
+         $data['grafik_pesanan_selesai'][]=(float)$row['April'];
+         $data['grafik_pesanan_selesai'][]=(float)$row['Mei'];
+         $data['grafik_pesanan_selesai'][]=(float)$row['Juni'];
+         $data['grafik_pesanan_selesai'][]=(float)$row['Juli'];
+         $data['grafik_pesanan_selesai'][]=(float)$row['Agustus'];
+         $data['grafik_pesanan_selesai'][]=(float)$row['September'];
+         $data['grafik_pesanan_selesai'][]=(float)$row['Oktober'];
+         $data['grafik_pesanan_selesai'][]=(float)$row['November'];
+         $data['grafik_pesanan_selesai'][]=(float)$row['Desember'];
+        } 
+
+         foreach($this->m_umum->grafik_penawaran_progress()->result_array() as $row)
+        {
+         $data['grafik_penawaran_progress'][]=(float)$row['Januari'];
+         $data['grafik_penawaran_progress'][]=(float)$row['Februari'];
+         $data['grafik_penawaran_progress'][]=(float)$row['Maret'];
+         $data['grafik_penawaran_progress'][]=(float)$row['April'];
+         $data['grafik_penawaran_progress'][]=(float)$row['Mei'];
+         $data['grafik_penawaran_progress'][]=(float)$row['Juni'];
+         $data['grafik_penawaran_progress'][]=(float)$row['Juli'];
+         $data['grafik_penawaran_progress'][]=(float)$row['Agustus'];
+         $data['grafik_penawaran_progress'][]=(float)$row['September'];
+         $data['grafik_penawaran_progress'][]=(float)$row['Oktober'];
+         $data['grafik_penawaran_progress'][]=(float)$row['November'];
+         $data['grafik_penawaran_progress'][]=(float)$row['Desember'];
+        }
+          foreach($this->m_umum->grafik_penawaran_selesai()->result_array() as $row)
+        {
+         $data['grafik_penawaran_selesai'][]=(float)$row['Januari'];
+         $data['grafik_penawaran_selesai'][]=(float)$row['Februari'];
+         $data['grafik_penawaran_selesai'][]=(float)$row['Maret'];
+         $data['grafik_penawaran_selesai'][]=(float)$row['April'];
+         $data['grafik_penawaran_selesai'][]=(float)$row['Mei'];
+         $data['grafik_penawaran_selesai'][]=(float)$row['Juni'];
+         $data['grafik_penawaran_selesai'][]=(float)$row['Juli'];
+         $data['grafik_penawaran_selesai'][]=(float)$row['Agustus'];
+         $data['grafik_penawaran_selesai'][]=(float)$row['September'];
+         $data['grafik_penawaran_selesai'][]=(float)$row['Oktober'];
+         $data['grafik_penawaran_selesai'][]=(float)$row['November'];
+         $data['grafik_penawaran_selesai'][]=(float)$row['Desember'];
+        } 
     $this->template->load('admin/template', 'admin/home', $data);
     
 }

@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.0.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 06 Agu 2024 pada 09.42
--- Versi server: 10.4.20-MariaDB
--- Versi PHP: 7.3.29
+-- Waktu pembuatan: 09 Mar 2025 pada 03.32
+-- Versi server: 10.4.17-MariaDB
+-- Versi PHP: 7.3.27
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `banner` (
-  `id_banner` varchar(100) NOT NULL,
+  `id_banner` varchar(36) NOT NULL,
   `file_banner` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -47,7 +47,7 @@ INSERT INTO `banner` (`id_banner`, `file_banner`) VALUES
 --
 
 CREATE TABLE `event` (
-  `id_event` varchar(100) NOT NULL,
+  `id_event` varchar(36) NOT NULL,
   `nama_event` varchar(100) NOT NULL,
   `ket` varchar(100) NOT NULL,
   `tgl_event` date NOT NULL,
@@ -68,23 +68,24 @@ INSERT INTO `event` (`id_event`, `nama_event`, `ket`, `tgl_event`, `tgl_input`) 
 --
 
 CREATE TABLE `kasus` (
-  `id_kasus` varchar(100) NOT NULL,
-  `subject` varchar(100) NOT NULL,
-  `id_pelanggan` varchar(100) NOT NULL,
-  `deskripsi` varchar(100) NOT NULL,
-  `balasan` varchar(100) NOT NULL,
+  `id_kasus` varchar(36) NOT NULL,
+  `subject` varchar(20) NOT NULL,
+  `id_pelanggan` varchar(36) NOT NULL,
+  `deskripsi` text NOT NULL,
+  `balasan` text NOT NULL,
   `tgl_kasus` datetime NOT NULL DEFAULT current_timestamp(),
-  `id_pegawai` varchar(100) NOT NULL,
-  `status` int(11) NOT NULL
+  `id_pegawai` varchar(36) NOT NULL,
+  `status` int(1) NOT NULL,
+  `penilaian` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `kasus`
 --
 
-INSERT INTO `kasus` (`id_kasus`, `subject`, `id_pelanggan`, `deskripsi`, `balasan`, `tgl_kasus`, `id_pegawai`, `status`) VALUES
-('8ed5d9b0-4679-11ef-877d-2cd05a302ee2', 'oke', '5d91cb75-45d8-11ef-90ba-2cd05a302ee2', 'adsd', '', '2024-07-20 17:22:13', 'a90bb5df-4682-11ef-877d-2cd05a302ee2', 0),
-('f049b9ad-4681-11ef-877d-2cd05a302ee2', 'tes', '5d91cb75-45d8-11ef-90ba-2cd05a302ee2', 'xxxxs', 'xsds', '2024-07-20 18:22:12', 'a90bb5df-4682-11ef-877d-2cd05a302ee2', 0);
+INSERT INTO `kasus` (`id_kasus`, `subject`, `id_pelanggan`, `deskripsi`, `balasan`, `tgl_kasus`, `id_pegawai`, `status`, `penilaian`) VALUES
+('8ed5d9b0-4679-11ef-877d-2cd05a302ee2', 'oke', '5d91cb75-45d8-11ef-90ba-2cd05a302ee2', 'adsd', '', '2024-07-20 17:22:13', 'a90bb5df-4682-11ef-877d-2cd05a302ee2', 0, 4),
+('f049b9ad-4681-11ef-877d-2cd05a302ee2', 'tes', '5d91cb75-45d8-11ef-90ba-2cd05a302ee2', 'xxxxs', 'xsds', '2024-07-20 18:22:12', 'a90bb5df-4682-11ef-877d-2cd05a302ee2', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -93,12 +94,20 @@ INSERT INTO `kasus` (`id_kasus`, `subject`, `id_pelanggan`, `deskripsi`, `balasa
 --
 
 CREATE TABLE `konsultasi` (
-  `id_konsultasi` varchar(100) NOT NULL,
-  `id_pelanggan` varchar(100) NOT NULL,
-  `isi_konsultasi` varchar(100) NOT NULL,
+  `id_konsultasi` varchar(36) NOT NULL,
+  `id_pelanggan` varchar(36) NOT NULL,
+  `isi_konsultasi` text NOT NULL,
   `tgl_konsultasi` datetime NOT NULL DEFAULT current_timestamp(),
-  `balasan` text DEFAULT NULL
+  `balasan` text DEFAULT NULL,
+  `penilaian` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `konsultasi`
+--
+
+INSERT INTO `konsultasi` (`id_konsultasi`, `id_pelanggan`, `isi_konsultasi`, `tgl_konsultasi`, `balasan`, `penilaian`) VALUES
+('8d97d2a1-fc2d-11ef-8e8c-f8fe5ef7d437', '5d91cb75-45d8-11ef-90ba-2cd05a302ee2', 'halo', '2025-03-08 22:56:45', 'iqfnpafa', 4);
 
 -- --------------------------------------------------------
 
@@ -107,17 +116,17 @@ CREATE TABLE `konsultasi` (
 --
 
 CREATE TABLE `mobil` (
-  `id_mobil` varchar(100) NOT NULL,
-  `nama_mobil` varchar(100) NOT NULL,
-  `transmisi` varchar(100) NOT NULL,
-  `warna` varchar(100) NOT NULL,
-  `cc` int(11) NOT NULL,
-  `kapasitas` int(11) NOT NULL,
-  `ac` varchar(100) NOT NULL,
-  `ac_double_blower` varchar(100) NOT NULL,
-  `lampu_kabut` varchar(100) NOT NULL,
-  `penggerak` varchar(100) NOT NULL,
-  `foto_mobil` varchar(100) NOT NULL,
+  `id_mobil` varchar(36) NOT NULL,
+  `nama_mobil` varchar(50) NOT NULL,
+  `transmisi` varchar(10) NOT NULL,
+  `warna` varchar(20) NOT NULL,
+  `cc` int(5) NOT NULL,
+  `kapasitas` int(5) NOT NULL,
+  `ac` varchar(5) NOT NULL,
+  `ac_double_blower` varchar(5) NOT NULL,
+  `lampu_kabut` varchar(5) NOT NULL,
+  `penggerak` varchar(10) NOT NULL,
+  `foto_mobil` varchar(36) NOT NULL,
   `harga_otr` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -137,8 +146,8 @@ INSERT INTO `mobil` (`id_mobil`, `nama_mobil`, `transmisi`, `warna`, `cc`, `kapa
 --
 
 CREATE TABLE `model_mobil` (
-  `id_model_mobil` varchar(100) NOT NULL,
-  `nama_model_mobil` varchar(100) NOT NULL
+  `id_model_mobil` varchar(36) NOT NULL,
+  `nama_model_mobil` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -146,8 +155,8 @@ CREATE TABLE `model_mobil` (
 --
 
 INSERT INTO `model_mobil` (`id_model_mobil`, `nama_model_mobil`) VALUES
-('9b174c7b-ba60-11ee-867f-c454445434d3', 'All New Ayla 1.0 CVT'),
-('a4533548-ba60-11ee-867f-c454445434d3', 'All New Ayla 1.0 MT');
+('9b174c7b-ba60-11ee-867f-c454445434d3', 'All New Ayla 1.'),
+('a4533548-ba60-11ee-867f-c454445434d3', 'All New Ayla 1.');
 
 -- --------------------------------------------------------
 
@@ -156,16 +165,16 @@ INSERT INTO `model_mobil` (`id_model_mobil`, `nama_model_mobil`) VALUES
 --
 
 CREATE TABLE `pelanggan` (
-  `id_pelanggan` varchar(100) NOT NULL,
-  `nama_pelanggan` varchar(100) NOT NULL,
-  `alamat` varchar(200) NOT NULL,
+  `id_pelanggan` varchar(36) NOT NULL,
+  `nama_pelanggan` varchar(50) NOT NULL,
+  `alamat` varchar(50) NOT NULL,
   `tgl_lahir` date NOT NULL,
-  `jk` varchar(100) NOT NULL,
-  `email` varchar(100) NOT NULL,
-  `no_wa` varchar(100) NOT NULL,
-  `username` varchar(100) NOT NULL,
+  `jk` varchar(1) NOT NULL,
+  `email` varchar(30) NOT NULL,
+  `no_wa` varchar(12) NOT NULL,
+  `username` varchar(10) NOT NULL,
   `password` varchar(100) NOT NULL,
-  `level` int(11) NOT NULL DEFAULT 5
+  `level` int(1) NOT NULL DEFAULT 5
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -182,25 +191,26 @@ INSERT INTO `pelanggan` (`id_pelanggan`, `nama_pelanggan`, `alamat`, `tgl_lahir`
 --
 
 CREATE TABLE `penawaran` (
-  `id_penawaran` varchar(100) NOT NULL,
-  `id_mobil` varchar(100) NOT NULL,
-  `id_pelanggan` varchar(100) NOT NULL,
-  `id_sales` varchar(100) NOT NULL,
-  `keterangan` varchar(200) NOT NULL,
+  `id_penawaran` varchar(36) NOT NULL,
+  `id_mobil` varchar(36) NOT NULL,
+  `id_pelanggan` varchar(36) NOT NULL,
+  `id_sales` varchar(36) NOT NULL,
+  `keterangan` text NOT NULL,
   `tgl_penawaran` datetime NOT NULL DEFAULT current_timestamp(),
   `harga_deal` int(11) NOT NULL,
-  `status` varchar(100) NOT NULL,
-  `file` varchar(100) NOT NULL
+  `status` int(1) NOT NULL,
+  `file` varchar(100) NOT NULL,
+  `penilaian` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `penawaran`
 --
 
-INSERT INTO `penawaran` (`id_penawaran`, `id_mobil`, `id_pelanggan`, `id_sales`, `keterangan`, `tgl_penawaran`, `harga_deal`, `status`, `file`) VALUES
-('f53433ff-4679-11ef-877d-2cd05a302ee2', '2972f0f7-bb1a-11ee-afe5-c454445434d3', '5d91cb75-45d8-11ef-90ba-2cd05a302ee2', '89b91284-4682-11ef-877d-2cd05a302ee2', 'oke', '2024-07-20 17:25:04', 0, '', ''),
-('f54f797e-46a9-11ef-877d-2cd05a302ee2', '2972f0f7-bb1a-11ee-afe5-c454445434d3', '5d91cb75-45d8-11ef-90ba-2cd05a302ee2', '', 'ookk', '2024-07-20 23:08:40', 100000000, '3', '7bc22e3e1d32ce5620a2a2c36d58c8f1.pdf'),
-('fb278b3b-4681-11ef-877d-2cd05a302ee2', '4261d470-bb1a-11ee-afe5-c454445434d3', '5d91cb75-45d8-11ef-90ba-2cd05a302ee2', '81b5a1b4-4682-11ef-877d-2cd05a302ee2', 'llk', '2024-07-20 18:22:30', 100000000, '3', '');
+INSERT INTO `penawaran` (`id_penawaran`, `id_mobil`, `id_pelanggan`, `id_sales`, `keterangan`, `tgl_penawaran`, `harga_deal`, `status`, `file`, `penilaian`) VALUES
+('f53433ff-4679-11ef-877d-2cd05a302ee2', '2972f0f7-bb1a-11ee-afe5-c454445434d3', '5d91cb75-45d8-11ef-90ba-2cd05a302ee2', '89b91284-4682-11ef-877d-2cd05a302ee2', 'oke', '2024-07-20 17:25:04', 0, 2, '', 0),
+('f54f797e-46a9-11ef-877d-2cd05a302ee2', '2972f0f7-bb1a-11ee-afe5-c454445434d3', '5d91cb75-45d8-11ef-90ba-2cd05a302ee2', '', 'ookk', '2024-07-20 23:08:40', 100000000, 3, '7bc22e3e1d32ce5620a2a2c36d58c8f1.pdf', 2),
+('fb278b3b-4681-11ef-877d-2cd05a302ee2', '4261d470-bb1a-11ee-afe5-c454445434d3', '5d91cb75-45d8-11ef-90ba-2cd05a302ee2', '81b5a1b4-4682-11ef-877d-2cd05a302ee2', 'llk', '2024-07-20 18:22:30', 100000000, 3, '', 3);
 
 -- --------------------------------------------------------
 
@@ -209,11 +219,11 @@ INSERT INTO `penawaran` (`id_penawaran`, `id_mobil`, `id_pelanggan`, `id_sales`,
 --
 
 CREATE TABLE `pengguna` (
-  `id_pengguna` varchar(100) NOT NULL,
-  `nama_lengkap` varchar(100) NOT NULL,
-  `username` varchar(100) DEFAULT NULL,
+  `id_pengguna` varchar(36) NOT NULL,
+  `nama_lengkap` varchar(50) NOT NULL,
+  `username` varchar(10) DEFAULT NULL,
   `password` varchar(100) DEFAULT NULL,
-  `level` tinyint(4) DEFAULT NULL
+  `level` tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -235,23 +245,24 @@ INSERT INTO `pengguna` (`id_pengguna`, `nama_lengkap`, `username`, `password`, `
 --
 
 CREATE TABLE `pesanan` (
-  `id_pesanan` varchar(100) NOT NULL,
-  `id_mobil` varchar(100) NOT NULL,
-  `id_pelanggan` varchar(100) NOT NULL,
-  `id_sales` varchar(100) NOT NULL,
-  `keterangan` varchar(200) NOT NULL,
+  `id_pesanan` varchar(36) NOT NULL,
+  `id_mobil` varchar(36) NOT NULL,
+  `id_pelanggan` varchar(36) NOT NULL,
+  `id_sales` varchar(36) NOT NULL,
+  `keterangan` text NOT NULL,
   `tgl_pesanan` datetime NOT NULL DEFAULT current_timestamp(),
-  `status` varchar(100) NOT NULL,
-  `file` varchar(100) NOT NULL
+  `status` int(1) NOT NULL,
+  `file` varchar(100) NOT NULL,
+  `penilaian` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `pesanan`
 --
 
-INSERT INTO `pesanan` (`id_pesanan`, `id_mobil`, `id_pelanggan`, `id_sales`, `keterangan`, `tgl_pesanan`, `status`, `file`) VALUES
-('0f32592f-467a-11ef-877d-2cd05a302ee2', '7073bf09-bb1a-11ee-afe5-c454445434d3', '5d91cb75-45d8-11ef-90ba-2cd05a302ee2', '89b91284-4682-11ef-877d-2cd05a302ee2', 'ada', '2024-07-20 17:25:48', '3', ''),
-('52342efd-46aa-11ef-877d-2cd05a302ee2', '4261d470-bb1a-11ee-afe5-c454445434d3', '5d91cb75-45d8-11ef-90ba-2cd05a302ee2', '', 'jj', '2024-07-20 23:11:16', '3', 'f8bf95c353a9c1e40a86a3fc4575ce13.pdf');
+INSERT INTO `pesanan` (`id_pesanan`, `id_mobil`, `id_pelanggan`, `id_sales`, `keterangan`, `tgl_pesanan`, `status`, `file`, `penilaian`) VALUES
+('0f32592f-467a-11ef-877d-2cd05a302ee2', '7073bf09-bb1a-11ee-afe5-c454445434d3', '5d91cb75-45d8-11ef-90ba-2cd05a302ee2', '89b91284-4682-11ef-877d-2cd05a302ee2', 'ada', '2024-07-20 17:25:48', 3, '', 0),
+('52342efd-46aa-11ef-877d-2cd05a302ee2', '4261d470-bb1a-11ee-afe5-c454445434d3', '5d91cb75-45d8-11ef-90ba-2cd05a302ee2', '', 'jj', '2024-07-20 23:11:16', 3, 'f8bf95c353a9c1e40a86a3fc4575ce13.pdf', 3);
 
 -- --------------------------------------------------------
 
@@ -260,9 +271,9 @@ INSERT INTO `pesanan` (`id_pesanan`, `id_mobil`, `id_pelanggan`, `id_sales`, `ke
 --
 
 CREATE TABLE `promo` (
-  `id_promo` varchar(100) NOT NULL,
-  `nama_promo` varchar(100) NOT NULL,
-  `tgl_promo` varchar(100) NOT NULL,
+  `id_promo` varchar(36) NOT NULL,
+  `nama_promo` varchar(50) NOT NULL,
+  `tgl_promo` date NOT NULL,
   `detail_promo` text NOT NULL,
   `file_promo` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -281,11 +292,11 @@ INSERT INTO `promo` (`id_promo`, `nama_promo`, `tgl_promo`, `detail_promo`, `fil
 --
 
 CREATE TABLE `service` (
-  `id_service` varchar(100) NOT NULL,
-  `nama_service` varchar(100) NOT NULL,
-  `deskripsi` varchar(100) NOT NULL,
-  `estimasi_harga` varchar(100) NOT NULL,
-  `id_model_mobil` varchar(100) NOT NULL
+  `id_service` varchar(36) NOT NULL,
+  `nama_service` varchar(50) NOT NULL,
+  `deskripsi` varchar(50) NOT NULL,
+  `estimasi_harga` varchar(50) NOT NULL,
+  `id_model_mobil` varchar(36) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -302,9 +313,9 @@ INSERT INTO `service` (`id_service`, `nama_service`, `deskripsi`, `estimasi_harg
 --
 
 CREATE TABLE `solusi` (
-  `id_solusi` varchar(100) NOT NULL,
-  `pertanyaan` varchar(100) NOT NULL,
-  `jawaban` varchar(100) NOT NULL,
+  `id_solusi` varchar(36) NOT NULL,
+  `pertanyaan` text NOT NULL,
+  `jawaban` text NOT NULL,
   `tgl_solusi` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 

@@ -37,6 +37,7 @@
                   <th><div align="left">Deskripsi</div></th>
                   <th><div align="left">Balasan</div></th>   
                   <th><div align="left">Status</div></th>                 
+                  <th><div align="left">Penilaian</div></th>                 
                   
                 </tr>
               </thead>
@@ -84,7 +85,24 @@
                       <?php if($d->status==2): ?><label class="label label-danger">Ditutup</label><?php endif;?>
                     </div></td>
                    
-                 
+                   <td> <div align="left">
+                      <?php if($d->penilaian==4): ?><label class="label label-success">Sangat Puas</label><?php endif;?>
+                      <?php if($d->penilaian==3): ?><label class="label label-primary">Puas</label><?php endif;?>
+                      <?php if($d->penilaian==2): ?><label class="label label-warning">Kurang Puas</label><?php endif;?>
+                      <?php if($d->penilaian==1): ?><label class="label label-danger">Tidak Puas</label><?php endif;?>
+                        <?php if($d->penilaian==0): ?>
+                         <a   class="btn btn-sm btn-warning" data-tooltip="tooltip"
+                      data-bs-placement="top"
+                      title="Beri Penilaian" href="javascript:;"
+                           data-toggle="modal" data-target="#edit"   
+                              data-id="<?= $d->id_kasus ?>"
+                              data-penilaian="<?= $d->penilaian ?>"
+                             
+                            
+                              > 
+                    <span class="icofont icofont-ui-edit"></span> </a>  <?php endif;?>
+                    </div></td>
+                    
                 </tr>
                 <?php endforeach; ?>
                                                             </tbody>
@@ -136,3 +154,60 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
+
+
+                                                                    <div class="modal fade" id="edit" tabindex="-1" role="dialog">
+                                                                    <div class="modal-dialog" role="document">
+                                                                        <div class="modal-content">
+                                                                            <div class="modal-header">
+                                                                                <h4 class="modal-title">Penilaian</h4>
+                                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                                            </div>
+                                                                            <?php  
+             echo validation_errors();                       
+    echo form_open('user/penilaian_kasus'); ?>
+                   
+                                                                           <div class="modal-body">
+   
+                      <div class="mb-3">
+                          <input type="hidden" class="form-control"  name="id_kasus" id="id" required >
+                        <label for="exampleInputEmail1">Penilaian</label>
+                        <select class="form-control" name="penilaian">
+                          <option value="4">Sangat Puas</option>
+                          <option value="3">Puas</option>
+                          <option value="2">Kurang Puas</option>
+                          <option value="1">Tidak Puas</option>
+                        </select>
+                        
+                      </div>
+                      
+                    
+                      
+                      
+      </div>
+                                                                            <div class="modal-footer">
+                                                                                <button type="button" class="btn btn-default waves-effect " data-dismiss="modal">Close</button>
+                                                                                
+                                                                                <input type="submit" name="submit"  class="btn btn-primary waves-effect waves-light" value="Submit">
+                                                                            </div>
+                                                                          </form>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <script>
+    $(document).ready(function() {
+      
+        $('#edit').on('show.bs.modal', function (event) {
+            var div = $(event.relatedTarget)
+            var modal   = $(this)
+            modal.find('#id').attr("value",div.data('id'));
+            modal.find('#penilaian').attr("value",div.data('penilaian'));
+           
+           
+         
+        });
+    });
+</script>

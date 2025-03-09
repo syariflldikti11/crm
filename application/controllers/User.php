@@ -11,6 +11,26 @@ class User extends CI_Controller
         redirect(base_url('login'));
         }
   }
+   function cetak_pesanan($id)
+    {
+      
+      $data = array(
+                'judul' => 'Update pelanggan',
+            'd' => $this->m_umum->cetak_pesanan($id)
+
+        );
+        $this->load->view('laporan/cetak_pesanan',$data);
+        }
+           function cetak_penawaran($id)
+    {
+      
+      $data = array(
+                'judul' => 'Update pelanggan',
+            'd' => $this->m_umum->cetak_penawaran($id)
+
+        );
+        $this->load->view('laporan/cetak_penawaran',$data);
+        }
   function laporan_pesanan()
     {
         $dari = $this->input->post('dari');
@@ -75,6 +95,7 @@ function konsultasi()
   $data = array(
       'judul' => 'Konsultasi',
       'modal_tambah' => 'Tambah Konsultasi',
+      'modal_edit' => 'Penilaian',
       'dt_konsultasi'=> $this->m_umum->get_konsultasi_user(),
      
   );  
@@ -99,6 +120,22 @@ function simpan_konsultasi() {
     }
   
 }
+
+function update_konsultasi()
+  {
+        
+    $this->form_validation->set_rules('id_konsultasi','id_konsultasi','required');
+    if($this->form_validation->run() === FALSE)
+        redirect('user/konsultasi');
+    else
+    {
+      $this->m_umum->update_data("konsultasi");
+       $notif = " Data berhasil diupdate";
+            $this->session->set_flashdata('update', $notif);
+      redirect('user/konsultasi');
+    }
+    
+  }
 function penawaran()
 {
   
@@ -110,7 +147,21 @@ function penawaran()
   $this->template->load('user/template', 'user/penawaran', $data);
   
 }
-
+function penilaian_penawaran()
+  {
+        
+    $this->form_validation->set_rules('id_penawaran','id_penawaran','required');
+    if($this->form_validation->run() === FALSE)
+        redirect('user/penawaran');
+    else
+    {
+      $this->m_umum->update_data("penawaran");
+       $notif = " Data berhasil diupdate";
+            $this->session->set_flashdata('update', $notif);
+      redirect('user/penawaran');
+    }
+    
+  }
 function simpan_penawaran()
   {
  $id=$this->session->userdata('ses_id');
@@ -171,6 +222,21 @@ function pesanan()
   $this->template->load('user/template', 'user/pesanan', $data);
   
 }
+function penilaian_pesanan()
+  {
+        
+    $this->form_validation->set_rules('id_pesanan','id_pesanan','required');
+    if($this->form_validation->run() === FALSE)
+        redirect('user/pesanan');
+    else
+    {
+      $this->m_umum->update_data("pesanan");
+       $notif = " Data berhasil diupdate";
+            $this->session->set_flashdata('update', $notif);
+      redirect('user/pesanan');
+    }
+    
+  }
 function kasus()
 {
   
@@ -201,6 +267,21 @@ function simpan_kasus() {
     }
   
 }
+function penilaian_kasus()
+  {
+        
+    $this->form_validation->set_rules('id_kasus','id_kasus','required');
+    if($this->form_validation->run() === FALSE)
+        redirect('user/kasus');
+    else
+    {
+      $this->m_umum->update_data("kasus");
+       $notif = " Data berhasil diupdate";
+            $this->session->set_flashdata('update', $notif);
+      redirect('user/kasus');
+    }
+    
+  }
 function promo()
 {
  

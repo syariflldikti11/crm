@@ -15,6 +15,7 @@
                   <th><div align="left">No Wa</div></th>
                   <th><div align="left">Konsultasi</div></th>
                   <th><div align="left">Balasan</div></th>
+                  <th><div align="left">Penilaian</div></th>
                 
                   <th ><div align="center">Opsi</div></th>
                 </tr>
@@ -43,7 +44,14 @@
                     <div align="left">
                       <?= $d->balasan; ?>
                     </div></td>
-                    
+                    <td> <div align="left">
+                      <?php if($d->penilaian==4): ?><label class="label label-success">Sangat Puas</label><?php endif;?>
+                      <?php if($d->penilaian==3): ?><label class="label label-primary">Puas</label><?php endif;?>
+                      <?php if($d->penilaian==2): ?><label class="label label-warning">Kurang Puas</label><?php endif;?>
+                      <?php if($d->penilaian==1): ?><label class="label label-danger">Tidak Puas</label><?php endif;?>
+                      
+                    </div></td>
+                 
                    
                   <td align="center"><div align="center">   
              <a   class="btn btn-sm btn-warning" data-tooltip="tooltip"

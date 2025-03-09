@@ -505,8 +505,37 @@
                                      
           
 <?= $contents; ?>
+<?php
 
 
+$query=$this->db->query("Select FORMAT(AVG(penilaian), 1) as kasusp from kasus where penilaian !=0");
+ foreach ($query->result() as $t) :?>
+<?php $kasusp=$t->kasusp; ?>
+ <?php endforeach; ?>
+
+ <?php
+
+
+$query=$this->db->query("Select FORMAT(AVG(penilaian), 1) as konsultasip from konsultasi where penilaian !=0");
+ foreach ($query->result() as $f) :?>
+<?php $konsultasip=$f->konsultasip; ?>
+ <?php endforeach; ?>
+
+ <?php
+
+
+$query=$this->db->query("Select FORMAT(AVG(penilaian), 1) as pesananp from pesanan where penilaian !=0");
+ foreach ($query->result() as $p) :?>
+<?php $pesananp=$p->pesananp; ?>
+ <?php endforeach; ?>
+
+ <?php
+
+
+$query=$this->db->query("Select FORMAT(AVG(penilaian), 1) as penawaranp from penawaran where penilaian !=0");
+ foreach ($query->result() as $fs) :?>
+<?php $penawaranp=$fs->penawaranp; ?>
+ <?php endforeach; ?>
                                 <div id="styleSelector">
 
                                 </div>
@@ -570,12 +599,176 @@
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
   gtag('config', 'UA-23581568-13');
+</script>
+<script type="text/javascript">
+jQuery(function(){
+ new Highcharts.Chart({
+  chart: {
+   renderTo: 'chart',
+   type: 'area',
+  },
+  title: {
+   text: '',
+   x: -20
+  },
+  subtitle: {
+   text: '',
+   x: -20
+  },
+  xAxis: {
+   categories: ['Kasus', 'Konsultasi', 'Pesanan', 'Penawaran']
+  },
+  yAxis: {
+   title: {
+    text: 'Rata-rata'
+   }
+  },
+  series: [{
+   name: 'Penilaian',
+   data: [<?= $kasusp; ?>, <?= $konsultasip; ?>, <?= $pesananp; ?>, <?= $penawaranp; ?>],
+   color: 'blue'
+ 
+  }
+  
+  ]
+ });
+}); 
+</script>
+<script type="text/javascript">
+jQuery(function(){
+ new Highcharts.Chart({
+  chart: {
+   renderTo: 'sj',
+   type: 'column',
+  },
+  title: {
+   text: 'Tren Konsultasi dan Kasus',
+   x: -20
+  },
+  subtitle: {
+   text: '',
+   x: -20
+  },
+  xAxis: {
+   categories: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun',
+                    'Jul', 'Ags', 'Sep', 'Okt', 'Nov', 'Des']
+  },
+  yAxis: {
+   title: {
+    text: 'Total'
+   }
+  },
+  series: [{
+   name: 'Kasus',
+   data: <?php echo json_encode($grafik_kasus); ?>,
+   color: 'red'
+ 
+  },
+  
+  {
+   name: 'Konsultasi',
+   data: <?php echo json_encode($grafik_konsultasi); ?>,
+   color: 'green'
+ 
+  }
+  ]
+
+ });
+}); 
+</script>
+
+<script type="text/javascript">
+jQuery(function(){
+ new Highcharts.Chart({
+  chart: {
+   renderTo: 'allpesanan',
+   type: 'column',
+  },
+  title: {
+   text: 'Pesanan',
+   x: -20
+  },
+  subtitle: {
+   text: '',
+   x: -20
+  },
+  xAxis: {
+   categories: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun',
+                    'Jul', 'Ags', 'Sep', 'Okt', 'Nov', 'Des']
+  },
+  yAxis: {
+   title: {
+    text: 'Total'
+   }
+  },
+  series: [{
+   name: 'Semua Pesanan',
+   data: <?php echo json_encode($grafik_pesanan_progress); ?>,
+   color: 'red'
+ 
+  },
+  
+  {
+   name: 'Pesanan Deal',
+   data: <?php echo json_encode($grafik_pesanan_selesai); ?>,
+   color: 'green'
+ 
+  }
+  ]
+
+ });
+}); 
+</script>
+<script type="text/javascript">
+jQuery(function(){
+ new Highcharts.Chart({
+  chart: {
+   renderTo: 'allpenawaran',
+   type: 'line',
+  },
+  title: {
+   text: 'Penawaran',
+   x: -20
+  },
+  subtitle: {
+   text: '',
+   x: -20
+  },
+  xAxis: {
+   categories: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun',
+                    'Jul', 'Ags', 'Sep', 'Okt', 'Nov', 'Des']
+  },
+  yAxis: {
+   title: {
+    text: 'Total'
+   }
+  },
+  series: [{
+   name: 'Semua Penawaran',
+   data: <?php echo json_encode($grafik_penawaran_progress); ?>,
+   color: 'red'
+ 
+  },
+  
+  {
+   name: 'Penawaran Deal',
+   data: <?php echo json_encode($grafik_penawaran_selesai); ?>,
+   color: 'green'
+ 
+  }
+  ]
+
+ });
+}); 
 </script>
 <script type="text/javascript">
 

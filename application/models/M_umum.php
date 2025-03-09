@@ -1,7 +1,167 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 class M_umum extends CI_Model{
+function ambil_data($tabel, $kolom = FALSE, $id = FALSE)
+  {
+    if ($id === FALSE) {
+      $q = $this->db->get($tabel);  //ambil seluruh data tabel
+      return $q->result();    //kembalikan
+    }
+    $q = $this->db->get_where($tabel, array($kolom => $id)); //ambil satu baris data dengan $kolom=$id
+    return $q->row();       //kembalikan
+  }
+  function grafik_pesanan_progress()
+  {
+  $tgl=date('Y');
+   $sql= $this->db->query("
+   
+   select distinct
+   ifnull((SELECT count(id_pesanan) FROM (pesanan)  WHERE((Month(tgl_pesanan)=1))),0) AS 'Januari',
+   ifnull((SELECT count(id_pesanan) FROM (pesanan)  WHERE((Month(tgl_pesanan)=2))),0) AS 'Februari',
+   ifnull((SELECT count(id_pesanan) FROM (pesanan)  WHERE((Month(tgl_pesanan)=3))),0) AS 'Maret',
+   ifnull((SELECT count(id_pesanan) FROM (pesanan)  WHERE((Month(tgl_pesanan)=4))),0) AS 'April',
+   ifnull((SELECT count(id_pesanan) FROM (pesanan)  WHERE((Month(tgl_pesanan)=5))),0) AS 'Mei',
+   ifnull((SELECT count(id_pesanan) FROM (pesanan)  WHERE((Month(tgl_pesanan)=6))),0) AS 'Juni',
+   ifnull((SELECT count(id_pesanan) FROM (pesanan)  WHERE((Month(tgl_pesanan)=7))),0) AS 'Juli',
+   ifnull((SELECT count(id_pesanan) FROM (pesanan)  WHERE((Month(tgl_pesanan)=8))),0) AS 'Agustus',
+   ifnull((SELECT count(id_pesanan) FROM (pesanan)  WHERE((Month(tgl_pesanan)=9))),0) AS 'September',
+   ifnull((SELECT count(id_pesanan) FROM (pesanan)  WHERE((Month(tgl_pesanan)=10))),0) AS 'Oktober',
+   ifnull((SELECT count(id_pesanan) FROM (pesanan)  WHERE((Month(tgl_pesanan)=11))),0) AS 'November',
+   ifnull((SELECT count(id_pesanan) FROM (pesanan)  WHERE((Month(tgl_pesanan)=12))),0) AS 'Desember'
+  from pesanan GROUP BY YEAR(tgl_pesanan) 
+   
+   ");
+   
+   return $sql;
+   
+  }
+function grafik_pesanan_selesai()
+  {
+  $tgl=date('Y');
+   $sql= $this->db->query("
+   
+   select distinct
+   ifnull((SELECT count(id_pesanan) FROM (pesanan)  WHERE((Month(tgl_pesanan)=1)  and status=3)),0) AS 'Januari',
+   ifnull((SELECT count(id_pesanan) FROM (pesanan)  WHERE((Month(tgl_pesanan)=2) and status=3)),0) AS 'Februari',
+   ifnull((SELECT count(id_pesanan) FROM (pesanan)  WHERE((Month(tgl_pesanan)=3) and status=3)),0) AS 'Maret',
+   ifnull((SELECT count(id_pesanan) FROM (pesanan)  WHERE((Month(tgl_pesanan)=4) and status=3)),0) AS 'April',
+   ifnull((SELECT count(id_pesanan) FROM (pesanan)  WHERE((Month(tgl_pesanan)=5) and status=3)),0) AS 'Mei',
+   ifnull((SELECT count(id_pesanan) FROM (pesanan)  WHERE((Month(tgl_pesanan)=6) and status=3)),0) AS 'Juni',
+   ifnull((SELECT count(id_pesanan) FROM (pesanan)  WHERE((Month(tgl_pesanan)=7) and status=3)),0) AS 'Juli',
+   ifnull((SELECT count(id_pesanan) FROM (pesanan)  WHERE((Month(tgl_pesanan)=8) and status=3)),0) AS 'Agustus',
+   ifnull((SELECT count(id_pesanan) FROM (pesanan)  WHERE((Month(tgl_pesanan)=9) and status=3)),0) AS 'September',
+   ifnull((SELECT count(id_pesanan) FROM (pesanan)  WHERE((Month(tgl_pesanan)=10) and status=3)),0) AS 'Oktober',
+   ifnull((SELECT count(id_pesanan) FROM (pesanan)  WHERE((Month(tgl_pesanan)=11) and status=3)),0) AS 'November',
+   ifnull((SELECT count(id_pesanan) FROM (pesanan)  WHERE((Month(tgl_pesanan)=12) and status=3)),0) AS 'Desember'
+  from pesanan GROUP BY YEAR(tgl_pesanan) 
+   
+   ");
+   
+   return $sql;
+   
+  }
 
+
+   function grafik_penawaran_progress()
+  {
+  $tgl=date('Y');
+   $sql= $this->db->query("
+   
+   select distinct
+   ifnull((SELECT count(id_penawaran) FROM (penawaran)  WHERE((Month(tgl_penawaran)=1))),0) AS 'Januari',
+   ifnull((SELECT count(id_penawaran) FROM (penawaran)  WHERE((Month(tgl_penawaran)=2))),0) AS 'Februari',
+   ifnull((SELECT count(id_penawaran) FROM (penawaran)  WHERE((Month(tgl_penawaran)=3))),0) AS 'Maret',
+   ifnull((SELECT count(id_penawaran) FROM (penawaran)  WHERE((Month(tgl_penawaran)=4))),0) AS 'April',
+   ifnull((SELECT count(id_penawaran) FROM (penawaran)  WHERE((Month(tgl_penawaran)=5))),0) AS 'Mei',
+   ifnull((SELECT count(id_penawaran) FROM (penawaran)  WHERE((Month(tgl_penawaran)=6))),0) AS 'Juni',
+   ifnull((SELECT count(id_penawaran) FROM (penawaran)  WHERE((Month(tgl_penawaran)=7))),0) AS 'Juli',
+   ifnull((SELECT count(id_penawaran) FROM (penawaran)  WHERE((Month(tgl_penawaran)=8))),0) AS 'Agustus',
+   ifnull((SELECT count(id_penawaran) FROM (penawaran)  WHERE((Month(tgl_penawaran)=9))),0) AS 'September',
+   ifnull((SELECT count(id_penawaran) FROM (penawaran)  WHERE((Month(tgl_penawaran)=10))),0) AS 'Oktober',
+   ifnull((SELECT count(id_penawaran) FROM (penawaran)  WHERE((Month(tgl_penawaran)=11))),0) AS 'November',
+   ifnull((SELECT count(id_penawaran) FROM (penawaran)  WHERE((Month(tgl_penawaran)=12))),0) AS 'Desember'
+  from penawaran GROUP BY YEAR(tgl_penawaran) 
+   
+   ");
+   
+   return $sql;
+   
+  }
+function grafik_penawaran_selesai()
+  {
+  $tgl=date('Y');
+   $sql= $this->db->query("
+   
+   select distinct
+   ifnull((SELECT count(id_penawaran) FROM (penawaran)  WHERE((Month(tgl_penawaran)=1)  and status=3)),0) AS 'Januari',
+   ifnull((SELECT count(id_penawaran) FROM (penawaran)  WHERE((Month(tgl_penawaran)=2) and status=3)),0) AS 'Februari',
+   ifnull((SELECT count(id_penawaran) FROM (penawaran)  WHERE((Month(tgl_penawaran)=3) and status=3)),0) AS 'Maret',
+   ifnull((SELECT count(id_penawaran) FROM (penawaran)  WHERE((Month(tgl_penawaran)=4) and status=3)),0) AS 'April',
+   ifnull((SELECT count(id_penawaran) FROM (penawaran)  WHERE((Month(tgl_penawaran)=5) and status=3)),0) AS 'Mei',
+   ifnull((SELECT count(id_penawaran) FROM (penawaran)  WHERE((Month(tgl_penawaran)=6) and status=3)),0) AS 'Juni',
+   ifnull((SELECT count(id_penawaran) FROM (penawaran)  WHERE((Month(tgl_penawaran)=7) and status=3)),0) AS 'Juli',
+   ifnull((SELECT count(id_penawaran) FROM (penawaran)  WHERE((Month(tgl_penawaran)=8) and status=3)),0) AS 'Agustus',
+   ifnull((SELECT count(id_penawaran) FROM (penawaran)  WHERE((Month(tgl_penawaran)=9) and status=3)),0) AS 'September',
+   ifnull((SELECT count(id_penawaran) FROM (penawaran)  WHERE((Month(tgl_penawaran)=10) and status=3)),0) AS 'Oktober',
+   ifnull((SELECT count(id_penawaran) FROM (penawaran)  WHERE((Month(tgl_penawaran)=11) and status=3)),0) AS 'November',
+   ifnull((SELECT count(id_penawaran) FROM (penawaran)  WHERE((Month(tgl_penawaran)=12) and status=3)),0) AS 'Desember'
+  from penawaran GROUP BY YEAR(tgl_penawaran) 
+   
+   ");
+   
+   return $sql;
+   
+  }
+function grafik_konsultasi()
+  {
+  $tgl=date('Y');
+   $sql= $this->db->query("
+   
+   select distinct
+   ifnull((SELECT count(id_konsultasi) FROM (konsultasi)  WHERE((Month(tgl_konsultasi)=1))),0) AS 'Januari',
+   ifnull((SELECT count(id_konsultasi) FROM (konsultasi)  WHERE((Month(tgl_konsultasi)=2))),0) AS 'Februari',
+   ifnull((SELECT count(id_konsultasi) FROM (konsultasi)  WHERE((Month(tgl_konsultasi)=3))),0) AS 'Maret',
+   ifnull((SELECT count(id_konsultasi) FROM (konsultasi)  WHERE((Month(tgl_konsultasi)=4))),0) AS 'April',
+   ifnull((SELECT count(id_konsultasi) FROM (konsultasi)  WHERE((Month(tgl_konsultasi)=5))),0) AS 'Mei',
+   ifnull((SELECT count(id_konsultasi) FROM (konsultasi)  WHERE((Month(tgl_konsultasi)=6))),0) AS 'Juni',
+   ifnull((SELECT count(id_konsultasi) FROM (konsultasi)  WHERE((Month(tgl_konsultasi)=7))),0) AS 'Juli',
+   ifnull((SELECT count(id_konsultasi) FROM (konsultasi)  WHERE((Month(tgl_konsultasi)=8))),0) AS 'Agustus',
+   ifnull((SELECT count(id_konsultasi) FROM (konsultasi)  WHERE((Month(tgl_konsultasi)=9))),0) AS 'September',
+   ifnull((SELECT count(id_konsultasi) FROM (konsultasi)  WHERE((Month(tgl_konsultasi)=10))),0) AS 'Oktober',
+   ifnull((SELECT count(id_konsultasi) FROM (konsultasi)  WHERE((Month(tgl_konsultasi)=11))),0) AS 'November',
+   ifnull((SELECT count(id_konsultasi) FROM (konsultasi)  WHERE((Month(tgl_konsultasi)=12))),0) AS 'Desember'
+  from konsultasi GROUP BY YEAR(tgl_konsultasi) 
+   
+   ");
+   
+   return $sql;
+   
+  }
+  function grafik_kasus()
+  {
+ $tgl=date('Y');
+   $sql= $this->db->query("
+   
+   select distinct
+   ifnull((SELECT count(id_kasus) FROM (kasus)  WHERE((Month(tgl_kasus)=1) )),0) AS 'Januari',
+   ifnull((SELECT count(id_kasus) FROM (kasus)  WHERE((Month(tgl_kasus)=2) )),0) AS 'Februari',
+   ifnull((SELECT count(id_kasus) FROM (kasus)  WHERE((Month(tgl_kasus)=3) )),0) AS 'Maret',
+   ifnull((SELECT count(id_kasus) FROM (kasus)  WHERE((Month(tgl_kasus)=4) )),0) AS 'April',
+   ifnull((SELECT count(id_kasus) FROM (kasus)  WHERE((Month(tgl_kasus)=5) )),0) AS 'Mei',
+   ifnull((SELECT count(id_kasus) FROM (kasus)  WHERE((Month(tgl_kasus)=6) )),0) AS 'Juni',
+   ifnull((SELECT count(id_kasus) FROM (kasus)  WHERE((Month(tgl_kasus)=7) )),0) AS 'Juli',
+   ifnull((SELECT count(id_kasus) FROM (kasus)  WHERE((Month(tgl_kasus)=8) )),0) AS 'Agustus',
+   ifnull((SELECT count(id_kasus) FROM (kasus)  WHERE((Month(tgl_kasus)=9) )),0) AS 'September',
+   ifnull((SELECT count(id_kasus) FROM (kasus)  WHERE((Month(tgl_kasus)=10) )),0) AS 'Oktober',
+   ifnull((SELECT count(id_kasus) FROM (kasus)  WHERE((Month(tgl_kasus)=11) )),0) AS 'November',
+   ifnull((SELECT count(id_kasus) FROM (kasus)  WHERE((Month(tgl_kasus)=12) )),0) AS 'Desember'
+  from kasus GROUP BY YEAR(tgl_kasus) 
+   
+   ");
+   
+   return $sql;
+   
+  }
 	function laporan_event($dari,$sampai)
 	{		
 	   
@@ -62,6 +222,19 @@ $this->db->order_by('a.tgl_kasus desc');
 	   $query = $this->db->get();
 	   return $query->result();
 	}
+		function cetak_pesanan($id)
+	{		
+	   
+		$this->db->select('*');
+	   $this->db->from('pesanan a');
+	   $this->db->join('pelanggan b', 'a.id_pelanggan=b.id_pelanggan', 'left');
+		$this->db->join('pengguna d', 'a.id_sales=d.id_pengguna', 'left');
+		$this->db->join('mobil c', 'a.id_mobil=c.id_mobil', 'left');
+		$this->db->where('a.id_pesanan',$id);
+
+	   $query = $this->db->get();
+	   return $query->row();
+	}
 	function laporan_penawaran($dari,$sampai)
 	{		
 	   
@@ -74,6 +247,19 @@ $this->db->order_by('a.tgl_kasus desc');
 
 	   $query = $this->db->get();
 	   return $query->result();
+	}
+	function cetak_penawaran($id)
+	{		
+	   
+		$this->db->select('*');
+	   $this->db->from('penawaran a');
+	   $this->db->join('pelanggan b', 'a.id_pelanggan=b.id_pelanggan', 'left');
+		$this->db->join('pengguna d', 'a.id_sales=d.id_pengguna', 'left');
+		$this->db->join('mobil c', 'a.id_mobil=c.id_mobil', 'left');
+		$this->db->where('a.id_penawaran',$id);
+
+	   $query = $this->db->get();
+	   return $query->row();
 	}
 	function laporan_pesanan_user($dari,$sampai)
 	{		

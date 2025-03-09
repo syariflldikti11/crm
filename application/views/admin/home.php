@@ -100,8 +100,63 @@ echo rupiah($total);
                                         </div>
                                     
 
+ <div class="col-md-8">
+                                                <div class="card">
+                                                   <div class="card-header">
+                                                        <h5>Penilaian Pelanggan (Skala 1-4)</h5>
+                                                      
+                                                    </div>
+                                                    <div class="card-block">
+                                                        
+                                                        <div class="row">
+                                                            <div class="col-3 b-r-default">
+                                                                <p class="text-muted m-b-5">Kasus</p>
+                                                                <h5><?php
 
-<div class="col-md-12">
+
+$query=$this->db->query("Select FORMAT(AVG(penilaian), 1) as kasusp from kasus where penilaian !=0");
+ foreach ($query->result() as $t) :?>
+<?= $kasusp=$t->kasusp; ?>
+ <?php endforeach; ?></h5>
+
+
+                                                            </div>
+                                                            <div class="col-3 b-r-default">
+                                                                <p class="text-muted m-b-5">Konsultasi</p>
+                                                                <h5><?php
+
+
+$query=$this->db->query("Select FORMAT(AVG(penilaian), 1) as konsultasip from konsultasi where penilaian !=0");
+ foreach ($query->result() as $f) :?>
+<?= $f->konsultasip; ?>
+ <?php endforeach; ?></h5>
+                                                            </div>
+                                                            <div class="col-3">
+                                                                <p class="text-muted m-b-5">Pesanan</p>
+                                                                <h5><?php
+
+
+$query=$this->db->query("Select FORMAT(AVG(penilaian), 1) as pesananp from pesanan where penilaian !=0");
+ foreach ($query->result() as $p) :?>
+<?= $p->pesananp; ?>
+ <?php endforeach; ?></h5>
+                                                            </div>
+                                                            <div class="col-3">
+                                                                <p class="text-muted m-b-5">Penawaran</p>
+                                                                <h5><?php
+
+
+$query=$this->db->query("Select FORMAT(AVG(penilaian), 1) as penawaranp from penawaran where penilaian !=0");
+ foreach ($query->result() as $fs) :?>
+<?= $fs->penawaranp; ?>
+ <?php endforeach; ?></h5>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div id="chart" height="150"></div>
+                                                </div>
+                                            </div>
+<div class="col-md-4">
 <div class="card feed-card">
 <div class="card-header">
 <h5>Notifikasi</h5>
@@ -148,6 +203,46 @@ echo rupiah($total);
 </div>
 </div>
 
+
+<div class="col-md-6">
+<div class="card feed-card">
+<div class="card-header">
+<h5>Kasus dan Konsultasi</h5>
+</div>
+<div class="card-block">
+
+
+<div id="sj"></div>
+
+</div>
+</div>
+</div>
+<div class="col-md-6">
+<div class="card feed-card">
+<div class="card-header">
+<h5>Pesanan</h5>
+</div>
+<div class="card-block">
+
+
+<div id="allpesanan"></div>
+
+</div>
+</div>
+</div>
+<div class="col-md-6">
+<div class="card feed-card">
+<div class="card-header">
+<h5>Penawaran</h5>
+</div>
+<div class="card-block">
+
+
+<div id="allpenawaran"></div>
+
+</div>
+</div>
+</div>
 
 </div>
                                     </div>
